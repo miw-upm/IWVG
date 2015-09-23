@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>doo</artifactId>
+	<groupId>es.upm.miw</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>${project.groupId}.${project.artifactId}</name>
+
+	<properties>
+		<encoding>UTF-8</encoding>
+		<project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+		<project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
+		<jdk.version>1.8</jdk.version>
+		<junit.version>4.11</junit.version>
+		<log4j.version>2.2</log4j.version>
+		<maven.compiler.version>3.3</maven.compiler.version>
+		<maven.failsafe.version>2.12</maven.failsafe.version>
+	</properties>
+
+	<profiles>
+		<!-- Maven will apply this by default as we set in $HOME/.m2/settings.xml -->
+		<!-- Default: -Denvironment.type=develop -->
+		<profile>
+			<id>develop</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>develop</value>
+				</property>
+			</activation>
+			<properties>
+				<logs.level.root>debug</logs.level.root>
+			</properties>
+		</profile>
+		<!-- mvn install -Denvironment.type=preproduction -->
+		<profile>
+			<id>preproduction</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>preproduction</value>
+				</property>
+			</activation>
+			<properties>
+				<logs.level.root>info</logs.level.root>
+			</properties>
+		</profile>
+		<!-- mvn install -Denvironment.type=production -->
+		<profile>
+			<id>production</id>
+			<activation>
+				<property>
+					<name>environment.type</name>
+					<value>production</value>
+				</property>
+			</activation>
+			<properties>
+				<logs.level.root>error</logs.level.root>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<!-- Logs -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.version}</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>${maven.failsafe.version}</version>
+				<configuration>
+					<includes>
+						<include>**/*IT.java</include>
+					</includes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>integration-test</id>
+						<goals>
+							<goal>integration-test</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+					<execution>
+						<id>verify</id>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
