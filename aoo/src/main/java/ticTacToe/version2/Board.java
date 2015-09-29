@@ -1,8 +1,5 @@
 package ticTacToe.version2;
 
-import ticTacToe.version2.IO;
-import ticTacToe.version2.Token;
-
 public class Board {
 
 	private Token[][] tokens;

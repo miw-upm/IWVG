@@ -8,21 +8,21 @@ public class ColocateControllerFactory {
 		this.manual = manual;
 	}
 
-	public ColocateController createPutController(Turn turn, Board board,
+	public ColocateController createColocateController(Turn turn, Board board,
 			Player player) {
 		if (manual == 2 || manual == 1 && turn.take() == 0) {
-			return new ManualPutController(board, player);
+			if (!board.complete()) {
+				return new ManualPutController(board, player);
+			} else {
+				return new ManualMoveController(board, player);
+			}
 		} else {
+			if (!board.complete()) {
 			return new AutomaticPutController(board, player);
+			} else {
+				return new AutomaticMoveController(board, player);
+			}
 		}
 	}
-
-	public ColocateController createMoveController(Turn turn, Board board,
-			Player player) {
-		if (manual == 2 || manual == 1 && turn.take() == 0) {
-			return new ManualMoveController(board, player);
-		} else {
-			return new AutomaticMoveController(board, player);
-		}
-	}
+	
 }

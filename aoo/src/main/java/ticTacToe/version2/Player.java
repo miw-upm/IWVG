@@ -11,17 +11,17 @@ public class Player {
 	public void put(Board board) {
 		IO io = new IO();
 		io.writeln("Pone el jugador " + token.getValue());
-		Coordinate coordinate = new Coordinate();
+		Coordinate target = new Coordinate();
 		boolean ok;
 		do {
 			io.writeln("En qué casilla?");
-			coordinate.read();
-			ok = board.empty(coordinate);
+			target.read();
+			ok = board.empty(target);
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		board.put(coordinate, token);
+		board.put(target, token);
 	}
 
 	public void move(Board board) {

@@ -1,21 +1,14 @@
 package ticTacToe.version10;
 
-public class MoveController {
+public class MoveController extends ColocateController{
 
-	private Board board;
-	
-	private Player player;
-	
 	public MoveController(Board board, Player player) {
-		this.board = board;
-		this.player = player;
+		super(board, player, "Mueve");
 	}
 
 	public void control() {
-		IO io = new IO();
-		io.writeln("Mueve el jugador " + player.getToken().getValue());
+		io.writeln(title);
 		Coordinate origin = new Coordinate();
-		Coordinate target = new Coordinate();
 		boolean ok;
 		do {
 			io.writeln("De qué casilla?");
@@ -25,19 +18,7 @@ public class MoveController {
 				io.writeln("Esa casilla no está ocupada por ninguna de tus fichas");
 			}
 		} while (!ok);
-		do {
-			io.writeln("A qué casilla?");
-			target.read();
-			ok = board.empty(target);
-			if (!ok) {
-				io.writeln("Esa casilla no está vacía");
-			}
-		} while (!ok);
 		board.put(origin, new Token('_'));
-		board.put(target, player.getToken());
-		board.write();
-		if (board.existTicTacToe()){
-			player.win();
-		}
+		this.control("A", origin);
 	}
 }

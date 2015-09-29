@@ -4,7 +4,7 @@ public class Board {
 
 	private char[][] tokens;
 	
-	private static int[][] SQUARE_MAGIC = {{2,7,6},{9,5,1},{4,3,8}};
+	
 
 	public Board() {
 		tokens = new char[3][3];
@@ -40,6 +40,8 @@ public class Board {
 	public boolean existTicTacToe() {
 		return this.existTicTacToe('x') || this.existTicTacToe('o');
 	}
+	
+	private static int[][] SQUARE_MAGIC = {{2,7,6},{9,5,1},{4,3,8}};
 
 	public boolean existTicTacToe(char token) {
 		int acum = 0;

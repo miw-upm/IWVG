@@ -22,13 +22,7 @@ public class TicTacToe {
 		StartController startController = new StartController(board, controllerFactory);
 		startController.control();
 		do {
-			if (!board.complete()) {
-				ColocateController putController = controllerFactory.createPutController(turn, board, players[turn.take()]);
-				putController.control();
-			} else {
-				ColocateController moveController = controllerFactory.createMoveController(turn, board, players[turn.take()]);
-				moveController.control();
-			}
+			controllerFactory.createColocateController(turn, board, players[turn.take()]).control();
 		} while (!board.existTicTacToe());
 	}
 

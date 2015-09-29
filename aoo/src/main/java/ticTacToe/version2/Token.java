@@ -7,7 +7,7 @@ public class Token {
 	public Token(char value){
 		this.value = value;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

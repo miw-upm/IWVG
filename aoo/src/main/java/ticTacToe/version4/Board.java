@@ -58,11 +58,11 @@ public class Board {
 				}
 			}
 		}
-		if (countMainDiagonal==2 || countInverseDiagonal==2){
+		if (countMainDiagonal==3 || countInverseDiagonal==3){
 			return true;
 		}
 		for(int k=0; k<3; k++){
-			if(countRow[k]==2 || countColumn[k]==2){
+			if(countRow[k]==3 || countColumn[k]==3){
 				return true;
 			}
 		}
