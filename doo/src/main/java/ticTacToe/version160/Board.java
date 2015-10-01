@@ -51,6 +51,7 @@ public class Board {
 	}
 
 	public boolean existTicTacToe(Color color) {
+		assert color != Color.NONE;
 		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
 		if (coordinateSet.size() != Board.DIMENSION) {
 			return false;

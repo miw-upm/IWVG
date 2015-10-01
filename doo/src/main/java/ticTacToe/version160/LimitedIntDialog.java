@@ -7,6 +7,7 @@ public class LimitedIntDialog {
 	private ClosedInterval limits;
 	
 	public LimitedIntDialog(String title, int min, int max){
+		assert title != null;
 		this.limits = new ClosedInterval(min, max);
 		this.title = title + " " + limits + ": ";
 	}
