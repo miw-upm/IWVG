@@ -9,20 +9,20 @@ public class GameView {
 	}
 
 	public void render() {
-		Controller controller;
+		ColocateController colocateController;
 		do {
-			controller = colocateControllerFactory.getController();
-			if (controller != null) {
-				if (controller instanceof ManualPutController) {
-					new ManualPutView(controller).render();
-				} else if (controller instanceof AutomaticPutController) {
-					new AutomaticPutView(controller).render();
-				} else if (controller instanceof ManualMoveController) {
-					new ManualMoveView(controller).render();
-				} else if (controller instanceof AutomaticMoveController) {
-					new AutomaticMoveView(controller).render();
+			colocateController = colocateControllerFactory.getColocateController();
+			if (colocateController != null) {
+				if (colocateController instanceof ManualPutController) {
+					new ManualPutView(colocateController).render();
+				} else if (colocateController instanceof AutomaticPutController) {
+					new AutomaticPutView(colocateController).render();
+				} else if (colocateController instanceof ManualMoveController) {
+					new ManualMoveView(colocateController).render();
+				} else if (colocateController instanceof AutomaticMoveController) {
+					new AutomaticMoveView(colocateController).render();
 				}
 			}
-		} while (controller != null);
+		} while (colocateController != null);
 	}
 }

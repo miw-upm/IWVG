@@ -1,17 +1,14 @@
 package ticTacToe.version210;
 
-public class ManualPutView {
+public class ManualPutView extends ColocateView {
 
-	private ManualPutController manualPutController;
-	
-	public ManualPutView(Controller controller){
-		this.manualPutController = (ManualPutController) controller;
+	public ManualPutView(ColocateController controller){
+		super(controller, "Pone");
 	}
 	
-	public void render() {
-		char colorValue = manualPutController.getColor().getValue();
-		IO io = new IO();
-		io.writeln("Pone el jugador " + colorValue);
+	@Override
+	protected void colocate(char colorValue) {
+		ManualPutController manualPutController = (ManualPutController)colocateController;
 		Coordinate target = new Coordinate();
 		boolean ok;
 		do {
@@ -22,14 +19,6 @@ public class ManualPutView {
 			}
 		} while (!ok);
 		manualPutController.put(target);
-		new BoardView(manualPutController.getBoard()).render();
-		if (manualPutController.isGameOver()) {
-			io.writeln("Victoria!!!! " 
-					+ colorValue + "! "
-					+ colorValue + "! "
-					+ colorValue + "! Victoria!!!!");
-		} else {
-			manualPutController.close();
-		}
 	}
+	
 }

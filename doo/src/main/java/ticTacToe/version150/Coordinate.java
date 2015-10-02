@@ -26,7 +26,7 @@ public class Coordinate {
 			return Direction.HORIZONTAL;
 		}
 		if (this.getColumn()==coordinate.getColumn()){
-			return Direction.HORIZONTAL;
+			return Direction.VERTICAL;
 		}
 		if (this.inDiagonal() && coordinate.inDiagonal()){
 			return Direction.DIAGONAL;

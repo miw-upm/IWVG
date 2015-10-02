@@ -1,29 +1,17 @@
 package ticTacToe.version210;
 
-public class AutomaticPutView {
+public class AutomaticPutView extends ColocateView {
 
-	private AutomaticPutController automaticPutController;
-	
-	public AutomaticPutView(Controller controller){
-		this.automaticPutController = (AutomaticPutController) controller;
+	public AutomaticPutView(ColocateController controller){
+		super(controller, "Pone");
 	}
 	
-	public void render() {
-		char colorValue = automaticPutController.getColor().getValue();
-		IO io = new IO();
-		io.writeln("Pone el jugador " + colorValue);
+	@Override
+	protected void colocate(char colorValue) {
+		AutomaticPutController automaticPutController = (AutomaticPutController)colocateController;
 		Coordinate target = automaticPutController.getTarget();
 		io.writeln("Se va a colocar un " + colorValue + " en " + target);
 		io.readString("Pulse <Enter> para continuar");
 		automaticPutController.put(target);
-		new BoardView(automaticPutController.getBoard()).render();
-		if (automaticPutController.isGameOver()) {
-			io.writeln("Victoria!!!! " 
-					+ colorValue + "! "
-					+ colorValue + "! "
-					+ colorValue + "! Victoria!!!!");
-		} else {
-			automaticPutController.close();
-		}
 	}
 }

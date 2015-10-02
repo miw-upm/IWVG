@@ -32,7 +32,7 @@ public class ColocateControllerFactory {
 		}
 	}
 	
-	public ColocateController getController() {
+	public ColocateController getColocateController() {
 		if (board.existTicTacToe()){
 			return null;
 		}
