@@ -13,7 +13,7 @@ public class GameView implements View {
 		do {
 			controller = colocateControllerFactory.getController();
 			if (controller != null) {
-				controller.recibir(this);
+				controller.despachar(this);
 			}
 		} while (controller != null);
 	}

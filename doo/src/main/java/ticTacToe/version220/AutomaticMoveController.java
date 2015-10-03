@@ -28,7 +28,7 @@ public class AutomaticMoveController extends MoveController {
 	}
 	
 	@Override
-	public void recibir(View gameView) {
+	public void despachar(View gameView) {
 		gameView.atender(this);
 	}
 

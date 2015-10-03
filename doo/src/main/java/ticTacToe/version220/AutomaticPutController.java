@@ -15,7 +15,7 @@ public class AutomaticPutController extends PutController {
 	}
 	
 	@Override
-	public void recibir(View gameView) {
+	public void despachar(View gameView) {
 		gameView.atender(this);
 	}
 

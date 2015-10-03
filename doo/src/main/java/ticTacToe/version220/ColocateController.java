@@ -18,5 +18,5 @@ public abstract class ColocateController extends Controller {
 		turn.change();		
 	}
 	
-	public abstract void recibir(View gameView) ;
+	public abstract void despachar(View gameView) ;
 }
