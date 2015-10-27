@@ -1,11 +1,11 @@
-package ticTacToe.version160;
+package ticTacToe.version300;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Board {
+public class Board implements BoardForView {
 
 	private Map<Integer, Set<Coordinate>> coordinates;
 
@@ -18,17 +18,7 @@ public class Board {
 		}
 	}
 
-	public void write() {
-		IO io = new IO();
-		for (int i = 0; i < Board.DIMENSION; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
-				io.write(this.getColor(new Coordinate(i, j)).getValue() + " ");
-			}
-			io.writeln();
-		}
-	}
-
-	private Color getColor(Coordinate coordinate) {
+	public Color getColor(Coordinate coordinate) {
 		assert coordinate != null;
 		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
 			if (coordinates.get(i).contains(coordinate)) {
@@ -51,7 +41,6 @@ public class Board {
 	}
 
 	public boolean existTicTacToe(Color color) {
-		assert color != Color.NONE;
 		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
 		if (coordinateSet.size() != Board.DIMENSION) {
 			return false;
@@ -77,7 +66,6 @@ public class Board {
 	public void put(Coordinate coordinate, Color color) {
 		assert coordinate != null;
 		assert color != Color.NONE;
-		assert color != null;
 		coordinates.get(color.ordinal()).add(coordinate);
 	}
 
