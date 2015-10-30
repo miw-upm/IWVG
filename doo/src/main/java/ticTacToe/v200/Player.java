@@ -1,19 +1,23 @@
-package ticTacToe.v160;
+package ticTacToe.v200;
 
 public class Player {
 
-	Color color;
+	private Color color;
+	
+	private Board board;
 
-	public Player(int player) {
-		assert new ClosedInterval(0,TicTacToe.NUM_PLAYERS-1).includes(player);
+	public Player(int player, int numPlayers, Board board) {
+		assert new ClosedInterval(0,numPlayers-1).includes(player);
+		assert board != null;
 		color = Color.values()[player];
+		this.board = board;
 	}
 
-	private void put(Board board, String title, Coordinate forbidden) {
+	private void put(String title, TicTacToeCoordinate forbidden) {
 		assert board != null;
 		assert title != null;
 		IO io = new IO();
-		Coordinate target = new Coordinate();
+		TicTacToeCoordinate target = new TicTacToeCoordinate();
 		boolean ok;
 		do {
 			target.read(title);
@@ -31,24 +35,24 @@ public class Player {
 		board.put(target, color);
 	}
 
-	public void put(Board board, String title) {
+	public void put(String title) {
 		assert board != null;
 		assert title != null;
-		this.put(board, title, null);
+		this.put(title, null);
 	}
 
-	public void put(Board board) {
+	public void put() {
 		assert board != null;
 		IO io = new IO();
 		io.writeln("Pone el jugador " + color);
-		this.put(board, "En");
+		this.put("En");
 	}
 
-	public void move(Board board) {
+	public void move() {
 		assert board != null;
 		IO io = new IO();
 		io.writeln("Mueve el jugador " + color);
-		Coordinate origin = new Coordinate();
+		TicTacToeCoordinate origin = new TicTacToeCoordinate();
 		boolean ok;
 		do {
 			origin.read("De");
@@ -58,7 +62,7 @@ public class Player {
 			}
 		} while (!ok);
 		board.remove(origin, color);
-		this.put(board, "A", origin);
+		this.put("A", origin);
 	}
 
 	public void win() {

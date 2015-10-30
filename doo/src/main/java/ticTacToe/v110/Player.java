@@ -45,7 +45,7 @@ public class Player {
 			} while (originRow < 1 || Board.DIMENSION < originRow);
 			do {
 				originColumn = io.readInt("Columna? [1,"+Board.DIMENSION+"]: ");
-			} while (1 <= originColumn && originColumn <= Board.DIMENSION);
+			} while (originColumn < 1 || Board.DIMENSION < originColumn);
 			ok = board.full(originRow-1, originColumn-1, token);
 			if (!ok) {
 				io.writeln("Esa casilla no está ocupada por ninguna de tus fichas");

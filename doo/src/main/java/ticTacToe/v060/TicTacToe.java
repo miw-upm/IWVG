@@ -3,6 +3,7 @@ package ticTacToe.v060;
 public class TicTacToe {
 
     private Board board;
+    
     private int turn;
     
     public TicTacToe() {

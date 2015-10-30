@@ -18,11 +18,11 @@ public class Player {
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
-			if (forbidden != null) {
+			if (ok && forbidden != null) {
 				ok = !target.equals(forbidden);
-			}
-			if (!ok) {
-				io.writeln("No se puede poner de donde se quitó");
+				if (!ok) {
+					io.writeln("No se puede poner de donde se quitó");
+				}
 			}
 		} while (!ok);
 		board.put(target, color);
