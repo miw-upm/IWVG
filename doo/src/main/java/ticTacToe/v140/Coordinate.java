@@ -9,8 +9,8 @@ public class Coordinate {
 	public void read(String title) {
 		IO io = new IO();
 		io.writeln(title + " qué casilla?");
-		row = new LimitedIntDialog("Fila?", 1, Board.DIMENSION).read()-1;
-		column = new LimitedIntDialog("Columna?", 1, Board.DIMENSION).read()-1;
+		row = new LimitedIntDialog("Fila?", Board.DIMENSION).read()-1;
+		column = new LimitedIntDialog("Columna?", Board.DIMENSION).read()-1;
 	}
 
 	@Override

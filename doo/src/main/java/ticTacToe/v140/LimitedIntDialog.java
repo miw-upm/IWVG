@@ -13,6 +13,11 @@ public class LimitedIntDialog {
 		this.min = min;
 		this.max = max;
 	}
+	
+	public LimitedIntDialog(String title, int max){
+		this(title, 1, max);
+	}
+	
 	public int read(){
 		IO io = new IO();
 		int value;
