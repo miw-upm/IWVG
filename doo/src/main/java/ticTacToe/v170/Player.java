@@ -14,7 +14,6 @@ public class Player {
 	}
 
 	private void put(String title, Coordinate forbidden) {
-		assert board != null;
 		assert title != null;
 		IO io = new IO();
 		Coordinate target = new Coordinate();
@@ -35,21 +34,13 @@ public class Player {
 		board.put(target, color);
 	}
 
-	public void put(String title) {
-		assert board != null;
-		assert title != null;
-		this.put(title, null);
-	}
-
 	public void put() {
-		assert board != null;
 		IO io = new IO();
 		io.writeln("Pone el jugador " + color);
-		this.put("En");
+		this.put("En", null);
 	}
 
 	public void move() {
-		assert board != null;
 		IO io = new IO();
 		io.writeln("Mueve el jugador " + color);
 		Coordinate origin = new Coordinate();

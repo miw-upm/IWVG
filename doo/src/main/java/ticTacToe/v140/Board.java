@@ -41,7 +41,7 @@ public class Board {
 		return this.existTicTacToe(Color.XS) || this.existTicTacToe(Color.OS);
 	}
 
-	public boolean existTicTacToe(Color color) {
+	private boolean existTicTacToe(Color color) {
 		if (colors[1][1] == color) {
 			if (colors[0][0] == color) {
 				return colors[2][2] == color;

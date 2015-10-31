@@ -49,7 +49,7 @@ public class Board {
 		return this.existTicTacToe(Color.XS) || this.existTicTacToe(Color.OS);
 	}
 
-	public boolean existTicTacToe(Color color) {
+	private boolean existTicTacToe(Color color) {
 		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
 		if (coordinateSet.size() != Board.DIMENSION) {
 			return false;
@@ -68,7 +68,7 @@ public class Board {
 	}
 
 	public boolean empty(Coordinate coordinate) {
-		return !this.full(coordinate, Color.XS) && !this.full(coordinate, Color.OS);
+		return this.full(coordinate, Color.NONE) ;
 	}
 
 	public void put(Coordinate coordinate, Color color) {

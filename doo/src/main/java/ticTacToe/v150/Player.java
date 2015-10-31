@@ -8,7 +8,7 @@ public class Player {
 		color = Color.values()[i];
 	}
 
-	public void put(Board board, String title, Coordinate forbidden) {
+	private void put(Board board, String title, Coordinate forbidden) {
 		IO io = new IO();
 		Coordinate target = new Coordinate();
 		boolean ok;
@@ -28,14 +28,10 @@ public class Player {
 		board.put(target, color);
 	}
 
-	public void put(Board board, String title) {
-		this.put(board, title, null);
-	}
-
 	public void put(Board board) {
 		IO io = new IO();
 		io.writeln("Pone el jugador " + color);
-		this.put(board, "En");
+		this.put(board, "En", null);
 	}
 
 	public void move(Board board) {

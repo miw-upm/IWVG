@@ -31,17 +31,11 @@ public class Player {
 		board.put(target, color);
 	}
 
-	public void put(Board board, String title) {
-		assert board != null;
-		assert title != null;
-		this.put(board, title, null);
-	}
-
 	public void put(Board board) {
 		assert board != null;
 		IO io = new IO();
 		io.writeln("Pone el jugador " + color);
-		this.put(board, "En");
+		this.put(board, "En", null);
 	}
 
 	public void move(Board board) {
