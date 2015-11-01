@@ -22,7 +22,7 @@ public class Board {
 		IO io = new IO();
 		for (int i = 0; i < Board.DIMENSION; i++) {
 			for (int j = 0; j < Board.DIMENSION; j++) {
-				io.write(this.getColor(new Coordinate(i, j)).getValue() + " ");
+				io.write(this.getColor(new Coordinate(i, j)) + " ");
 			}
 			io.writeln();
 		}

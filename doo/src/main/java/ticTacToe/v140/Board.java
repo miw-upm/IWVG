@@ -19,7 +19,7 @@ public class Board {
 		IO io = new IO();
 		for (Color[] row : colors) {
 			for (Color color : row) {
-				io.write(color.getValue() + " ");
+				io.write(color + " ");
 			}
 			io.writeln();
 		}

@@ -11,8 +11,8 @@ public enum Color {
 		this.value = value;
 	}
 	
-	public char getValue() {
-		return value;
+	public String toString() {
+		return ""+value;
 	}
 	
 }

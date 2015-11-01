@@ -20,7 +20,7 @@ public class Board {
 		IO io = new IO();
 		for (int i = 0; i < TicTacToeCoordinate.DIMENSION; i++) {
 			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
-				io.write(this.getColor(new TicTacToeCoordinate(i, j)).getValue() + " ");
+				io.write(this.getColor(new TicTacToeCoordinate(i, j)) + " ");
 			}
 			io.writeln();
 		}
