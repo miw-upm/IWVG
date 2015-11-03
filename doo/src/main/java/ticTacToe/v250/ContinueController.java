@@ -1,8 +1,8 @@
 package ticTacToe.v250;
 
-public class ContinueController extends OperationController {
+public class ContinueController extends GameController {
 
-	public ContinueController(Game game) {
+	protected ContinueController(Game game) {
 		super(game);
 	}
 

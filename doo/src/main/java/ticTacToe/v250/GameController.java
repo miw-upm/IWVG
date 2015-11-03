@@ -9,6 +9,8 @@ public abstract class GameController {
 		this.game = game;
 	}
 	
+	public abstract void control();
+	
 	protected State getState(){
 		return game.getState();
 	}
@@ -24,9 +26,5 @@ public abstract class GameController {
 	
 	protected Turn getTurn() {
 		return game.getTurn();
-	}
-	
-	protected Game getGame(){
-		return game;
 	}
 }

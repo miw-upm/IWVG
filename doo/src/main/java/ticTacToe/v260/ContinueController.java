@@ -6,16 +6,6 @@ public class ContinueController extends OperationController {
 		super(game);
 	}
 
-	public void setContinue(boolean answer){
-		assert this.getState() == State.FINAL;
-		if (answer) {
-			this.getBoard().clear();
-			this.setState(State.INITIAL);
-		} else {
-			this.setState(State.EXIT);
-		}
-	}
-	
 	@Override
 	public void control() {
 		assert this.getState() == State.FINAL;

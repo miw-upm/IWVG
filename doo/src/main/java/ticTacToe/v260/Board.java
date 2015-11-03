@@ -17,7 +17,6 @@ public class Board {
 		}
 	}
 
-	//TODO eliminar
 	public void write() {
 		IO io = new IO();
 		for (int i = 0; i < TicTacToeCoordinate.DIMENSION; i++) {
@@ -28,7 +27,7 @@ public class Board {
 		}
 	}
 
-	public Color getColor(TicTacToeCoordinate coordinate) {
+	private Color getColor(TicTacToeCoordinate coordinate) {
 		assert coordinate != null;
 		for (Color color : coordinates.keySet()) {
 			if (coordinates.get(color).contains(coordinate)) {

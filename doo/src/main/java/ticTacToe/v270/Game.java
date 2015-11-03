@@ -1,4 +1,4 @@
-package ticTacToe.v240;
+package ticTacToe.v270;
 
 public class Game {
 

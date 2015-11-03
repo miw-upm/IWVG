@@ -1,21 +1,18 @@
-package ticTacToe.v250;
+package ticTacToe.v270;
 
 public class TicTacToe {
 
 	private Logic logic;
 	
+	private TicTacToeView ticTacToeView;
+	
 	public TicTacToe() {
 		logic = new Logic();
+		ticTacToeView = new TicTacToeView(logic);
 	}
 	
 	public void play() {
-		GameController controller;
-		do {
-			controller = logic.getController();
-			if (controller != null){
-				controller.control();
-			}
-		} while (controller != null);
+		ticTacToeView.interact();
 	}
 
 	public static void main(String[] args) {

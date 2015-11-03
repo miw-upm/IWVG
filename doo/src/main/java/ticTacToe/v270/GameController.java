@@ -1,4 +1,4 @@
-package ticTacToe.v240;
+package ticTacToe.v270;
 
 public abstract class GameController {
 
@@ -8,8 +8,6 @@ public abstract class GameController {
 		assert game != null;
 		this.game = game;
 	}
-	
-	public abstract void control();
 	
 	protected State getState(){
 		return game.getState();
@@ -26,5 +24,9 @@ public abstract class GameController {
 	
 	protected Turn getTurn() {
 		return game.getTurn();
+	}
+	
+	protected Game getGame(){
+		return game;
 	}
 }

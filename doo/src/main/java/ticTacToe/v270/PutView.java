@@ -1,4 +1,4 @@
-package ticTacToe.v260;
+package ticTacToe.v270;
 
 public class PutView implements OperationView {
 

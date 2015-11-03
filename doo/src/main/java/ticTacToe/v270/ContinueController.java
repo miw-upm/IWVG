@@ -1,11 +1,21 @@
-package ticTacToe.v240;
+package ticTacToe.v270;
 
-public class ContinueController extends GameController {
+public class ContinueController extends OperationController {
 
-	protected ContinueController(Game game) {
+	public ContinueController(Game game) {
 		super(game);
 	}
 
+	public void setContinue(boolean answer){
+		assert this.getState() == State.FINAL;
+		if (answer) {
+			this.getBoard().clear();
+			this.setState(State.INITIAL);
+		} else {
+			this.setState(State.EXIT);
+		}
+	}
+	
 	@Override
 	public void control() {
 		assert this.getState() == State.FINAL;

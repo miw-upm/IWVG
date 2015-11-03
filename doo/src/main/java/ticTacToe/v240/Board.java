@@ -95,10 +95,4 @@ public class Board {
 		return coordinates.get(color).contains(coordinate);
 	}
 
-	public void clear() {
-		for (Color color : coordinates.keySet()) {
-			coordinates.get(color).clear();
-		}		
-	}
-
 }

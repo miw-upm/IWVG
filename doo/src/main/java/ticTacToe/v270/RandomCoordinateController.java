@@ -1,11 +1,11 @@
-package ticTacToe.v250;
+package ticTacToe.v270;
 
 public class RandomCoordinateController extends CoordinateController {
 
 	private TicTacToeCoordinate origin;
-
+	
 	private TicTacToeCoordinate target;
-
+	
 	protected RandomCoordinateController(Game game) {
 		super(game);
 	}
@@ -18,7 +18,7 @@ public class RandomCoordinateController extends CoordinateController {
 			origin.random();
 			ok = this.getGame().getBoard().full(origin, this.getTurn().take());
 		} while (!ok);
-		new IO().writeln("La máquina quita de " + origin);
+		new IO().writeln("La máquina quita de "+ origin);
 		new IO().readString("Enter para continuar!");
 		TicTacToeCoordinate result = origin;
 		origin = null;
@@ -38,11 +38,11 @@ public class RandomCoordinateController extends CoordinateController {
 				}
 			}
 		} while (!ok);
-		new IO().writeln("La máquina pone en " + target);
+		new IO().writeln("La máquina pone en "+ target);
 		new IO().readString("Enter para continuar!");
 		TicTacToeCoordinate result = target;
 		target = null;
 		return result;
 	}
-
+	
 }
