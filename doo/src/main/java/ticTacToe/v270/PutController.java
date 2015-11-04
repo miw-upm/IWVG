@@ -1,9 +1,9 @@
 package ticTacToe.v270;
 
-public class PutController extends ColocateController {
+public abstract class PutController extends ColocateController {
 
-	public PutController(Game game, CoordinateController coordinateController) {
-		super(game, "Pone", coordinateController);
+	public PutController(Game game) {
+		super(game, "Pone");
 	}
 
 	@Override

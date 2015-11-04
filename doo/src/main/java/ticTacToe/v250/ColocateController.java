@@ -1,6 +1,6 @@
 package ticTacToe.v250;
 
-public abstract class ColocateController extends GameController {
+public abstract class ColocateController extends Controller {
 
 	private String actionTitle;
 	

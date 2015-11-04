@@ -10,16 +10,14 @@ public class Logic {
 
 	private MoveController moveController;
 	
-	private ContinueController continueController;
-	
 	public Logic() {
 		game = new Game();
 		startController = new StartController(game);
 		putController = new PutController(game);
 		moveController = new MoveController(game);
-		continueController = new ContinueController(game);
 	}
-	public GameController getController() {
+	
+	public Controller getController() {
 		switch (game.getState()){
 		case INITIAL:
 			return startController;
@@ -30,10 +28,9 @@ public class Logic {
 				return moveController;
 			}	
 		case FINAL:
-			return continueController;
-		case EXIT:
 		default:
 			return null;
 		}
 	}
+	
 }

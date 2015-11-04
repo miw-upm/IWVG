@@ -18,7 +18,7 @@ public abstract class ColocateController {
 	
 	public abstract void control();
 	
-	protected void control(String actionTitle, String targetTitle) {
+	protected void put(String actionTitle, String targetTitle) {		
 		IO io = new IO();
 		io.writeln(actionTitle + " el jugador " + turn.take());
 		this.prePut();

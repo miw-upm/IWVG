@@ -10,7 +10,7 @@ public class MoveController extends ColocateController {
 	
 	@Override
 	public void control() {
-		this.control("Mueve", "A");
+		this.put("Mueve", "A");
 	}
 
 	@Override

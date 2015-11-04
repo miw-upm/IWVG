@@ -4,15 +4,18 @@ public class TicTacToe {
 
 	private Logic logic;
 	
-	private TicTacToeView ticTacToeView;
-	
 	public TicTacToe() {
 		logic = new Logic();
-		ticTacToeView = new TicTacToeView(logic);
 	}
 	
 	public void play() {
-		ticTacToeView.interact();
+		Controller controller;
+		do {
+			controller = logic.getController();
+			if (controller != null){
+				controller.control();
+			}
+		} while (controller != null);
 	}
 
 	public static void main(String[] args) {

@@ -14,7 +14,7 @@ public class Logic {
 		continueController = new ContinueController(game);
 	}
 
-	public OperationController getController() {
+	public Controller getController() {
 		switch (game.getState()){
 		case INITIAL:
 			return startController;

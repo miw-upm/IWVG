@@ -8,7 +8,7 @@ public class PutController extends ColocateController {
 	
 	@Override
 	public void control(){
-		this.control("Pone", "En");
+		this.put("Pone", "En");
 	}
 
 	@Override

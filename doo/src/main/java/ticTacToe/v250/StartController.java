@@ -1,6 +1,6 @@
 package ticTacToe.v250;
 
-public class StartController extends GameController {
+public class StartController extends Controller {
 
 	protected StartController(Game game){
 		super(game);

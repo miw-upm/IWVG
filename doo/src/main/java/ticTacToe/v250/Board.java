@@ -46,10 +46,6 @@ public class Board {
 				* coordinates.keySet().size();
 	}
 
-	public boolean existTicTacToe() {
-		return this.existTicTacToe(Color.XS) || this.existTicTacToe(Color.OS);
-	}
-
 	public boolean existTicTacToe(Color color) {
 		assert color != Color.NONE;
 		Set<TicTacToeCoordinate> coordinateSet = coordinates.get(color);

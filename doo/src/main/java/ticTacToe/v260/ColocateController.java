@@ -1,20 +1,17 @@
 package ticTacToe.v260;
 
-public abstract class ColocateController extends OperationController {
+public abstract class ColocateController extends Controller {
 
 	private String actionTitle;
 	
-	private CoordinateController coordinateController;
-	
 	private TicTacToeCoordinate target;
 
-	protected ColocateController(Game game, String actionTitle,
-			CoordinateController coordinateController) {
+	protected ColocateController(Game game, String actionTitle) {
 		super(game);
+		assert game != null;
 		assert actionTitle != null;
-		assert coordinateController != null;
 		this.actionTitle = actionTitle;
-		this.coordinateController = coordinateController;
+		target = new TicTacToeCoordinate();
 	}
 
 	public void control() {
@@ -33,32 +30,28 @@ public abstract class ColocateController extends OperationController {
 	}
 
 	protected abstract void colocate();
-	
+
 	protected void put(String targetTitle) {
+		target = new TicTacToeCoordinate();
 		Error error;
 		do {
-			target = this.getCoordinateController().getTarget(targetTitle);
-			error = this.validateTarget();
+			target.read(targetTitle);
+			error = this.errorToPut();
 			if (error != null){
 				new IO().writeln(""+error);
 			}
-		} while (error != null);	
+		} while (error != null);
 		this.getBoard().put(target, this.getTurn().take());
 	}
-	
-	protected Error validateTarget(){
+
+	protected Error errorToPut() {
 		if (!this.getBoard().empty(target)) {
 			return Error.NOT_EMPTY;
 		}
 		return null;
 	}
 	
-	protected CoordinateController getCoordinateController(){
-		return coordinateController;
-	}
-	
-	protected TicTacToeCoordinate getTarget(){
+	protected TicTacToeCoordinate getTarget() {
 		return target;
 	}
-
 }
