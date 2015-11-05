@@ -48,12 +48,12 @@ public class Game {
 		return NUM_PLAYERS;
 	}
 	
-	public void put(TicTacToeCoordinate coordinate) {
-		board.put(coordinate, turn.take());
+	public void put(TicTacToeCoordinate target) {
+		board.put(target, turn.take());
 	}
 
-	public void remove(TicTacToeCoordinate coordinate) {
-		board.remove(coordinate, turn.take());
+	public void remove(TicTacToeCoordinate origin) {
+		board.remove(origin, turn.take());
 	}
 
 	public void clear() {
