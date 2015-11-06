@@ -17,12 +17,13 @@ public class Restaurante {
 	private void simularEscenario() {
 		Random random = new Random(System.currentTimeMillis());
 		for (int i = 0; i < 5; i++) {
-			Persona persona;
-			if (random.nextInt(2) == 0) {
+			Persona persona = null;
+			int r = random.nextInt(3);
+			if (r == 0) {
 				persona = new Hombre();
-			} else {
+			} else if (r==1){
 				persona = new Mujer();
-			}
+			} 
 			this.simularEscenario(persona);
 		}
 	}

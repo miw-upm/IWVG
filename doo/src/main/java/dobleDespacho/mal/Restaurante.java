@@ -2,9 +2,6 @@ package dobleDespacho.mal;
 
 import java.util.Random;
 
-import dobleDespacho.mal.Hombre;
-import dobleDespacho.mal.Mujer;
-
 public class Restaurante {
 
 	private Recepcionista recepcionista;
