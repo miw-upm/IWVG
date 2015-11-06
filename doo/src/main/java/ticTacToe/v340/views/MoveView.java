@@ -91,7 +91,7 @@ public class MoveView extends ColocateView {
 	
 	@Override
 	protected Error validateTarget() {
-		return this.getMoveController().validateTarget(origin, this.getTarget());
+		return this.getMoveController().validateTarget(origin, super.getTarget());
 	}
 	
 	private MoveController getMoveController() {

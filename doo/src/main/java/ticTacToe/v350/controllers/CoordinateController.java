@@ -10,7 +10,9 @@ public abstract class CoordinateController extends Controller {
 	}
 
 	public abstract Coordinate getOrigin();
-	
+
 	public abstract Coordinate getTarget();
+	
+	public abstract void accept(CoordinateControllerVisitor coordinateControllerVisitor);
 
 }

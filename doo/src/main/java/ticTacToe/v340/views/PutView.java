@@ -25,7 +25,6 @@ class PutView extends ColocateView {
 	
 	@Override
 	protected Coordinate getTarget() {
-		System.out.println("separar");
 		CoordinateController coordinateController = this.getColocateController()
 				.getCoordinateController();
 		if (coordinateController instanceof UserCoordinateController) {
@@ -40,7 +39,6 @@ class PutView extends ColocateView {
 
 	@Override
 	protected Coordinate getTarget(UserCoordinateController coordinateController) {
-		System.out.println("UserCoordinateController");
 		Coordinate coordinate = coordinateController.getTarget();
 		new CoordinateView("En", coordinate).interact();
 		return coordinate;
@@ -48,7 +46,6 @@ class PutView extends ColocateView {
 
 	@Override
 	protected Coordinate getTarget(RandomCoordinateController coordinateController) {
-		System.out.println("RandomCoordinateController");
 		Coordinate coordinate = coordinateController.getTarget();
 		this.writeln("La máquina pone en " + coordinate);
 		this.readString("Pulse enter para continuar");
@@ -57,7 +54,7 @@ class PutView extends ColocateView {
 	
 	@Override
 	protected Error validateTarget() {
-		return this.getPutController().validateTarget(this.getTarget());
+		return this.getPutController().validateTarget(super.getTarget());
 	}
 
 	private PutController getPutController() {

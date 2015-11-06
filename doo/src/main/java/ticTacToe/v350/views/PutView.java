@@ -12,51 +12,56 @@ class PutView extends ColocateView {
 	PutView(PutController putController) {
 		super(putController);
 	}
-
-	void interact() {
-		this.writeln("Pone el jugador " + this.getPutController().take());
-		Coordinate target;
-		Error error = null;
-		do {
-			target = this.getTarget();
-			error = this.getPutController().validateTarget(target);
-			if (error != null) {
-				this.writeln("" + error);
-			}
-		} while (error != null);
-		this.getPutController().put(target);
-		new BoardView(this.getPutController()).write();
-		if (this.getPutController().existTicTacToe()) {
-			this.writeln("Victoria!!!! " + this.getPutController().take()
-					+ "! " + this.getPutController().take() + "! "
-					+ this.getPutController().take() + "! Victoria!!!!");
-		}
+	
+	@Override
+	public void interact(){
+		super.interact("Pone");
 	}
-
-	private Coordinate getTarget() {
-		CoordinateController coordinateController = this.getPutController()
+	
+	@Override
+	protected void colocate() {
+		this.put();
+	}
+	
+	@Override
+	protected Coordinate getTarget() {
+		CoordinateController coordinateController = this.getColocateController()
 				.getCoordinateController();
-		if (coordinateController instanceof UserCoordinateController) {
-			return this
-					.getTarget((UserCoordinateController) coordinateController);
-		} else if (coordinateController instanceof RandomCoordinateController) {
-			return this
-					.getTarget((RandomCoordinateController) coordinateController);
-		}
-		return null;
+		coordinateController.accept(this);
+		return super.getTarget();
+	}
+	
+	@Override
+	public void visit(UserCoordinateController userCoordinateController) {
+		this.setTarget(userCoordinateController.getTarget());
+		new CoordinateView("En", super.getTarget()).interact();
 	}
 
-	private Coordinate getTarget(UserCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getTarget();
-		new CoordinateView("En", coordinate).interact();
-		return coordinate;
-	}
-
-	private Coordinate getTarget(RandomCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getTarget();
-		this.writeln("La máquina pone en " + coordinate);
+	@Override
+	public void visit(RandomCoordinateController randomCoordinateController) {
+		this.setTarget(randomCoordinateController.getTarget());
+		this.writeln("La máquina pone en " + super.getTarget());
 		this.readString("Pulse enter para continuar");
+	}
+
+	@Override
+	protected Coordinate getTarget(UserCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController.getTarget();
+//		new CoordinateView("En", coordinate).interact();
 		return coordinate;
+	}
+
+	@Override
+	protected Coordinate getTarget(RandomCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController.getTarget();
+//		this.writeln("La máquina pone en " + coordinate);
+//		this.readString("Pulse enter para continuar");
+		return coordinate;
+	}
+	
+	@Override
+	protected Error validateTarget() {
+		return this.getPutController().validateTarget(super.getTarget());
 	}
 
 	private PutController getPutController() {

@@ -46,4 +46,11 @@ public class RandomCoordinateController extends CoordinateController {
 		return target;
 	}
 
+	@Override
+	public void accept(
+			CoordinateControllerVisitor coordinateControllerVisitor) {
+		coordinateControllerVisitor.visit(this);
+		
+	}
+
 }

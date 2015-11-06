@@ -18,5 +18,11 @@ public class UserCoordinateController extends CoordinateController {
 	public Coordinate getTarget() {
 		return new Coordinate();
 	}
+
+	@Override
+	public void accept(
+			CoordinateControllerVisitor coordinateControllerVisitor) {
+		coordinateControllerVisitor.visit(this);		
+	}
 	
 }

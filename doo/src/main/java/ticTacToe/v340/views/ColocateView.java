@@ -12,6 +12,8 @@ public abstract class ColocateView {
 	private IO io;
 	
 	private ColocateController colocateController;
+	
+	private Coordinate target;
 
 	protected ColocateView(ColocateController colocateController) {
 		assert colocateController != null;
@@ -35,23 +37,20 @@ public abstract class ColocateView {
 	protected abstract void colocate();
 	
 	protected void put(){
-		Coordinate target;
 		Error error = null;
 		do {
 			target = this.getTarget();
-			System.out.println("a");
 			error = this.validateTarget();
-			System.out.println("b");
 			if (error != null) {
-				System.out.println("c");
 				this.writeln("" + error);
 			}
-			System.out.println("d");
 		} while (error != null);
 		colocateController.put(target);
 	}
 
-	protected abstract Coordinate getTarget();
+	protected Coordinate getTarget() {
+		return target;
+	}
 
 	protected abstract Coordinate getTarget(UserCoordinateController coordinateController);
 	

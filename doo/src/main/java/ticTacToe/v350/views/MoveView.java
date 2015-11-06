@@ -9,12 +9,24 @@ import ticTacToe.v350.models.Coordinate;
 
 public class MoveView extends ColocateView {
 
+	private Coordinate origin;
+	
 	MoveView(MoveController moveController) {
 		super(moveController);
 	}
+	
+	@Override
+	public void interact(){
+		super.interact("Mueve");
+	}
 
-	void interact() {
-		Coordinate origin;
+	@Override
+	protected void colocate() {
+		this.remove();
+		this.put();
+	}
+	
+	private void remove(){
 		Error error = null;
 		do {
 			origin = this.getOrigin();
@@ -24,22 +36,6 @@ public class MoveView extends ColocateView {
 			}
 		} while (error != null);
 		this.getMoveController().remove(origin);
-		Coordinate target;
-		error = null;
-		do {
-			target = this.getTarget(origin);
-			error = this.getMoveController().validateTarget(origin, target);
-			if (error != null) {
-				this.writeln("" + error);
-			}
-		} while (error != null);
-		this.getMoveController().put(target);
-		new BoardView(this.getMoveController()).write();
-		if (this.getMoveController().existTicTacToe()) {
-			this.writeln("Victoria!!!! " + this.getMoveController().take() + "! "
-					+ this.getMoveController().take() + "! " + this.getMoveController().take()
-					+ "! Victoria!!!!");
-		}
 	}
 	
 	private Coordinate getOrigin() {
@@ -67,31 +63,51 @@ public class MoveView extends ColocateView {
 		return coordinate;
 	}
 
-	private Coordinate getTarget(Coordinate origin) {
+	@Override
+	protected Coordinate getTarget() {
 		CoordinateController coordinateController = this.getMoveController().getCoordinateController();
 		if (coordinateController instanceof UserCoordinateController) {
 			return this.getTarget((UserCoordinateController) coordinateController);
 		} else if (coordinateController instanceof RandomCoordinateController) {
-			return this.getTarget((RandomCoordinateController) coordinateController, origin);
+			return this.getTarget((RandomCoordinateController) coordinateController);
 		}
 		return null;
 	}
 
-	private Coordinate getTarget(UserCoordinateController coordinateController) {
+	@Override
+	protected Coordinate getTarget(UserCoordinateController coordinateController) {
 		Coordinate coordinate = coordinateController.getTarget();
 		new CoordinateView("A", coordinate).interact();
 		return coordinate;
 	}
 	
-	private Coordinate getTarget(RandomCoordinateController coordinateController, Coordinate origin) {
+	@Override
+	protected Coordinate getTarget(RandomCoordinateController coordinateController) {
 		Coordinate coordinate = coordinateController.getTarget(origin);
 		this.writeln("La máquina pone en " + coordinate);
 		this.readString("Pulse enter para continuar");
 		return coordinate;
 	}
 	
+	@Override
+	protected Error validateTarget() {
+		return this.getMoveController().validateTarget(origin, super.getTarget());
+	}
+	
 	private MoveController getMoveController() {
 		return (MoveController) this.getColocateController();
+	}
+
+	@Override
+	public void visit(UserCoordinateController userCoordinateController) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void visit(RandomCoordinateController randomCoordinateController) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

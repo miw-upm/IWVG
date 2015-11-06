@@ -31,7 +31,7 @@ public abstract class Controller {
 		return game.take();
 	}
 	
-	protected void put(Coordinate target) {
+	public void put(Coordinate target) {
 		assert target != null;
 		game.put(target);
 		if (game.existTicTacToe()) {
