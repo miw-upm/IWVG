@@ -16,11 +16,11 @@ public class StartController extends Controller {
 		colocateControllerArray = new ColocateController[2][2];
 		for (int i = 0; i < 2; i++) {
 			if (i<users){
-				colocateControllerArray[i][0] = new RandomPutController(this.getGame());
-				colocateControllerArray[i][1] = new RandomPutController(this.getGame());
-			} else {
 				colocateControllerArray[i][0] = new ManualPutController(this.getGame());
-				colocateControllerArray[i][1] = new ManualPutController(this.getGame());
+				colocateControllerArray[i][1] = new ManualMoveController(this.getGame());
+			} else {
+				colocateControllerArray[i][0] = new RandomPutController(this.getGame());
+				colocateControllerArray[i][1] = new RandomMoveController(this.getGame());
 			}
 		}
 		this.getBoard().write();

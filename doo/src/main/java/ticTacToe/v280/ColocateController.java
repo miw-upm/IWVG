@@ -37,7 +37,7 @@ public abstract class ColocateController extends OperationController {
 	protected void put(String targetTitle) {
 		Error error;
 		do {
-			target = this.getCoordinateController().getTarget(targetTitle);
+			target = coordinateController.getTarget(targetTitle);
 			error = this.validateTarget();
 			if (error != null){
 				new IO().writeln(""+error);
