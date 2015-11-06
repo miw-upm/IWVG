@@ -7,20 +7,20 @@ class CoordinateView {
 	
 	private String title;
 	
-	private Coordinate ticTacToeCoordinate;
+	private Coordinate coordinate;
 	
-	CoordinateView(String title, Coordinate ticTacToeCoordinate) {
+	CoordinateView(String title, Coordinate coordinate) {
 		assert title != null;
-		assert ticTacToeCoordinate != null;
+		assert coordinate != null;
 		this.title = title;
-		this.ticTacToeCoordinate = ticTacToeCoordinate;
+		this.coordinate = coordinate;
 	}
 
 	void interact() {
 		new IO().writeln(title + " qué casilla?");
-		ticTacToeCoordinate.setRow(new LimitedIntDialog("Fila?", Coordinate.DIMENSION)
+		coordinate.setRow(new LimitedIntDialog("Fila?", Coordinate.DIMENSION)
 				.read() - 1);
-		ticTacToeCoordinate.setColumn(new LimitedIntDialog("Columna?",
+		coordinate.setColumn(new LimitedIntDialog("Columna?",
 				Coordinate.DIMENSION).read() - 1);
 	}
 }

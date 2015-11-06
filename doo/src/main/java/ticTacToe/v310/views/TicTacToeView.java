@@ -2,13 +2,13 @@ package ticTacToe.v310.views;
 
 import ticTacToe.v310.controllers.ContinueController;
 import ticTacToe.v310.controllers.CoordinateController;
+import ticTacToe.v310.controllers.Error;
 import ticTacToe.v310.controllers.MoveController;
 import ticTacToe.v310.controllers.OperationController;
 import ticTacToe.v310.controllers.PutController;
 import ticTacToe.v310.controllers.RandomCoordinateController;
 import ticTacToe.v310.controllers.StartController;
 import ticTacToe.v310.controllers.UserCoordinateController;
-import ticTacToe.v310.models.Error;
 import ticTacToe.v310.models.Coordinate;
 import ticTacToe.v310.utils.IO;
 
@@ -42,7 +42,6 @@ public class TicTacToeView {
 		do {
 			target = this.getTarget("En",
 					putController.getCoordinateController());
-			System.out.println("error?"+error);
 			error = putController.validateTarget(target);
 			if (error != null) {
 				io.writeln("" + error);
@@ -71,19 +70,19 @@ public class TicTacToeView {
 
 	private Coordinate getTarget(String title, 
 			UserCoordinateController coordinateController) {
-		Coordinate ticTacToeCoordinate = coordinateController
+		Coordinate coordinate = coordinateController
 				.getTarget();
-		new CoordinateView(title, ticTacToeCoordinate).interact();
-		return ticTacToeCoordinate;
+		new CoordinateView(title, coordinate).interact();
+		return coordinate;
 	}
 
 	private Coordinate getTarget(String title,
 			RandomCoordinateController coordinateController) {
-		Coordinate ticTacToeCoordinate = coordinateController
+		Coordinate coordinate = coordinateController
 				.getTarget();
-		io.writeln("La máquina pone en " + ticTacToeCoordinate);
+		io.writeln("La máquina pone en " + coordinate);
 		io.readString("Pulse enter para continuar");
-		return ticTacToeCoordinate;
+		return coordinate;
 	}
 
 	private void interact(MoveController moveController) {
@@ -131,19 +130,19 @@ public class TicTacToeView {
 
 	private Coordinate getOrigin(
 			UserCoordinateController coordinateController) {
-		Coordinate ticTacToeCoordinate = coordinateController
+		Coordinate coordinate = coordinateController
 				.getOrigin();
-		new CoordinateView("De", ticTacToeCoordinate).interact();
-		return ticTacToeCoordinate;
+		new CoordinateView("De", coordinate).interact();
+		return coordinate;
 	}
 
 	private Coordinate getOrigin(
 			RandomCoordinateController coordinateController) {
-		Coordinate ticTacToeCoordinate = coordinateController
+		Coordinate coordinate = coordinateController
 				.getOrigin();
-		io.writeln("La máquina quita de " + ticTacToeCoordinate);
+		io.writeln("La máquina quita de " + coordinate);
 		io.readString("Pulse enter para continuar");
-		return ticTacToeCoordinate;
+		return coordinate;
 	}
 	
 	private Coordinate getTarget(String title,
@@ -162,11 +161,11 @@ public class TicTacToeView {
 	private Coordinate getTarget(String title,
 			RandomCoordinateController coordinateController,
 			Coordinate origin) {
-		Coordinate ticTacToeCoordinate = coordinateController
+		Coordinate coordinate = coordinateController
 				.getTarget(origin);
-		io.writeln("La máquina pone en " + ticTacToeCoordinate);
+		io.writeln("La máquina pone en " + coordinate);
 		io.readString("Pulse enter para continuar");
-		return ticTacToeCoordinate;
+		return coordinate;
 	}
 
 	private void interact(ContinueController continueController) {

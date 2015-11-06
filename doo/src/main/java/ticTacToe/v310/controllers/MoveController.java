@@ -1,6 +1,5 @@
 package ticTacToe.v310.controllers;
 
-import ticTacToe.v310.models.Error;
 import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.Coordinate;
 

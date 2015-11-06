@@ -18,7 +18,7 @@ public class Coordinate {
 	}
 	
 	public Coordinate(int row, int column){
-		coordinate = new ticTacToe.v320.utils.Coordinate();
+		this();
 		this.setRow(row);
 		this.setColumn(column);
 	}

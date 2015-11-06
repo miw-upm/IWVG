@@ -1,5 +1,8 @@
 package ticTacToe.v300;
 
+import ticTacToe.v300.controllers.Logic;
+import ticTacToe.v300.controllers.OperationController;
+
 public class TicTacToe {
 
 	private Logic logic;
