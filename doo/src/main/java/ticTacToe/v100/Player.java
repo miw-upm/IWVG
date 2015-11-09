@@ -2,19 +2,19 @@ package ticTacToe.v100;
 
 public class Player {
 
-	char token;
+	char color;
 
 	public Player(int i) {
 		if (i == 0) {
-			token = 'x';
+			color = 'x';
 		} else {
-			token = 'o';
+			color = 'o';
 		}
 	}
 
 	public void put(Board board) {
 		IO io = new IO();
-		io.writeln("Pone el jugador " + token);
+		io.writeln("Pone el jugador " + color);
 		int row;
 		int column;
 		boolean ok;
@@ -26,17 +26,17 @@ public class Player {
 			do {
 				column = io.readInt("Columna? [1,3]: ");
 			} while (column < 1 || 3 < column);
-			ok = board.empty(row-1, column-1);
+			ok = board.empty(row - 1, column - 1);
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		board.put(row-1, column-1, token);
+		board.put(row - 1, column - 1, color);
 	}
 
 	public void move(Board board) {
 		IO io = new IO();
-		io.writeln("Mueve el jugador " + token);
+		io.writeln("Mueve el jugador " + color);
 		int originRow;
 		int originColumn;
 		int targetRow;
@@ -50,7 +50,7 @@ public class Player {
 			do {
 				originColumn = io.readInt("Columna? [1,3]: ");
 			} while (originColumn < 1 || 3 < originColumn);
-			ok = board.full(originRow-1, originColumn-1, token);
+			ok = board.full(originRow - 1, originColumn - 1, color);
 			if (!ok) {
 				io.writeln("Esa casilla no está ocupada por ninguna de tus fichas");
 			}
@@ -63,17 +63,18 @@ public class Player {
 			do {
 				targetColumn = io.readInt("Columna? [1,3]: ");
 			} while (targetColumn < 1 || 3 < targetColumn);
-			ok = board.empty(targetRow-1, targetColumn-1);
+			ok = board.empty(targetRow - 1, targetColumn - 1);
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		board.remove(originRow-1, originColumn-1);
-		board.put(targetRow-1, targetColumn-1, token);
+		board.remove(originRow - 1, originColumn - 1);
+		board.put(targetRow - 1, targetColumn - 1, color);
 	}
 
 	public void win() {
-		new IO().writeln("Victoria!!!! " + token + "! " + token + "! " + token + "! Victoria!!!!");		
+		new IO().writeln("Victoria!!!! " + color + "! " + color + "! " + color
+				+ "! Victoria!!!!");
 	}
 
 }

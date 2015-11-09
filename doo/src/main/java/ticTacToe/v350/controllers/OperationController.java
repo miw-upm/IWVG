@@ -1,14 +1,12 @@
 package ticTacToe.v350.controllers;
 
-import ticTacToe.v350.models.Game;
+import ticTacToe.v350.models.Color;
+import ticTacToe.v350.models.Coordinate;
 
-public abstract class OperationController extends Controller {
+public interface OperationController {
 
-	protected OperationController(Game game) {
-		super(game);
-	}
+	void accept(OperationControllerVisitor operationControllerVisitor);
 	
-	public abstract void accept(OperationControllerVisitor operationControllerVisitor);
-	
-
+	Color getColor(Coordinate coordinate);
 }
+

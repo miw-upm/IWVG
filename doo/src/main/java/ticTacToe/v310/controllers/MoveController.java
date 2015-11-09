@@ -1,26 +1,36 @@
 package ticTacToe.v310.controllers;
 
-import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.Coordinate;
+import ticTacToe.v310.models.Game;
+import ticTacToe.v310.utils.IO;
 
 public class MoveController extends ColocateController {
 
 	private Coordinate origin;
-
-	MoveController(Game game, CoordinateController coordinateController) {
-		super(game, coordinateController);
+	
+	public MoveController(Game game, CoordinateController coordinateController) {
+		super(game, "Mueve", coordinateController);
 	}
 
 	@Override
-	public void remove(Coordinate origin) {
-		assert origin != null;
-		assert this.validateOrigin(origin) == null;
-		this.origin = origin;
-		super.remove(origin);
+	protected void colocate() {
+		this.remove();
+		this.put("A");
+	}
+	
+	private void remove(){
+		Error error;
+		do {
+			origin = this.getCoordinateController().getOrigin();
+			error = this.validateOrigin();
+			if (error != null){
+				new IO().writeln(""+error);
+			}
+		} while (error != null);	
+		this.remove(origin);
 	}
 
-	public Error validateOrigin(Coordinate origin) {
-		assert origin != null;
+	private Error validateOrigin() {
 		if (!this.full(origin)) {
 			return Error.NOT_PROPERTY;
 		}
@@ -28,24 +38,17 @@ public class MoveController extends ColocateController {
 	}
 
 	@Override
-	public void put(Coordinate target) {
-		assert target != null;
-		assert origin != null;
-		assert this.validateTarget(origin, target) == null;
-		super.put(target);
-		origin = null;
-	}
-
-	public Error validateTarget(Coordinate origin,
-			Coordinate target) {
-		Error error = super.validateTarget(target);
+	protected Error validateTarget() {
+		Error error = super.validateTarget();
 		if (error != null) {
 			return error;
 		}
-		if (origin.equals(target)) {
-			return Error.REPEATED_COORDINATE;
+		if (origin.equals(this.getTarget())) {
+				return Error.REPEATED_COORDINATE;
 		}
 		return null;
 	}
-
+	
+	
+	
 }

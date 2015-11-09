@@ -2,6 +2,7 @@ package ticTacToe.v330.controllers;
 
 import ticTacToe.v330.models.Game;
 import ticTacToe.v330.models.State;
+import ticTacToe.v330.views.TicTacToeView;
 
 public class ContinueController extends OperationController {
 
@@ -20,8 +21,8 @@ public class ContinueController extends OperationController {
 	}
 
 	@Override
-	public void accept(OperationControllerVisitor operationControllerVisitor) {
-		operationControllerVisitor.visit(this);		
+	public void accept(TicTacToeView ticTacToeView) {
+		ticTacToeView.visit(this);		
 	}
 
 }

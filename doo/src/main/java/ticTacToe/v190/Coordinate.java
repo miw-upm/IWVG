@@ -32,19 +32,19 @@ public class Coordinate {
 		return row - column == 0;
 	}	
 	
-	public int getRow() {
+	protected int getRow() {
 		return row;
 	}
 
-	public int getColumn() {
+	protected int getColumn() {
 		return column;
 	}
 	
-	public void setRow(int row){
+	protected void setRow(int row){
 		this.row = row;
 	}
 	
-	public void setColumn(int column){
+	protected void setColumn(int column){
 		this.column = column;
 	}
 	

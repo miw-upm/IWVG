@@ -1,9 +1,9 @@
 package ticTacToe.v330.controllers;
 
 import ticTacToe.v330.models.Color;
+import ticTacToe.v330.models.Coordinate;
 import ticTacToe.v330.models.Game;
 import ticTacToe.v330.models.State;
-import ticTacToe.v330.models.Coordinate;
 
 public abstract class Controller {
 

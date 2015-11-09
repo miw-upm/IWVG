@@ -2,16 +2,24 @@ package ticTacToe.v310.controllers;
 
 import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.State;
+import ticTacToe.v310.utils.IO;
 
 public class ContinueController extends OperationController {
 
-	ContinueController(Game game) {
+	public ContinueController(Game game) {
 		super(game);
 	}
-	
-	public void setContinue(boolean another){
+
+	@Override
+	public void control() {
 		assert this.getState() == State.FINAL;
-		if (another) {
+		IO io = new IO();
+		char answer;
+		do {
+			answer = io.readChar("Desea continuar? (s/n): ");
+		} while (answer != 's' && answer != 'S' && answer != 'n'
+				&& answer != 'N');
+		if (answer == 's') {
 			this.clear();
 			this.setState(State.INITIAL);
 		} else {

@@ -8,13 +8,11 @@ public class TicTacToe {
     
     private Turn turn;
     
-    public static final int NUM_PLAYERS = 2;
-    
     public TicTacToe() {
         board = new Board();
         turn = new Turn();
-        players = new Player[TicTacToe.NUM_PLAYERS];
-        for(int i=0; i<TicTacToe.NUM_PLAYERS; i++){
+        players = new Player[2];
+        for(int i=0; i<2; i++){
             players[i] = new Player(i);
         }
     }

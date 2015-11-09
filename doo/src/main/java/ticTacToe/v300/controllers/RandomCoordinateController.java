@@ -1,7 +1,7 @@
 package ticTacToe.v300.controllers;
 
-import ticTacToe.v300.models.Game;
 import ticTacToe.v300.models.Coordinate;
+import ticTacToe.v300.models.Game;
 import ticTacToe.v300.utils.IO;
 
 public class RandomCoordinateController extends CoordinateController {
@@ -20,7 +20,7 @@ public class RandomCoordinateController extends CoordinateController {
 		boolean ok;
 		do {
 			origin.random();
-			ok = this.getGame().full(origin);
+			ok = this.getGame().getBoard().full(origin, this.getTurn().take());
 		} while (!ok);
 		new IO().writeln("La máquina quita de " + origin);
 		new IO().readString("Enter para continuar!");
@@ -35,7 +35,7 @@ public class RandomCoordinateController extends CoordinateController {
 		boolean ok;
 		do {
 			target.random();
-			ok = this.getGame().empty(target);
+			ok = this.getGame().getBoard().empty(target);
 			if (ok) {
 				if (origin != null) {
 					ok = !origin.equals(target);

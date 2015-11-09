@@ -1,7 +1,8 @@
 package ticTacToe.v330.controllers;
 
-import ticTacToe.v330.models.Game;
 import ticTacToe.v330.models.Coordinate;
+import ticTacToe.v330.models.Game;
+import ticTacToe.v330.views.TicTacToeView;
 
 public class MoveController extends ColocateController {
 
@@ -49,8 +50,8 @@ public class MoveController extends ColocateController {
 	}
 
 	@Override
-	public void accept(OperationControllerVisitor operationControllerVisitor) {
-		operationControllerVisitor.visit(this);		
+	public void accept(TicTacToeView ticTacToeView) {
+		ticTacToeView.visit(this);		
 	}
 
 }

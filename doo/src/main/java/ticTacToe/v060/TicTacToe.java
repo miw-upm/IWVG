@@ -22,7 +22,7 @@ public class TicTacToe {
            turn = (turn+1)%2;
        } while(!board.existTicTacToe());
        board.write();
-       board.win(turn);
+       board.win((turn+1)%2);
     }
     
     public static void main(String[] args){

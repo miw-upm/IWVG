@@ -1,5 +1,6 @@
 package ticTacToe.v310.models;
 
+
 public class Game {
 
 	private State state;
@@ -14,10 +15,6 @@ public class Game {
 		state = State.INITIAL;
 		turn = new Turn();
 		board = new Board(Game.NUM_PLAYERS);
-	}
-	
-	public int numPlayers() {
-		return Game.NUM_PLAYERS;
 	}
 	
 	public State getState() {
@@ -42,6 +39,10 @@ public class Game {
 	
 	public boolean empty(Coordinate target) {
 		return board.empty(target);
+	}
+	
+	public void write() {
+		board.write();
 	}	
 	
 	public int getNumPlayers() {
@@ -66,10 +67,6 @@ public class Game {
 	
 	public boolean existTicTacToe() {
 		return board.existTicTacToe(turn.take());
-	}
-
-	public Color getColor(Coordinate coordinate) {
-		return board.getColor(coordinate);
 	}
 	
 }

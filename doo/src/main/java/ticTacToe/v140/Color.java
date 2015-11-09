@@ -14,4 +14,5 @@ public enum Color {
 	public String toString() {
 		return ""+value;
 	}
+	
 }

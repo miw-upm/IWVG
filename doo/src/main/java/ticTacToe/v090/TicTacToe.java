@@ -3,12 +3,14 @@ package ticTacToe.v090;
 public class TicTacToe {
 
     private Board board;
+    
     private Player[] players;
-    private int turn;
+    
+    private Turn turn;
     
     public TicTacToe() {
         board = new Board();
-        turn = 0;
+        turn = new Turn();
         players = new Player[2];
         for(int i=0; i<2; i++){
             players[i] = new Player(i);
@@ -19,14 +21,13 @@ public class TicTacToe {
        do {
            board.write();
            if (!board.complete()){
-               players[turn].put(board);
+               players[turn.take()].put(board);
            } else {
-               players[turn].move(board);
+               players[turn.take()].move(board);
            }
-           turn = (turn+1)%2;
        } while(!board.existTicTacToe());
        board.write();
-       players[(turn+1)%2].win();
+       players[turn.notTake()].win();
     }
     
     public static void main(String[] args){

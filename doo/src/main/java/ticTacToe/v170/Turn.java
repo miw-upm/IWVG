@@ -4,31 +4,23 @@ public class Turn {
 
 	private int value = 0;
 	
-	private Player[] players;
+	private int limit;
 	
-	public Turn(Player[] players) {
-		assert players != null;
-		for(Player player : players){
-			assert player != null;
-		}
+	public Turn(int limit) {
 		value = 0;
-		this.players = players;
+		this.limit = limit;
 	}
 	
-    public Player take() {
-        return players[value];
+    public int take() {
+        return value;
     }
     
-    public Player notTake() {
-    	return players[this.other()];
-    }
-    
-    private int other() {
-    	return (value +1)% TicTacToe.NUM_PLAYERS;
+    public int notTake() {
+    	return (value +1)% limit;
     }
     
     public void change() {
-    	value = this.other();
+    	value = this.notTake();
     }
 	
 }

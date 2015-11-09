@@ -1,87 +1,87 @@
 package ticTacToe.v030;
 
 public class TTT {
+	
+	private char[][] box; 
+	
+	public static char[] color = { 'x', 'o' }; 
+	
+	private int zeroOrOne;
+	
+	private Start s; 
+	
+	private Put p; 
+	
+	private Move m; 
 
-	private char[][] aac_Tokens;
-
-	public static char[] COLOR = { 'x', 'o' };
-
-	private int zero_one;
-
-	private Start Start;
-
-	private Put Put_Piece;
-
-	private Move Move_Piece;
-
-	public TTT() {
-		zero_one = 0;
-		aac_Tokens = new char[3][3];
-		Start = new Start(aac_Tokens);
-		Put_Piece = new Put(aac_Tokens);
+	public TTT() { 
+		zeroOrOne = 0;
+		box = new char[3][3];
+		s = new Start(box);
+		p = new Put(box);
 	}
 
-	public void process() {
+	public void exec() {
 		do {
-			Start.output();
-			if (!this.Complete()) {
-				Put_Piece.exec(zero_one, this);
+			s.write();
+			if (!this.complete()) {
+				p.put(zeroOrOne, this);
 			} else {
-				Move_Piece.execute(zero_one, this);
+				m.move(zeroOrOne, this);
 			}
-			zero_one = (zero_one + 1) % 2;
-		} while (!this.ole());
-		Start.output();
-		this.show(zero_one);
+			zeroOrOne = (zeroOrOne + 1) % 2;
+		} while (!this.existTTT());
+		s.write();
+		this.message(zeroOrOne);
 	}
 
-	public boolean Complete() {
-		int cont = 0;
-		for (int cont1 = 0; cont1 < 3; cont1++) {
-			for (int cont2 = 0; cont2 < 3; cont2++) {
-				if (aac_Tokens[cont1][cont2] != '_') {
-					cont++;
+	public boolean complete() {
+		int c = 0;
+		for (int contRow = 0; contRow < 3; contRow++) {
+			for (int contColumn = 0; contColumn < 3; contColumn++) {
+				if (box[contRow][contColumn] != '_') {
+					c++;
 				}
 			}
 		}
-		return cont == 6;
+		return c == 6;
 	}
 
-	public boolean ole() {
-		return this.existTicTacToe('x') || this.existTicTacToe('o');
+	public boolean existTTT() {
+		return this.existTTT('x') || this.existTTT('o');
 	}
 
-	public boolean existTicTacToe(char token) {
-		if (aac_Tokens[1][1] == token) {
-			if (aac_Tokens[0][0] == token) {
-				return aac_Tokens[2][2] == token;
+	public boolean existTTT(char token) {
+		if (box[1][1] == token) {
+			if (box[0][0] == token) {
+				return box[2][2] == token;
 			}
-			if (aac_Tokens[0][2] == token) {
-				return aac_Tokens[2][0] == token;
+			if (box[0][2] == token) {
+				return box[2][0] == token;
 			}
-			if (aac_Tokens[0][1] == token) {
-				return aac_Tokens[2][1] == token;
+			if (box[0][1] == token) {
+				return box[2][1] == token;
 			}
-			if (aac_Tokens[1][0] == token) {
-				return aac_Tokens[1][2] == token;
+			if (box[1][0] == token) {
+				return box[1][2] == token;
 			}
 			return false;
 		}
-		if (aac_Tokens[0][0] == token) {
-			if (aac_Tokens[0][1] == token) {
-				return aac_Tokens[0][2] == token;
+		if (box[0][0] == token) {
+			if (box[0][1] == token) {
+				return box[0][2] == token;
 			}
-			if (aac_Tokens[1][0] == token) {
-				return aac_Tokens[2][0] == token;
+			if (box[1][0] == token) {
+				return box[2][0] == token;
 			}
 			return false;
 		}
-		if (aac_Tokens[2][2] == token) {
-			if (aac_Tokens[1][2] == token) {
-				return aac_Tokens[0][2] == token;
+		if (box[2][2] == token) {
+			if (box[1][2] == token) {
+				return box[0][2] == token;
 			}
-			if (aac_Tokens[2][1] == token) {
-				return aac_Tokens[2][0] == token;
+			if (box[2][1] == token) {
+				return box[2][0] == token;
 			}
 			return false;
 		}
@@ -89,27 +89,28 @@ public class TTT {
 	}
 
 	public boolean empty(int r, int c) {
-		return aac_Tokens[r][c] == '_';
+		return box[r][c] == '_';
 	}
 
-	public boolean full(int row, int column, char player) {
-		return aac_Tokens[row][column] == player;
+	public boolean full(int r, int c, char t) {
+		return box[r][c] == t;
 	}
 
 	public void clear() {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				aac_Tokens[i][j] = '_';
+				box[i][j] = '_';
 			}
 		}
 	}
 
-	public void show(int turn) {
-		System.out.println("Victoria!!!! " + TTT.COLOR[turn] + "! "
-				+ TTT.COLOR[turn] + "! " + TTT.COLOR[turn] + "! Victoria!!!!");
+	public void message(int turn) {
+		turn = (turn + 1) % 2;
+		System.out.println("Victoria!!!! " + TTT.color[turn] + "! "
+				+ TTT.color[turn] + "! " + TTT.color[turn] + "! Victoria!!!!");
 	}
 
 	public static void main(String[] args) {
-		new TTT().process();
+		new TTT().exec();
 	}
 }

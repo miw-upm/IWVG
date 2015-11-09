@@ -6,16 +6,13 @@ public class Logic {
 
 	private Game game;
 
-	private ColocateControllerBuilder colocateControllerBuilder;
-	
 	private StartController startController;
 
 	private ContinueController continueController;
 
 	public Logic() {
 		game = new Game();
-		colocateControllerBuilder = new ColocateControllerBuilder(game);
-		startController = new StartController(game, colocateControllerBuilder);
+		startController = new StartController(game);
 		continueController = new ContinueController(game);
 	}
 
@@ -24,7 +21,9 @@ public class Logic {
 		case INITIAL:
 			return startController;
 		case IN_GAME:
-			return colocateControllerBuilder.getColocateController();
+			int player = game.getTurn().take().ordinal(); 
+			int colocate = !game.getBoard().complete()?0:1;
+			return startController.getColocateControllerArray()[player][colocate];
 		case FINAL:
 			return continueController;
 		case EXIT:

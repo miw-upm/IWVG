@@ -1,35 +1,39 @@
 package ticTacToe.v250;
 
-public abstract class ColocateController extends Controller {
+import ticTacToe.v250.utils.IO;
 
-	private String actionTitle;
+public abstract class ColocateController {
+
+	private Turn turn;
+
+	private Board board;
 	
 	private TicTacToeCoordinate target;
 
-	protected ColocateController(Game game, String actionTitle) {
-		super(game);
-		assert game != null;
-		assert actionTitle != null;
-		this.actionTitle = actionTitle;
+	protected ColocateController(Turn turn, Board board) {
+		assert turn != null;
+		assert board != null;
+		this.turn = turn;
+		this.board = board;
 		target = new TicTacToeCoordinate();
 	}
 
-	public void control() {
-		assert this.getState() == State.IN_GAME;
+	public abstract void control();
+	
+	protected void control(String actionTitle, String targetTitle) {
 		IO io = new IO();
-		io.writeln(actionTitle + " el jugador " + this.getTurn().take());
-		this.colocate();
-		this.getBoard().write();
-		if (this.getBoard().existTicTacToe(this.getTurn().take())) {
-			io.writeln("Victoria!!!! " + this.getTurn().take() + "! " + this.getTurn().take()
-					+ "! " + this.getTurn().take() + "! Victoria!!!!");
-			this.setState(State.FINAL);
+		io.writeln(actionTitle + " el jugador " + turn.take());
+		this.colocate(targetTitle);
+		board.write();
+		if (board.existTicTacToe(turn.take())) {
+			io.writeln("Victoria!!!! " + turn.take() + "! " + turn.take()
+					+ "! " + turn.take() + "! Victoria!!!!");
 		} else {
-			this.getTurn().change();
+			turn.change();
 		}
 	}
 
-	protected abstract void colocate();
+	protected abstract void colocate(String targetTitle);
 
 	protected void put(String targetTitle) {
 		target = new TicTacToeCoordinate();
@@ -41,17 +45,26 @@ public abstract class ColocateController extends Controller {
 				new IO().writeln(""+error);
 			}
 		} while (error != null);
-		this.getBoard().put(target, this.getTurn().take());
+		board.put(target, turn.take());
 	}
 
 	protected Error errorToPut() {
-		if (!this.getBoard().empty(target)) {
+		if (!board.empty(target)) {
 			return Error.NOT_EMPTY;
 		}
 		return null;
+	}
+
+	protected Turn getTurn() {
+		return turn;
+	}
+
+	protected Board getBoard() {
+		return board;
 	}
 	
 	protected TicTacToeCoordinate getTarget() {
 		return target;
 	}
+
 }

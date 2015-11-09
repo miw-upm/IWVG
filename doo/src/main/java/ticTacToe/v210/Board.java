@@ -5,33 +5,34 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ticTacToe.v210.utils.IO;
+
 public class Board {
 
-	private Map<Color, Set<TicTacToeCoordinate>> coordinates;
+	private Map<Integer, Set<Coordinate>> coordinates;
 
 	public Board(int numPlayers) {
-		assert numPlayers > 0;
 		coordinates = new HashMap<>();
 		for (int i = 0; i < numPlayers; i++) {
-			coordinates.put(Color.values()[i], new HashSet<>());
+			coordinates.put(i, new HashSet<>());
 		}
 	}
 
 	public void write() {
 		IO io = new IO();
-		for (int i = 0; i < TicTacToeCoordinate.DIMENSION; i++) {
-			for (int j = 0; j < TicTacToeCoordinate.DIMENSION; j++) {
-				io.write(this.getColor(new TicTacToeCoordinate(i, j)) + " ");
+		for (int i = 0; i < Coordinate.DIMENSION; i++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
+				io.write(this.getColor(new Coordinate(i, j)) + " ");
 			}
 			io.writeln();
 		}
 	}
 
-	private Color getColor(TicTacToeCoordinate coordinate) {
+	private Color getColor(Coordinate coordinate) {
 		assert coordinate != null;
-		for(Color color : coordinates.keySet()){
-			if (coordinates.get(color).contains(coordinate)) {
-				return color;
+		for(Integer player : coordinates.keySet()){
+			if (coordinates.get(player).contains(coordinate)) {
+				return Color.values()[player];
 			}
 		}
 		return Color.NONE;
@@ -39,10 +40,10 @@ public class Board {
 
 	public boolean complete() {
 		int contTokens = 0;
-		for(Color color: coordinates.keySet()){
-			contTokens += coordinates.get(color).size();
+		for(Integer player : coordinates.keySet()){
+			contTokens += coordinates.get(player).size();
 		}
-		return contTokens == TicTacToeCoordinate.DIMENSION * coordinates.keySet().size();
+		return contTokens == Coordinate.DIMENSION * coordinates.keySet().size();
 	}
 
 	public boolean existTicTacToe() {
@@ -51,16 +52,16 @@ public class Board {
 
 	public boolean existTicTacToe(Color color) {
 		assert color != Color.NONE;
-		Set<TicTacToeCoordinate> coordinateSet = coordinates.get(color);
-		if (coordinateSet.size() != TicTacToeCoordinate.DIMENSION) {
+		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
+		if (coordinateSet.size() != Coordinate.DIMENSION) {
 			return false;
 		}
-		TicTacToeCoordinate[] coordinateArray = coordinateSet.toArray(new TicTacToeCoordinate[0]);
+		Coordinate[] coordinateArray = coordinateSet.toArray(new Coordinate[0]);
 		Direction direction = coordinateArray[0].direction(coordinateArray[1]);
 		if (direction == Direction.NON_EXISTENT) {
 			return false;
 		}
-		for (int i = 1; i < TicTacToeCoordinate.DIMENSION - 1; i++) {
+		for (int i = 1; i < Coordinate.DIMENSION - 1; i++) {
 			if (coordinateArray[i].direction(coordinateArray[i + 1]) != direction) {
 				return false;
 			}
@@ -68,28 +69,28 @@ public class Board {
 		return true;
 	}
 
-	public boolean empty(TicTacToeCoordinate coordinate) {
+	public boolean empty(Coordinate coordinate) {
 		assert coordinate != null;
 		return !this.full(coordinate, Color.XS) && !this.full(coordinate, Color.OS);
 	}
 
-	public void put(TicTacToeCoordinate coordinate, Color color) {
+	public void put(Coordinate coordinate, Color color) {
 		assert coordinate != null;
 		assert color != Color.NONE;
 		assert color != null;
-		coordinates.get(color).add(coordinate);
+		coordinates.get(color.ordinal()).add(coordinate);
 	}
 
-	public void remove(TicTacToeCoordinate coordinate, Color color) {
+	public void remove(Coordinate coordinate, Color color) {
 		assert coordinate != null;
 		assert color != Color.NONE;
-		coordinates.get(color).remove(coordinate);
+		coordinates.get(color.ordinal()).remove(coordinate);
 	}
 
-	public boolean full(TicTacToeCoordinate coordinate, Color color) {
+	public boolean full(Coordinate coordinate, Color color) {
 		assert coordinate != null;
 		assert color != Color.NONE;
-		return coordinates.get(color).contains(coordinate);
+		return coordinates.get(color.ordinal()).contains(coordinate);
 	}
 
 }

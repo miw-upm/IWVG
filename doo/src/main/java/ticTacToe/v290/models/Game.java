@@ -1,6 +1,5 @@
 package ticTacToe.v290.models;
 
-
 public class Game {
 
 	private State state;
@@ -31,10 +30,6 @@ public class Game {
 	
 	public Board getBoard() {
 		return board;
-	}
-	
-	public int getNumPlayers() {
-		return NUM_PLAYERS;
 	}
 	
 }

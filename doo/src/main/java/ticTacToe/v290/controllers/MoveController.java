@@ -1,12 +1,11 @@
 package ticTacToe.v290.controllers;
 
 import ticTacToe.v290.models.Game;
-import ticTacToe.v290.models.Coordinate;
 import ticTacToe.v290.utils.IO;
 
 public class MoveController extends ColocateController {
 
-	private Coordinate origin;
+	private TicTacToeCoordinate origin;
 	
 	public MoveController(Game game, CoordinateController coordinateController) {
 		super(game, "Mueve", coordinateController);

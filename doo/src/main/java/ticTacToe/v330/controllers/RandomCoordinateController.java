@@ -1,7 +1,7 @@
 package ticTacToe.v330.controllers;
 
-import ticTacToe.v330.models.Game;
 import ticTacToe.v330.models.Coordinate;
+import ticTacToe.v330.models.Game;
 
 public class RandomCoordinateController extends CoordinateController {
 

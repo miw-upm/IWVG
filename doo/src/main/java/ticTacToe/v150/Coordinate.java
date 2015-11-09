@@ -5,23 +5,29 @@ public class Coordinate {
 	private int row;
 	
 	private int column;
+	
+	private static final ClosedInterval LIMITS = new ClosedInterval(0, 3-1);
 
 	public Coordinate(){	
 	}
 	
 	public Coordinate(int row, int column){	
+		assert LIMITS.includes(row);
+		assert LIMITS.includes(column);
 		this.row = row;
 		this.column = column;
 	}
 	
 	public void read(String title) {
+		assert title != null;
 		IO io = new IO();
 		io.writeln(title + " qué casilla?");
-		row = new LimitedIntDialog("Fila?", Board.DIMENSION).read()-1;
-		column = new LimitedIntDialog("Columna?", Board.DIMENSION).read()-1;
+		row = new LimitedIntDialog("Fila?", 3).read()-1;
+		column = new LimitedIntDialog("Columna?", 3).read()-1;
 	}
 	
 	public Direction direction(Coordinate coordinate){
+		assert coordinate != null;
 		if (this.getRow()==coordinate.getRow()){
 			return Direction.HORIZONTAL;
 		}
@@ -42,7 +48,7 @@ public class Coordinate {
 	}
 	
 	private boolean inInverse(){
-		return row + column == Board.DIMENSION-1;
+		return row + column == 3-1;
 	}
 
 	@Override

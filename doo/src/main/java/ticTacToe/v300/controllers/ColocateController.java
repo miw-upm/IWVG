@@ -1,8 +1,8 @@
 package ticTacToe.v300.controllers;
 
+import ticTacToe.v300.models.Coordinate;
 import ticTacToe.v300.models.Game;
 import ticTacToe.v300.models.State;
-import ticTacToe.v300.models.Coordinate;
 import ticTacToe.v300.utils.IO;
 
 public abstract class ColocateController extends OperationController {
@@ -25,15 +25,15 @@ public abstract class ColocateController extends OperationController {
 	public void control() {
 		assert this.getState() == State.IN_GAME;
 		IO io = new IO();
-		io.writeln(actionTitle + " el jugador " + this.take());
+		io.writeln(actionTitle + " el jugador " + this.getTurn().take());
 		this.colocate();
-		this.write();
-		if (this.existTicTacToe()) {
-			io.writeln("Victoria!!!! " + this.take() + "! " + this.take()
-					+ "! " + this.take() + "! Victoria!!!!");
+		this.getBoard().write();
+		if (this.getBoard().existTicTacToe(this.getTurn().take())) {
+			io.writeln("Victoria!!!! " + this.getTurn().take() + "! " + this.getTurn().take()
+					+ "! " + this.getTurn().take() + "! Victoria!!!!");
 			this.setState(State.FINAL);
 		} else {
-			this.change();
+			this.getTurn().change();
 		}
 	}
 
@@ -48,16 +48,16 @@ public abstract class ColocateController extends OperationController {
 				new IO().writeln(""+error);
 			}
 		} while (error != null);	
-		this.put(target);
+		this.getBoard().put(target, this.getTurn().take());
 	}
-
+	
 	protected Error validateTarget(){
-		if (!this.empty(target)) {
+		if (!this.getBoard().empty(target)) {
 			return Error.NOT_EMPTY;
 		}
 		return null;
 	}
-
+	
 	protected CoordinateController getCoordinateController(){
 		return coordinateController;
 	}

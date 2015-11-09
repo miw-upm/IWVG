@@ -1,9 +1,9 @@
 package ticTacToe.v310.controllers;
 
 import ticTacToe.v310.models.Color;
+import ticTacToe.v310.models.Coordinate;
 import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.State;
-import ticTacToe.v310.models.Coordinate;
 
 public abstract class Controller {
 
@@ -12,10 +12,6 @@ public abstract class Controller {
 	protected Controller(Game game) {
 		assert game != null;
 		this.game = game;
-	}
-	
-	protected int numPlayers() {
-		return game.numPlayers();
 	}
 	
 	protected State getState(){
@@ -27,46 +23,45 @@ public abstract class Controller {
 		game.setState(state);
 	}
 	
-	public Color take() {
+	protected Color take() {
 		return game.take();
 	}
 	
-	protected void put(Coordinate target) {
-		assert target != null;
-		game.put(target);
-		if (game.existTicTacToe()) {
-			game.setState(State.FINAL);
-		} else {
-			game.change();
-		}
+	protected void change() {
+		game.change();
 	}
 	
-	protected void remove(Coordinate origin) {
-		assert origin != null;
-		game.remove(origin);
+	protected void write() {
+		game.write();		
+	}
+	
+	protected void remove(Coordinate coordinate) {
+		game.remove(coordinate);
 	}
 	
 	protected void clear() {
 		game.clear();		
 	}	
 	
-	protected boolean empty(Coordinate coordinate) {
-		assert coordinate != null;
-		return game.empty(coordinate);
+	protected boolean full(Coordinate coodinate) {
+		return game.full(coodinate);
 	}
 	
-	protected boolean full(Coordinate coordinate) {
-		assert coordinate != null;
-		return game.full(coordinate);
-	}
-	
-	public boolean existTicTacToe() {
+	protected boolean existTicTacToe() {
 		return game.existTicTacToe();
-	}	
-	
-	public Color getColor(Coordinate coordinate){
-		assert coordinate != null;
-		return game.getColor(coordinate);
 	}
+	
+	protected void put(Coordinate coodinate) {
+		game.put(coodinate);
+	}
+	
+	protected boolean empty(Coordinate coodinate) {
+		return game.empty(coodinate);
+	}
+	
+	protected Game getGame(){
+		return game;
+	}
+	
 	
 }

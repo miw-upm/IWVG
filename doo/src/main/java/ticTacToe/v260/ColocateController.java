@@ -1,5 +1,7 @@
 package ticTacToe.v260;
 
+import ticTacToe.v260.utils.IO;
+
 public abstract class ColocateController extends Controller {
 
 	private String actionTitle;

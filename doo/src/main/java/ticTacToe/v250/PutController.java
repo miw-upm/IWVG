@@ -1,14 +1,19 @@
 package ticTacToe.v250;
 
 public class PutController extends ColocateController {
-
-	public PutController(Game game) {
-		super(game, "Pone");
+	
+	public PutController(Turn turn, Board board) {
+		super(turn, board);
+	}
+	
+	@Override
+	public void control(){
+		this.control("Pone", "En");
 	}
 
 	@Override
-	protected void colocate() {
-		this.put("En");
+	protected void colocate(String targetTitle) {
+		this.put(targetTitle);
 	}
 
 }

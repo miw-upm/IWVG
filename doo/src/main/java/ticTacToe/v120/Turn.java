@@ -9,13 +9,15 @@ public class Turn {
 	}
 	
     public int take() {
-    	int result = value;
-    	value = (value +1)% TicTacToe.NUM_PLAYERS;
-        return result;
+        return value;
     }
     
     public int notTake() {
-    	return (value +1)% TicTacToe.NUM_PLAYERS;
+    	return (value +1)% 2;
+    }
+    
+    public void change() {
+    	value = this.notTake();
     }
 	
 }

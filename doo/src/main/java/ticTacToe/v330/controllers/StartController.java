@@ -3,6 +3,7 @@ package ticTacToe.v330.controllers;
 import ticTacToe.v330.models.Game;
 import ticTacToe.v330.models.State;
 import ticTacToe.v330.utils.ClosedInterval;
+import ticTacToe.v330.views.TicTacToeView;
 
 public class StartController extends OperationController {
 
@@ -22,8 +23,8 @@ public class StartController extends OperationController {
 	}
 
 	@Override
-	public void accept(OperationControllerVisitor operationControllerVisitor) {
-		operationControllerVisitor.visit(this);		
+	public void accept(TicTacToeView ticTacToeView) {
+		ticTacToeView.visit(this);		
 	}
 
 }

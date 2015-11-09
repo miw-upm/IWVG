@@ -1,59 +1,64 @@
 package ticTacToe.v210;
 
+import ticTacToe.v210.utils.ClosedInterval;
+import ticTacToe.v210.utils.IO;
+import ticTacToe.v210.utils.LimitedIntDialog;
+
 public class Coordinate {
+	
+	private ticTacToe.v210.utils.Coordinate coordinate;
 
-	private int row;
+	public static final int DIMENSION = 3;
 	
-	private int column;
-	
-	public Direction direction(Coordinate coordinate){
-		assert coordinate != null;
-		if (this.inRow(coordinate)){
-			return Direction.HORIZONTAL;
-		}
-		if (this.inColumn(coordinate)){
-			return Direction.VERTICAL;
-		}
-		if (this.inDiagonal() && coordinate.inDiagonal()){
-			return Direction.DIAGONAL;
-		}
-		return Direction.NON_EXISTENT;
+	private static final ClosedInterval LIMITS = new ClosedInterval(0, Coordinate.DIMENSION-1);
+
+	public Coordinate(){
+		coordinate = new ticTacToe.v210.utils.Coordinate();
 	}
 	
-	public boolean inRow(Coordinate coordinate){
-		return row == coordinate.row;
+	public Coordinate(int row, int column){
+		this();
+		this.setRow(row);
+		this.setColumn(column);
 	}
 	
-	public boolean inColumn(Coordinate coordinate){
-		return column == coordinate.column;
+	private void setRow(int row){
+		assert LIMITS.includes(row);
+		coordinate.setRow(row);
 	}
 	
-	public boolean inDiagonal(){
-		return row - column == 0;
-	}	
+	private void setColumn(int column){
+		assert LIMITS.includes(column);
+		coordinate.setColumn(column);
+	}
 	
-	public int getRow() {
-		return row;
+	public void read(String title) {
+		assert title != null;
+		IO io = new IO();
+		io.writeln(title + " qué casilla?");
+		this.setRow(new LimitedIntDialog("Fila?", Coordinate.DIMENSION).read()-1);
+		this.setColumn(new LimitedIntDialog("Columna?", Coordinate.DIMENSION).read()-1);
+	}
+	
+	public Direction direction(Coordinate ticTacToeCoordinate){
+		Direction direction = coordinate.direction(ticTacToeCoordinate.coordinate);
+		if (direction == Direction.NON_EXISTENT) {
+			if(this.inInverse() && ticTacToeCoordinate.inInverse())
+				return Direction.INVERSE;
+		}
+		return direction;
+	}
+	
+	private boolean inInverse(){
+		return coordinate.getRow() + coordinate.getColumn() == Coordinate.DIMENSION-1;
 	}
 
-	public int getColumn() {
-		return column;
-	}
-	
-	public void setRow(int row){
-		this.row = row;
-	}
-	
-	public void setColumn(int column){
-		this.column = column;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + column;
-		result = prime * result + row;
+		result = prime * result
+				+ ((coordinate == null) ? 0 : coordinate.hashCode());
 		return result;
 	}
 
@@ -66,10 +71,12 @@ public class Coordinate {
 		if (getClass() != obj.getClass())
 			return false;
 		Coordinate other = (Coordinate) obj;
-		if (column != other.column)
-			return false;
-		if (row != other.row)
+		if (coordinate == null) {
+			if (other.coordinate != null)
+				return false;
+		} else if (!coordinate.equals(other.coordinate))
 			return false;
 		return true;
 	}
+	
 }

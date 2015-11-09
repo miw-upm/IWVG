@@ -2,7 +2,6 @@ package ticTacToe.v290.controllers;
 
 import ticTacToe.v290.models.Game;
 import ticTacToe.v290.models.State;
-import ticTacToe.v290.models.Coordinate;
 import ticTacToe.v290.utils.IO;
 
 public abstract class ColocateController extends OperationController {
@@ -11,7 +10,7 @@ public abstract class ColocateController extends OperationController {
 	
 	private CoordinateController coordinateController;
 	
-	private Coordinate target;
+	private TicTacToeCoordinate target;
 
 	protected ColocateController(Game game, String actionTitle,
 			CoordinateController coordinateController) {
@@ -42,7 +41,7 @@ public abstract class ColocateController extends OperationController {
 	protected void put(String targetTitle) {
 		Error error;
 		do {
-			target = this.getCoordinateController().getTarget(targetTitle);
+			target = coordinateController.getTarget(targetTitle);
 			error = this.validateTarget();
 			if (error != null){
 				new IO().writeln(""+error);
@@ -62,7 +61,7 @@ public abstract class ColocateController extends OperationController {
 		return coordinateController;
 	}
 	
-	protected Coordinate getTarget(){
+	protected TicTacToeCoordinate getTarget(){
 		return target;
 	}
 

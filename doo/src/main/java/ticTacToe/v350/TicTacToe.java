@@ -1,8 +1,8 @@
 package ticTacToe.v350;
 
-import ticTacToe.v330.controllers.Logic;
-import ticTacToe.v330.controllers.OperationController;
-import ticTacToe.v330.views.TicTacToeView;
+import ticTacToe.v350.controllers.local.LocalOperationController;
+import ticTacToe.v350.controllers.local.Logic;
+import ticTacToe.v350.views.TicTacToeView;
 
 public class TicTacToe {
 
@@ -16,7 +16,7 @@ public class TicTacToe {
 	}
 	
 	public void play() {
-		OperationController controller;
+		LocalOperationController controller;
 		do {
 			controller = logic.getController();
 			if (controller != null){

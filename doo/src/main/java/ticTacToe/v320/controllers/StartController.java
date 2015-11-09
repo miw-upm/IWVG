@@ -3,7 +3,6 @@ package ticTacToe.v320.controllers;
 import ticTacToe.v320.models.Game;
 import ticTacToe.v320.models.State;
 import ticTacToe.v320.utils.ClosedInterval;
-import ticTacToe.v320.views.TicTacToeView;
 
 public class StartController extends OperationController {
 
@@ -20,11 +19,6 @@ public class StartController extends OperationController {
 		assert this.getState() == State.INITIAL;
 		colocateControllerBuilder.build(users);
 		this.setState(State.IN_GAME);
-	}
-
-	@Override
-	public void accept(TicTacToeView ticTacToeView) {
-		ticTacToeView.visit(this);		
 	}
 
 }

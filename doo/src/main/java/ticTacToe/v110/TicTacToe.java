@@ -6,15 +6,13 @@ public class TicTacToe {
     
     private Player[] players;
     
-    private int turn;
-    
-    public static final int NUM_PLAYERS = 2;
+    private Turn turn;
     
     public TicTacToe() {
         board = new Board();
-        turn = 0;
-        players = new Player[TicTacToe.NUM_PLAYERS];
-        for(int i=0; i<TicTacToe.NUM_PLAYERS; i++){
+        turn = new Turn();
+        players = new Player[2];
+        for(int i=0; i<2; i++){
             players[i] = new Player(i);
         }
     }
@@ -23,14 +21,14 @@ public class TicTacToe {
        do {
            board.write();
            if (!board.complete()){
-               players[turn].put(board);
+               players[turn.take()].put(board);
            } else {
-               players[turn].move(board);
+               players[turn.take()].move(board);
            }
-           turn = (turn+1)%TicTacToe.NUM_PLAYERS;
+           turn.change();
        } while(!board.existTicTacToe());
        board.write();
-       players[(turn+1)%TicTacToe.NUM_PLAYERS].win();
+       players[turn.notTake()].win();
     }
     
     public static void main(String[] args){

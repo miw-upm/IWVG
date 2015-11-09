@@ -1,7 +1,5 @@
 package ticTacToe.v290.utils;
 
-import ticTacToe.v290.models.Direction;
-
 public class Coordinate {
 
 	private int row;

@@ -13,7 +13,7 @@ public class Turn {
     }
     
     public int notTake() {
-    	return (value +1)% TicTacToe.NUM_PLAYERS;
+    	return (value +1)% 2;
     }
     
     public void change() {

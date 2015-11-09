@@ -1,6 +1,5 @@
 package ticTacToe.v290.utils;
 
-
 public class LimitedIntDialog {
 
 	private String title;

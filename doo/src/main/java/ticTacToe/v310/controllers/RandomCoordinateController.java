@@ -1,9 +1,14 @@
 package ticTacToe.v310.controllers;
 
-import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.Coordinate;
+import ticTacToe.v310.models.Game;
+import ticTacToe.v310.utils.IO;
 
 public class RandomCoordinateController extends CoordinateController {
+
+	private Coordinate origin;
+
+	private Coordinate target;
 
 	protected RandomCoordinateController(Game game) {
 		super(game);
@@ -11,39 +16,37 @@ public class RandomCoordinateController extends CoordinateController {
 
 	@Override
 	public Coordinate getOrigin() {
-		Coordinate origin = new Coordinate();
+		origin = new Coordinate();
 		boolean ok;
 		do {
 			origin.random();
-			ok = this.full(origin);
+			ok = this.getGame().full(origin);
 		} while (!ok);
+		new IO().writeln("La máquina quita de " + origin);
+		new IO().readString("Enter para continuar!");
 		Coordinate result = origin;
 		origin = null;
 		return result;
 	}
 
 	@Override
-	public Coordinate getTarget() {
-		Coordinate target = new Coordinate();
+	public Coordinate getTarget(String targetTitle) {
+		target = new Coordinate();
 		boolean ok;
 		do {
 			target.random();
-			ok = this.empty(target);
+			ok = this.getGame().empty(target);
+			if (ok) {
+				if (origin != null) {
+					ok = !origin.equals(target);
+				}
+			}
 		} while (!ok);
+		new IO().writeln("La máquina pone en " + target);
+		new IO().readString("Enter para continuar!");
 		Coordinate result = target;
 		target = null;
 		return result;
-	}
-	
-	public Coordinate getTarget(Coordinate origin) {
-		assert origin != null;
-		boolean ok;
-		Coordinate target;
-		do {
-			target = this.getTarget();
-			ok = !origin.equals(target);
-		} while(!ok);
-		return target;
 	}
 
 }

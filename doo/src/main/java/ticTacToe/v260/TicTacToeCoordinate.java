@@ -1,5 +1,11 @@
 package ticTacToe.v260;
 
+import ticTacToe.v260.utils.ClosedInterval;
+import ticTacToe.v260.utils.Coordinate;
+import ticTacToe.v260.utils.Direction;
+import ticTacToe.v260.utils.IO;
+import ticTacToe.v260.utils.LimitedIntDialog;
+
 public class TicTacToeCoordinate {
 	
 	private Coordinate coordinate;

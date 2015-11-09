@@ -1,6 +1,5 @@
 package ticTacToe.v290.models;
 
-
 public class Turn {
 
 	private int value = 0;

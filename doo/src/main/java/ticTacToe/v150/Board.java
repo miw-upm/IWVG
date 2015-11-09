@@ -9,19 +9,17 @@ public class Board {
 
 	private Map<Integer, Set<Coordinate>> coordinates;
 
-	public static final int DIMENSION = 3;
-
 	public Board() {
 		coordinates = new HashMap<>();
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		for (int i = 0; i < 2; i++) {
 			coordinates.put(i, new HashSet<>());
 		}
 	}
 
 	public void write() {
 		IO io = new IO();
-		for (int i = 0; i < Board.DIMENSION; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
 				io.write(this.getColor(new Coordinate(i, j)) + " ");
 			}
 			io.writeln();
@@ -29,7 +27,8 @@ public class Board {
 	}
 
 	private Color getColor(Coordinate coordinate) {
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		assert coordinate != null;
+		for (int i = 0; i < 2; i++) {
 			if (coordinates.get(i).contains(coordinate)) {
 				return Color.values()[i];
 			}
@@ -39,19 +38,20 @@ public class Board {
 
 	public boolean complete() {
 		int contTokens = 0;
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		for (int i = 0; i < 2; i++) {
 			contTokens += coordinates.get(i).size();
 		}
-		return contTokens == Board.DIMENSION * TicTacToe.NUM_PLAYERS;
+		return contTokens == 6;
 	}
 
 	public boolean existTicTacToe() {
 		return this.existTicTacToe(Color.XS) || this.existTicTacToe(Color.OS);
 	}
 
-	private boolean existTicTacToe(Color color) {
+	public boolean existTicTacToe(Color color) {
+		assert color != Color.NONE;
 		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
-		if (coordinateSet.size() != Board.DIMENSION) {
+		if (coordinateSet.size() != 3) {
 			return false;
 		}
 		Coordinate[] coordinateArray = coordinateSet.toArray(new Coordinate[0]);
@@ -59,7 +59,7 @@ public class Board {
 		if (direction == Direction.NON_EXISTENT) {
 			return false;
 		}
-		for (int i = 1; i < Board.DIMENSION - 1; i++) {
+		for (int i = 1; i < 3 - 1; i++) {
 			if (coordinateArray[i].direction(coordinateArray[i + 1]) != direction) {
 				return false;
 			}
@@ -68,18 +68,26 @@ public class Board {
 	}
 
 	public boolean empty(Coordinate coordinate) {
-		return this.full(coordinate, Color.NONE) ;
+		assert coordinate != null;
+		return !this.full(coordinate, Color.XS) && !this.full(coordinate, Color.OS);
 	}
 
 	public void put(Coordinate coordinate, Color color) {
+		assert coordinate != null;
+		assert color != Color.NONE;
+		assert color != null;
 		coordinates.get(color.ordinal()).add(coordinate);
 	}
 
 	public void remove(Coordinate coordinate, Color color) {
+		assert coordinate != null;
+		assert color != Color.NONE;
 		coordinates.get(color.ordinal()).remove(coordinate);
 	}
 
 	public boolean full(Coordinate coordinate, Color color) {
+		assert coordinate != null;
+		assert color != Color.NONE;
 		return coordinates.get(color.ordinal()).contains(coordinate);
 	}
 

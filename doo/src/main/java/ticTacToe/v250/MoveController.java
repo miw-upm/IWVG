@@ -1,18 +1,25 @@
 package ticTacToe.v250;
 
+import ticTacToe.v250.utils.IO;
+
 public class MoveController extends ColocateController {
 
 	private TicTacToeCoordinate origin;
 
-	public MoveController(Game game) {
-		super(game, "Mueve");
+	public MoveController(Turn turn, Board board) {
+		super(turn, board);
 		origin = new TicTacToeCoordinate();
+	}
+	
+	@Override
+	public void control(){
+		this.control("Mueve", "A");
 	}
 
 	@Override
-	protected void colocate() {
+	protected void colocate(String targetTitle) {
 		this.remove();
-		this.put("A");
+		this.put(targetTitle);
 	}
 	
 	private void remove(){
@@ -45,4 +52,5 @@ public class MoveController extends ColocateController {
 		}
 		return null;
 	}
+
 }

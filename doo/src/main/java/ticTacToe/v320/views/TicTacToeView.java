@@ -11,6 +11,8 @@ import ticTacToe.v320.controllers.StartController;
 import ticTacToe.v320.controllers.UserCoordinateController;
 import ticTacToe.v320.models.Coordinate;
 import ticTacToe.v320.utils.IO;
+import ticTacToe.v320.utils.LimitedIntDialog;
+import ticTacToe.v320.utils.YesNoDialog;
 
 public class TicTacToeView {
 
@@ -18,16 +20,24 @@ public class TicTacToeView {
 
 	public void interact(OperationController controller) {
 		assert controller != null;
-		controller.accept(this);
+		if (controller instanceof StartController) {
+			this.interact((StartController) controller);
+		} else if (controller instanceof PutController) {
+			this.interact((PutController) controller);
+		} else if (controller instanceof MoveController) {
+			this.interact((MoveController) controller);
+		} else if (controller instanceof ContinueController) {
+			this.interact((ContinueController) controller);
+		}
 	}
-	
-	public void visit(StartController startController) {
+
+	private void interact(StartController startController) {
 		int users = new LimitedIntDialog("Cuántos usuarios?", 0, 2).read();
 		startController.setUsers(users);
 		new BoardView(startController).write();
 	}
-	
-	public void visit(PutController putController) {
+
+	private void interact(PutController putController) {
 		io.writeln("Pone el jugador " + putController.take());
 		Coordinate target;
 		Error error = null;
@@ -48,7 +58,36 @@ public class TicTacToeView {
 		}
 	}
 
-	public void visit(MoveController moveController) {
+	private Coordinate getTarget(String title,
+			CoordinateController coordinateController) {
+		if (coordinateController instanceof UserCoordinateController) {
+			return this.getTarget(title,
+					(UserCoordinateController) coordinateController);
+		} else if (coordinateController instanceof RandomCoordinateController) {
+			return this.getTarget(title,
+					(RandomCoordinateController) coordinateController);
+		}
+		return null;
+	}
+
+	private Coordinate getTarget(String title, 
+			UserCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController
+				.getTarget();
+		new CoordinateView(title, coordinate).interact();
+		return coordinate;
+	}
+
+	private Coordinate getTarget(String title,
+			RandomCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController
+				.getTarget();
+		io.writeln("La máquina pone en " + coordinate);
+		io.readString("Pulse enter para continuar");
+		return coordinate;
+	}
+
+	private void interact(MoveController moveController) {
 		io.writeln("Mueve el jugador " + moveController.take());
 		Coordinate origin;
 		Error error = null;
@@ -79,39 +118,8 @@ public class TicTacToeView {
 		}
 	}
 
-	public void visit(ContinueController continueController) {
-		continueController.setContinue(new YesNoDialog("Desea continuar")
-				.read());
-	}
-	
-	private Coordinate getTarget(String title,
+	private Coordinate getOrigin(
 			CoordinateController coordinateController) {
-		if (coordinateController instanceof UserCoordinateController) {
-			return this.getTarget(title,
-					(UserCoordinateController) coordinateController);
-		} else if (coordinateController instanceof RandomCoordinateController) {
-			return this.getTarget(title,
-					(RandomCoordinateController) coordinateController);
-		}
-		return null;
-	}
-
-	private Coordinate getTarget(String title,
-			UserCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getTarget();
-		new CoordinateView(title, coordinate).interact();
-		return coordinate;
-	}
-
-	private Coordinate getTarget(String title,
-			RandomCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getTarget();
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
-		return coordinate;
-	}
-	
-	private Coordinate getOrigin(CoordinateController coordinateController) {
 		if (coordinateController instanceof UserCoordinateController) {
 			return this
 					.getOrigin((UserCoordinateController) coordinateController);
@@ -122,21 +130,26 @@ public class TicTacToeView {
 		return null;
 	}
 
-	private Coordinate getOrigin(UserCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getOrigin();
+	private Coordinate getOrigin(
+			UserCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController
+				.getOrigin();
 		new CoordinateView("De", coordinate).interact();
 		return coordinate;
 	}
 
-	private Coordinate getOrigin(RandomCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController.getOrigin();
+	private Coordinate getOrigin(
+			RandomCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController
+				.getOrigin();
 		io.writeln("La máquina quita de " + coordinate);
 		io.readString("Pulse enter para continuar");
 		return coordinate;
 	}
-
+	
 	private Coordinate getTarget(String title,
-			CoordinateController coordinateController, Coordinate origin) {
+			CoordinateController coordinateController,
+			Coordinate origin) {
 		if (coordinateController instanceof UserCoordinateController) {
 			return this.getTarget(title,
 					(UserCoordinateController) coordinateController);
@@ -146,13 +159,20 @@ public class TicTacToeView {
 		}
 		return null;
 	}
-
+	
 	private Coordinate getTarget(String title,
-			RandomCoordinateController coordinateController, Coordinate origin) {
-		Coordinate coordinate = coordinateController.getTarget(origin);
+			RandomCoordinateController coordinateController,
+			Coordinate origin) {
+		Coordinate coordinate = coordinateController
+				.getTarget(origin);
 		io.writeln("La máquina pone en " + coordinate);
 		io.readString("Pulse enter para continuar");
 		return coordinate;
+	}
+
+	private void interact(ContinueController continueController) {
+		continueController.setContinue(new YesNoDialog("Desea continuar")
+				.read());
 	}
 
 }

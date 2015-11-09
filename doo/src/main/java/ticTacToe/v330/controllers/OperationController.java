@@ -1,6 +1,7 @@
 package ticTacToe.v330.controllers;
 
 import ticTacToe.v330.models.Game;
+import ticTacToe.v330.views.TicTacToeView;
 
 public abstract class OperationController extends Controller {
 
@@ -8,7 +9,7 @@ public abstract class OperationController extends Controller {
 		super(game);
 	}
 	
-	public abstract void accept(OperationControllerVisitor operationControllerVisitor);
+	public abstract void accept(TicTacToeView ticTacToeView);
 	
 
 }

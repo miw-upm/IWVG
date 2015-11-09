@@ -1,57 +1,67 @@
 package ticTacToe.v240;
 
+import ticTacToe.v240.utils.ClosedInterval;
+import ticTacToe.v240.utils.Coordinate;
+import ticTacToe.v240.utils.Direction;
+import ticTacToe.v240.utils.IO;
+import ticTacToe.v240.utils.LimitedIntDialog;
+
 public class TicTacToeCoordinate {
-	
+
 	private Coordinate coordinate;
 
 	public static final int DIMENSION = 3;
-	
-	private static final ClosedInterval LIMITS = new ClosedInterval(0, TicTacToeCoordinate.DIMENSION-1);
 
-	public TicTacToeCoordinate(){
+	private static final ClosedInterval LIMITS = new ClosedInterval(0,
+			TicTacToeCoordinate.DIMENSION - 1);
+
+	public TicTacToeCoordinate() {
 		coordinate = new Coordinate();
 	}
-	
-	public TicTacToeCoordinate(int row, int column){
+
+	public TicTacToeCoordinate(int row, int column) {
 		this();
 		this.setRow(row);
 		this.setColumn(column);
 	}
-	
+
 	public TicTacToeCoordinate(TicTacToeCoordinate ticTacToeCoordinate) {
 		this(ticTacToeCoordinate.coordinate.getRow(),
 				ticTacToeCoordinate.coordinate.getColumn());
 	}
-	
-	private void setRow(int row){
+
+	private void setRow(int row) {
 		assert LIMITS.includes(row);
 		coordinate.setRow(row);
 	}
-	
-	private void setColumn(int column){
+
+	private void setColumn(int column) {
 		assert LIMITS.includes(column);
 		coordinate.setColumn(column);
 	}
-	
+
 	public void read(String title) {
 		assert title != null;
 		IO io = new IO();
 		io.writeln(title + " qué casilla?");
-		this.setRow(new LimitedIntDialog("Fila?", TicTacToeCoordinate.DIMENSION).read()-1);
-		this.setColumn(new LimitedIntDialog("Columna?", TicTacToeCoordinate.DIMENSION).read()-1);
+		this.setRow(new LimitedIntDialog("Fila?", TicTacToeCoordinate.DIMENSION)
+				.read() - 1);
+		this.setColumn(new LimitedIntDialog("Columna?",
+				TicTacToeCoordinate.DIMENSION).read() - 1);
 	}
-	
-	public Direction direction(TicTacToeCoordinate ticTacToeCoordinate){
-		Direction direction = coordinate.direction(ticTacToeCoordinate.coordinate);
+
+	public Direction direction(TicTacToeCoordinate ticTacToeCoordinate) {
+		Direction direction = coordinate
+				.direction(ticTacToeCoordinate.coordinate);
 		if (direction == Direction.NON_EXISTENT) {
-			if(this.inInverse() && ticTacToeCoordinate.inInverse())
+			if (this.inInverse() && ticTacToeCoordinate.inInverse())
 				return Direction.INVERSE;
 		}
 		return direction;
 	}
-	
-	private boolean inInverse(){
-		return coordinate.getRow() + coordinate.getColumn() == TicTacToeCoordinate.DIMENSION-1;
+
+	private boolean inInverse() {
+		return coordinate.getRow() + coordinate.getColumn() == TicTacToeCoordinate.DIMENSION - 1;
 	}
 
 	@Override
@@ -79,8 +89,9 @@ public class TicTacToeCoordinate {
 			return false;
 		return true;
 	}
-	
+
 	public TicTacToeCoordinate clone() {
 		return new TicTacToeCoordinate(this);
-	}	
+	}
+
 }

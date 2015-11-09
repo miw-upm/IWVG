@@ -14,8 +14,8 @@ public class Put {
 		this.tokens = tokens;
 	}
 	
-	public void put(int turn, TicTacToe ticTacToe) {
-		System.out.println("Pone el jugador " + TicTacToe.COLOR[turn]);
+	public void put(int turn, TTT ticTacToe) {
+		System.out.println("Pone el jugador " + TTT.color[turn]);
 		int row = 0;
 		int column = 0;
 		boolean ok;
@@ -52,6 +52,6 @@ public class Put {
 				System.out.println("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		tokens[row - 1][column - 1] = TicTacToe.COLOR[turn];
+		tokens[row - 1][column - 1] = TTT.color[turn];
 	}
 }

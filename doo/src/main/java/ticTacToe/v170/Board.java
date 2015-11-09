@@ -9,19 +9,17 @@ public class Board {
 
 	private Map<Integer, Set<Coordinate>> coordinates;
 
-	public static final int DIMENSION = 3;
-
-	public Board() {
+	public Board(int numPlayers) {
 		coordinates = new HashMap<>();
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		for (int i = 0; i < numPlayers; i++) {
 			coordinates.put(i, new HashSet<>());
 		}
 	}
 
 	public void write() {
 		IO io = new IO();
-		for (int i = 0; i < Board.DIMENSION; i++) {
-			for (int j = 0; j < Board.DIMENSION; j++) {
+		for (int i = 0; i < Coordinate.DIMENSION; i++) {
+			for (int j = 0; j < Coordinate.DIMENSION; j++) {
 				io.write(this.getColor(new Coordinate(i, j)) + " ");
 			}
 			io.writeln();
@@ -30,7 +28,7 @@ public class Board {
 
 	private Color getColor(Coordinate coordinate) {
 		assert coordinate != null;
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		for (int i = 0; i < coordinates.keySet().size(); i++) {
 			if (coordinates.get(i).contains(coordinate)) {
 				return Color.values()[i];
 			}
@@ -40,10 +38,10 @@ public class Board {
 
 	public boolean complete() {
 		int contTokens = 0;
-		for (int i = 0; i < TicTacToe.NUM_PLAYERS; i++) {
+		for (int i = 0; i < coordinates.keySet().size(); i++) {
 			contTokens += coordinates.get(i).size();
 		}
-		return contTokens == Board.DIMENSION * TicTacToe.NUM_PLAYERS;
+		return contTokens == Coordinate.DIMENSION * coordinates.keySet().size();
 	}
 
 	public boolean existTicTacToe() {
@@ -53,7 +51,7 @@ public class Board {
 	public boolean existTicTacToe(Color color) {
 		assert color != Color.NONE;
 		Set<Coordinate> coordinateSet = coordinates.get(color.ordinal());
-		if (coordinateSet.size() != Board.DIMENSION) {
+		if (coordinateSet.size() != Coordinate.DIMENSION) {
 			return false;
 		}
 		Coordinate[] coordinateArray = coordinateSet.toArray(new Coordinate[0]);
@@ -61,7 +59,7 @@ public class Board {
 		if (direction == Direction.NON_EXISTENT) {
 			return false;
 		}
-		for (int i = 1; i < Board.DIMENSION - 1; i++) {
+		for (int i = 1; i < Coordinate.DIMENSION - 1; i++) {
 			if (coordinateArray[i].direction(coordinateArray[i + 1]) != direction) {
 				return false;
 			}

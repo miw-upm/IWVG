@@ -1,5 +1,8 @@
 package ticTacToe.v280;
 
+import ticTacToe.v280.controllers.Controller;
+import ticTacToe.v280.controllers.Logic;
+
 public class TicTacToe {
 
 	private Logic logic;
@@ -9,7 +12,7 @@ public class TicTacToe {
 	}
 	
 	public void play() {
-		OperationController controller;
+		Controller controller;
 		do {
 			controller = logic.getController();
 			if (controller != null){

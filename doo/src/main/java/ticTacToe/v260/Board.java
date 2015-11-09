@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ticTacToe.v260.utils.Direction;
+import ticTacToe.v260.utils.IO;
+
 public class Board {
 
 	private Map<Color, Set<TicTacToeCoordinate>> coordinates;

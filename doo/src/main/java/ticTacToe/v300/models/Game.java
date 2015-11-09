@@ -25,48 +25,16 @@ public class Game {
 		this.state = state;
 	}
 	
-	public Color take() {
-		return turn.take();
+	public Turn getTurn() {
+		return turn;
 	}
 	
-	public void change() {
-		turn.change();
+	public Board getBoard() {
+		return board;
 	}
-	
-	public boolean full(Coordinate origin) {
-		return board.full(origin, turn.take());
-	}
-	
-	public boolean empty(Coordinate target) {
-		return board.empty(target);
-	}
-	
-	public void write() {
-		board.write();
-	}	
 	
 	public int getNumPlayers() {
 		return NUM_PLAYERS;
-	}
-	
-	public void put(Coordinate target) {
-		board.put(target, turn.take());
-	}
-
-	public void remove(Coordinate origin) {
-		board.remove(origin, turn.take());
-	}
-
-	public void clear() {
-		board.clear();		
-	}
-
-	public boolean complete() {
-		return board.complete();
-	}
-	
-	public boolean existTicTacToe() {
-		return board.existTicTacToe(turn.take());
 	}
 	
 }

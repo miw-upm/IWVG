@@ -4,11 +4,14 @@ public class Player {
 
 	Color color;
 
-	public Player(int i) {
-		color = Color.values()[i];
+	public Player(int player) {
+		assert new ClosedInterval(0,1).includes(player);
+		color = Color.values()[player];
 	}
 
 	private void put(Board board, String title, Coordinate forbidden) {
+		assert board != null;
+		assert title != null;
 		IO io = new IO();
 		Coordinate target = new Coordinate();
 		boolean ok;
@@ -29,12 +32,14 @@ public class Player {
 	}
 
 	public void put(Board board) {
+		assert board != null;
 		IO io = new IO();
 		io.writeln("Pone el jugador " + color);
 		this.put(board, "En", null);
 	}
 
 	public void move(Board board) {
+		assert board != null;
 		IO io = new IO();
 		io.writeln("Mueve el jugador " + color);
 		Coordinate origin = new Coordinate();

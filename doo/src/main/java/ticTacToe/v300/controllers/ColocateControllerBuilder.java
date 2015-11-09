@@ -40,8 +40,8 @@ public class ColocateControllerBuilder {
 	}
 
 	public ColocateController getColocateController() {
-		int player = game.take().ordinal();
-		if (!game.complete()) {
+		int player = game.getTurn().take().ordinal();
+		if (!game.getBoard().complete()) {
 			return colocateControllerArray[player][0];
 		} else {
 			return colocateControllerArray[player][1];

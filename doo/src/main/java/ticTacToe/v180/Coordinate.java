@@ -30,10 +30,10 @@ public class Coordinate {
 	
 	public Direction direction(Coordinate coordinate){
 		assert coordinate != null;
-		if (this.getRow()==coordinate.getRow()){
+		if (this.inRow(coordinate)){
 			return Direction.HORIZONTAL;
 		}
-		if (this.getColumn()==coordinate.getColumn()){
+		if (this.inColumn(coordinate)){
 			return Direction.VERTICAL;
 		}
 		if (this.inDiagonal() && coordinate.inDiagonal()){
@@ -43,6 +43,14 @@ public class Coordinate {
 			return Direction.INVERSE;
 		}
 		return Direction.NON_EXISTENT;
+	}
+	
+	public boolean inRow(Coordinate coordinate){
+		return row == coordinate.row;
+	}
+	
+	public boolean inColumn(Coordinate coordinate){
+		return column == coordinate.column;
 	}
 	
 	private boolean inDiagonal(){
@@ -76,14 +84,6 @@ public class Coordinate {
 		if (row != other.row)
 			return false;
 		return true;
-	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public int getColumn() {
-		return column;
 	}	
 	
 }

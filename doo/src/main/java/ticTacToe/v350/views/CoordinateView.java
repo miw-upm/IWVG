@@ -2,6 +2,7 @@ package ticTacToe.v350.views;
 
 import ticTacToe.v350.models.Coordinate;
 import ticTacToe.v350.utils.IO;
+import ticTacToe.v350.utils.LimitedIntDialog;
 
 class CoordinateView {
 	

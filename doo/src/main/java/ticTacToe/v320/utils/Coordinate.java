@@ -1,5 +1,6 @@
 package ticTacToe.v320.utils;
 
+
 public class Coordinate {
 
 	private int row;

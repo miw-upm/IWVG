@@ -1,5 +1,7 @@
 package ticTacToe.v220;
 
+import ticTacToe.v230.utils.IO;
+
 public class MoveController extends ColocateController {
 
 	private TicTacToeCoordinate origin;

@@ -5,15 +5,16 @@ import ticTacToe.v330.controllers.CoordinateController;
 import ticTacToe.v330.controllers.Error;
 import ticTacToe.v330.controllers.MoveController;
 import ticTacToe.v330.controllers.OperationController;
-import ticTacToe.v330.controllers.OperationControllerVisitor;
 import ticTacToe.v330.controllers.PutController;
 import ticTacToe.v330.controllers.RandomCoordinateController;
 import ticTacToe.v330.controllers.StartController;
 import ticTacToe.v330.controllers.UserCoordinateController;
 import ticTacToe.v330.models.Coordinate;
 import ticTacToe.v330.utils.IO;
+import ticTacToe.v330.utils.LimitedIntDialog;
+import ticTacToe.v330.utils.YesNoDialog;
 
-public class TicTacToeView implements OperationControllerVisitor {
+public class TicTacToeView {
 
 	private IO io = new IO();
 
@@ -22,14 +23,12 @@ public class TicTacToeView implements OperationControllerVisitor {
 		controller.accept(this);
 	}
 	
-	@Override
 	public void visit(StartController startController) {
 		int users = new LimitedIntDialog("Cuántos usuarios?", 0, 2).read();
 		startController.setUsers(users);
 		new BoardView(startController).write();
 	}
 	
-	@Override
 	public void visit(PutController putController) {
 		io.writeln("Pone el jugador " + putController.take());
 		Coordinate target;
@@ -51,7 +50,6 @@ public class TicTacToeView implements OperationControllerVisitor {
 		}
 	}
 
-	@Override
 	public void visit(MoveController moveController) {
 		io.writeln("Mueve el jugador " + moveController.take());
 		Coordinate origin;
@@ -83,7 +81,6 @@ public class TicTacToeView implements OperationControllerVisitor {
 		}
 	}
 
-	@Override
 	public void visit(ContinueController continueController) {
 		continueController.setContinue(new YesNoDialog("Desea continuar")
 				.read());

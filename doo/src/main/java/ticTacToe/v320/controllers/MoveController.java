@@ -1,8 +1,7 @@
 package ticTacToe.v320.controllers;
 
-import ticTacToe.v320.models.Game;
 import ticTacToe.v320.models.Coordinate;
-import ticTacToe.v320.views.TicTacToeView;
+import ticTacToe.v320.models.Game;
 
 public class MoveController extends ColocateController {
 
@@ -47,11 +46,6 @@ public class MoveController extends ColocateController {
 			return Error.REPEATED_COORDINATE;
 		}
 		return null;
-	}
-
-	@Override
-	public void accept(TicTacToeView ticTacToeView) {
-		ticTacToeView.visit(this);		
 	}
 
 }

@@ -2,74 +2,61 @@ package ticTacToe.v130;
 
 public class Player {
 
-	Color token;
+	char color;
 
 	public Player(int i) {
-		token = Color.values()[i];
+		if (i == 0) {
+			color = 'x';
+		} else {
+			color = 'o';
+		}
+	}
+
+	private void put(Board board, String title, Coordinate forbidden) {
+		IO io = new IO();
+		Coordinate target = new Coordinate();
+		boolean ok;
+		do {
+			target.read(title);
+			ok = board.empty(target);
+			if (!ok) {
+				io.writeln("Esa casilla no está vacía");
+			}
+			if (ok && forbidden != null) {
+				ok = !target.equals(forbidden);
+				if (!ok) {
+					io.writeln("No se puede poner de donde se quitó");
+				}
+			}
+		} while (!ok);
+		board.put(target, color);
 	}
 
 	public void put(Board board) {
 		IO io = new IO();
-		io.writeln("Pone el jugador " + token);
-		int row;
-		int column;
-		boolean ok;
-		do {
-			io.writeln("En qué casilla?");
-			do {
-				row = io.readInt("Fila? [1,"+Board.DIMENSION+"]: ");
-			} while (row < 1 || Board.DIMENSION < row);
-			do {
-				column = io.readInt("Columna? [1,"+Board.DIMENSION+"]: ");
-			} while (column < 1 || Board.DIMENSION < column);
-			ok = board.empty(row-1, column-1);
-			if (!ok) {
-				io.writeln("Esa casilla no está vacía");
-			}
-		} while (!ok);
-		board.put(row-1, column-1, token);
+		io.writeln("Pone el jugador " + color);
+		this.put(board, "En", null);
 	}
 
 	public void move(Board board) {
 		IO io = new IO();
-		io.writeln("Mueve el jugador " + token);
-		int originRow;
-		int originColumn;
-		int targetRow;
-		int targetColumn;
+		io.writeln("Mueve el jugador " + color);
+		Coordinate origin = new Coordinate();
 		boolean ok;
 		do {
-			io.writeln("De qué casilla?");
-			do {
-				originRow = io.readInt("Fila? [1,"+Board.DIMENSION+"]: ");
-			} while (originRow < 1 || Board.DIMENSION < originRow);
-			do {
-				originColumn = io.readInt("Columna? [1,"+Board.DIMENSION+"]: ");
-			} while (originColumn < 1 || Board.DIMENSION < originColumn);
-			ok = board.full(originRow-1, originColumn-1, token);
+			origin.read("De");
+			ok = board.full(origin, color);
 			if (!ok) {
 				io.writeln("Esa casilla no está ocupada por ninguna de tus fichas");
 			}
 		} while (!ok);
-		do {
-			io.writeln("A qué casilla?");
-			do {
-				targetRow = io.readInt("Fila? [1,"+Board.DIMENSION+"]: ");
-			} while (targetRow < 1 || Board.DIMENSION < targetRow);
-			do {
-				targetColumn = io.readInt("Columna? [1,"+Board.DIMENSION+"]: ");
-			} while (targetColumn < 1 || Board.DIMENSION < targetColumn);
-			ok = board.empty(targetRow-1, targetColumn-1);
-			if (!ok) {
-				io.writeln("Esa casilla no está vacía");
-			}
-		} while (!ok);
-		board.remove(originRow-1, originColumn-1);
-		board.put(targetRow-1, targetColumn-1, token);
+		board.remove(origin);
+		this.put(board, "A", origin);
 	}
 
 	public void win() {
-		new IO().writeln("Victoria!!!! " + token + "! " + token + "! " + token + "! Victoria!!!!");		
+		new IO().writeln("Victoria!!!! " + color + "! " + color + "! " + color
+				+ "! Victoria!!!!");
 	}
 
 }

@@ -20,7 +20,7 @@ public class ContinueController extends OperationController {
 		} while (answer != 's' && answer != 'S' && answer != 'n'
 				&& answer != 'N');
 		if (answer == 's') {
-			this.clear();
+			this.getBoard().clear();
 			this.setState(State.INITIAL);
 		} else {
 			this.setState(State.EXIT);

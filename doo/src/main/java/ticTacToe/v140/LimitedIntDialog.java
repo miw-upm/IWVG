@@ -4,14 +4,11 @@ public class LimitedIntDialog {
 
 	private String title;
 	
-	private int min;
-	
-	private int max;
+	private ClosedInterval limits;
 	
 	public LimitedIntDialog(String title, int min, int max){
-		this.title = title + " [" + min + ", " + max + "]: ";
-		this.min = min;
-		this.max = max;
+		this.limits = new ClosedInterval(min, max);
+		this.title = title + " " + limits + ": ";
 	}
 	
 	public LimitedIntDialog(String title, int max){
@@ -24,9 +21,9 @@ public class LimitedIntDialog {
 		boolean ok;
 		do {
 			value = io.readInt(title);
-			ok = min <= value && value <= max;
+			ok = limits.includes(value);
 			if (!ok) {
-				io.writeln("El valor debe estar entre [" + min + ", " + max + "]");
+				io.writeln("El valor debe estar entre " + limits);
 			}
 		} while (!ok);
 		return value;

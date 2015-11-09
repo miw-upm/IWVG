@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ticTacToe.v250.utils.Direction;
+import ticTacToe.v250.utils.IO;
+
 public class Board {
 
 	private Map<Color, Set<TicTacToeCoordinate>> coordinates;
@@ -44,6 +47,10 @@ public class Board {
 		}
 		return contTokens == TicTacToeCoordinate.DIMENSION
 				* coordinates.keySet().size();
+	}
+
+	public boolean existTicTacToe() {
+		return this.existTicTacToe(Color.XS) || this.existTicTacToe(Color.OS);
 	}
 
 	public boolean existTicTacToe(Color color) {
@@ -89,12 +96,6 @@ public class Board {
 		assert coordinate != null;
 		assert color != Color.NONE;
 		return coordinates.get(color).contains(coordinate);
-	}
-
-	public void clear() {
-		for (Color color : coordinates.keySet()) {
-			coordinates.get(color).clear();
-		}		
 	}
 
 }

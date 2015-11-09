@@ -3,9 +3,9 @@ package ticTacToe.v060;
 public class Board {
 
 	private Token[][] tokens;
-	
-	private static char[] COLOR = {'x', 'o'};
-	
+
+	private static char[] COLOR = { 'x', 'o' };
+
 	public Board() {
 		tokens = new Token[3][3];
 		for (int i = 0; i < 3; i++) {
@@ -36,41 +36,42 @@ public class Board {
 		}
 		return contTokens == 6;
 	}
-	
+
 	public boolean existTicTacToe() {
-		return this.existTicTacToe(new Token('x')) || this.existTicTacToe(new Token('o'));
+		return this.existTicTacToe(new Token('x'))
+				|| this.existTicTacToe(new Token('o'));
 	}
 
 	public boolean existTicTacToe(Token token) {
-		if (tokens[1][1].equals(token)){
-			if (tokens[0][0].equals(token)){
+		if (tokens[1][1].equals(token)) {
+			if (tokens[0][0].equals(token)) {
 				return tokens[2][2].equals(token);
 			}
-			if (tokens[0][2].equals(token)){
+			if (tokens[0][2].equals(token)) {
 				return tokens[2][0].equals(token);
 			}
-			if (tokens[0][1].equals(token)){
+			if (tokens[0][1].equals(token)) {
 				return tokens[2][1].equals(token);
 			}
-			if (tokens[1][0].equals(token)){
+			if (tokens[1][0].equals(token)) {
 				return tokens[1][2].equals(token);
 			}
 			return false;
 		}
-		if (tokens[0][0].equals(token)){
-			if (tokens[0][1].equals(token)){
+		if (tokens[0][0].equals(token)) {
+			if (tokens[0][1].equals(token)) {
 				return tokens[0][2].equals(token);
 			}
-			if (tokens[1][0].equals(token)){
+			if (tokens[1][0].equals(token)) {
 				return tokens[2][0].equals(token);
 			}
 			return false;
 		}
-		if (tokens[2][2].equals(token)){
-			if (tokens[1][2].equals(token)){
+		if (tokens[2][2].equals(token)) {
+			if (tokens[1][2].equals(token)) {
 				return tokens[0][2].equals(token);
 			}
-			if (tokens[2][1].equals(token)){
+			if (tokens[2][1].equals(token)) {
 				return tokens[2][0].equals(token);
 			}
 			return false;
@@ -96,14 +97,14 @@ public class Board {
 			do {
 				column = io.readInt("Columna? [1,3]: ");
 			} while (column < 1 || 3 < column);
-			ok = this.empty(row-1, column-1);
+			ok = this.empty(row - 1, column - 1);
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		tokens[row-1][column-1] = new Token(Board.COLOR[turn]);
+		tokens[row - 1][column - 1] = new Token(Board.COLOR[turn]);
 	}
-	
+
 	public void move(int turn) {
 		IO io = new IO();
 		io.writeln("Mueve el jugador " + Board.COLOR[turn]);
@@ -120,7 +121,8 @@ public class Board {
 			do {
 				originColumn = io.readInt("Columna? [1,3]: ");
 			} while (1 <= originColumn && originColumn <= 3);
-			ok = this.full(originRow-1, originColumn-1, new Token(Board.COLOR[turn]));
+			ok = this.full(originRow - 1, originColumn - 1, new Token(
+					Board.COLOR[turn]));
 			if (!ok) {
 				io.writeln("Esa casilla no está ocupada por ninguna de tus fichas");
 			}
@@ -133,30 +135,31 @@ public class Board {
 			do {
 				targetColumn = io.readInt("Columna? [1,3]: ");
 			} while (targetColumn < 1 || 3 < targetColumn);
-			ok = this.empty(targetRow-1, targetColumn-1);
+			ok = this.empty(targetRow - 1, targetColumn - 1);
 			if (!ok) {
 				io.writeln("Esa casilla no está vacía");
 			}
 		} while (!ok);
-		tokens[originRow-1][originColumn-1] = new Token('_');
-		tokens[targetRow-1][targetColumn-1] = new Token(Board.COLOR[turn]);
+		tokens[originRow - 1][originColumn - 1] = new Token('_');
+		tokens[targetRow - 1][targetColumn - 1] = new Token(Board.COLOR[turn]);
 	}
 
 	public boolean full(int row, int column, Token token) {
 		return tokens[row][column].equals(token);
 	}
-	
-	public void clear(){
+
+	public void clear() {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				tokens[i][j] = new Token('_');
 			}
 		}
 	}
-	
-	public void win(int turn){
-		new IO().writeln("Victoria!!!! " + Board.COLOR[turn] + "! " + Board.COLOR[turn] + "! " + Board.COLOR[turn] + "! Victoria!!!!");
+
+	public void win(int turn) {
+		new IO().writeln("Victoria!!!! " + Board.COLOR[turn] + "! "
+				+ Board.COLOR[turn] + "! " + Board.COLOR[turn]
+				+ "! Victoria!!!!");
 	}
 
 }
-

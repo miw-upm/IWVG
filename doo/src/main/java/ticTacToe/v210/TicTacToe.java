@@ -2,35 +2,38 @@ package ticTacToe.v210;
 
 public class TicTacToe {
 
-	private Turn turn;
-
-	private Board board;
-
-	private PutController putController;
-
-	private MoveController moveController;
-
-	private static final int NUM_PLAYERS = 2;
-
-	public TicTacToe() {
-		turn = new Turn();
-		board = new Board(TicTacToe.NUM_PLAYERS);
-		putController = new PutController(turn, board);
-		moveController = new MoveController(turn, board);
-	}
-
-	public void play() {
-		board.write();
-		do {
-			if (!board.complete()) {
-				putController.put();
-			} else {
-				moveController.move();
-			}
-		} while (!board.existTicTacToe());
-	}
-
-	public static void main(String[] args) {
-		new TicTacToe().play();
-	}
+    private Board board;
+    
+    private Player[] players;
+    
+    private Turn turn;
+    
+    private static final int NUM_PLAYERS = 2;
+    
+    public TicTacToe() {
+        board = new Board(TicTacToe.NUM_PLAYERS);
+        players = new Player[TicTacToe.NUM_PLAYERS];
+        for(int i=0; i<TicTacToe.NUM_PLAYERS; i++){
+            players[i] = new Player(i, TicTacToe.NUM_PLAYERS, board);
+        }
+        turn = new Turn(players);
+    }
+    
+    public void play(){
+       do {
+           board.write();
+           if (!board.complete()){
+               turn.take().put();
+           } else {
+               turn.take().move();
+           }
+           turn.change();
+       } while(!board.existTicTacToe());
+       board.write();
+       turn.notTake().win();
+    }
+    
+    public static void main(String[] args){
+        new TicTacToe().play();
+    }
 }

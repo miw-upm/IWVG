@@ -1,5 +1,7 @@
 package ticTacToe.v230;
 
+import ticTacToe.v230.utils.IO;
+
 public class MoveController extends ColocateController {
 
 	private TicTacToeCoordinate origin;
@@ -10,13 +12,12 @@ public class MoveController extends ColocateController {
 	
 	@Override
 	public void control() {
-		this.control("Mueve", "A");
+		this.put("Mueve", "A");
 	}
 
 	@Override
-	protected void colocate(String targetTitle) {
+	protected void prePut() {
 		this.remove();
-		this.put(targetTitle);
 	}
 	
 	private void remove(){

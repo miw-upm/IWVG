@@ -1,5 +1,11 @@
 package ticTacToe.v250;
 
+import ticTacToe.v250.utils.ClosedInterval;
+import ticTacToe.v250.utils.Coordinate;
+import ticTacToe.v250.utils.Direction;
+import ticTacToe.v250.utils.IO;
+import ticTacToe.v250.utils.LimitedIntDialog;
+
 public class TicTacToeCoordinate {
 	
 	private Coordinate coordinate;
@@ -22,7 +28,7 @@ public class TicTacToeCoordinate {
 		this(ticTacToeCoordinate.coordinate.getRow(),
 				ticTacToeCoordinate.coordinate.getColumn());
 	}
-
+	
 	private void setRow(int row){
 		assert LIMITS.includes(row);
 		coordinate.setRow(row);

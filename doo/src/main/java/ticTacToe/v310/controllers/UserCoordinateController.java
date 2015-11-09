@@ -1,7 +1,7 @@
 package ticTacToe.v310.controllers;
 
-import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.Coordinate;
+import ticTacToe.v310.models.Game;
 
 public class UserCoordinateController extends CoordinateController {
 
@@ -11,12 +11,16 @@ public class UserCoordinateController extends CoordinateController {
 
 	@Override
 	public Coordinate getOrigin() {
-		return new Coordinate();
+		Coordinate origin = new Coordinate();
+		origin.read("De");
+		return origin;
 	}
 
 	@Override
-	public Coordinate getTarget() {
-		return new Coordinate();
+	public Coordinate getTarget(String targetTitle) {
+		Coordinate target = new Coordinate();
+		target.read(targetTitle);
+		return target;
 	}
 	
 }

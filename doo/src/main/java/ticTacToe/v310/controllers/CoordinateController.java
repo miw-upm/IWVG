@@ -1,7 +1,7 @@
 package ticTacToe.v310.controllers;
 
-import ticTacToe.v310.models.Game;
 import ticTacToe.v310.models.Coordinate;
+import ticTacToe.v310.models.Game;
 
 public abstract class CoordinateController extends Controller {
 
@@ -11,6 +11,7 @@ public abstract class CoordinateController extends Controller {
 
 	public abstract Coordinate getOrigin();
 	
-	public abstract Coordinate getTarget();
+	public abstract Coordinate getTarget(String targetTitle);
+
 
 }

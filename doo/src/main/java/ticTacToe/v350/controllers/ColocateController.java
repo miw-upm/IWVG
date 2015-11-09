@@ -1,28 +1,16 @@
 package ticTacToe.v350.controllers;
 
+import ticTacToe.v350.models.Color;
 import ticTacToe.v350.models.Coordinate;
-import ticTacToe.v350.models.Game;
 
-public abstract class ColocateController extends OperationController {
-
-	private CoordinateController coordinateController;
-
-	protected ColocateController(Game game, 
-			CoordinateController coordinateController) {
-		super(game);
-		assert coordinateController != null;
-		this.coordinateController = coordinateController;
-	}
+public interface ColocateController extends OperationController {
 	
-	protected Error validateTarget(Coordinate target) {
-		if (!this.empty(target)) {
-			return Error.NOT_EMPTY;
-		}
-		return null;
-	}
+	Color take();
+	
+	void put(Coordinate target);
 
-	public CoordinateController getCoordinateController(){
-		return coordinateController;
-	}
-
+	boolean existTicTacToe();
+		
+	CoordinateController getCoordinateController();
+	
 }

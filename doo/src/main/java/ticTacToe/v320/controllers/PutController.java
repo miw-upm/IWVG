@@ -1,8 +1,7 @@
 package ticTacToe.v320.controllers;
 
-import ticTacToe.v320.models.Game;
 import ticTacToe.v320.models.Coordinate;
-import ticTacToe.v320.views.TicTacToeView;
+import ticTacToe.v320.models.Game;
 
 public class PutController extends ColocateController {
 
@@ -18,10 +17,5 @@ public class PutController extends ColocateController {
 	
 	public Error validateTarget(Coordinate target) {
 		return super.validateTarget(target);
-	}
-
-	@Override
-	public void accept(TicTacToeView ticTacToeView) {
-		ticTacToeView.visit(this);
 	}
 }
