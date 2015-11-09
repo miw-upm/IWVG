@@ -1,6 +1,7 @@
 package ticTacToe.v210;
 
 import ticTacToe.v210.utils.ClosedInterval;
+import ticTacToe.v210.utils.Direction;
 import ticTacToe.v210.utils.IO;
 import ticTacToe.v210.utils.LimitedIntDialog;
 

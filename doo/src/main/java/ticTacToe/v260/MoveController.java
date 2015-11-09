@@ -4,11 +4,11 @@ import ticTacToe.v260.utils.IO;
 
 public class MoveController extends ColocateController {
 
-	private TicTacToeCoordinate origin;
+	private Coordinate origin;
 
 	public MoveController(Game game) {
 		super(game, "Mueve");
-		origin = new TicTacToeCoordinate();
+		origin = new Coordinate();
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class MoveController extends ColocateController {
 		this.getBoard().remove(origin, this.getTurn().take());
 	}
 
-	private Error errorToRemove(TicTacToeCoordinate origin) {
+	private Error errorToRemove(Coordinate origin) {
 		if (!this.getBoard().full(origin, this.getTurn().take())) {
 			return Error.NOT_PROPERTY;
 		}

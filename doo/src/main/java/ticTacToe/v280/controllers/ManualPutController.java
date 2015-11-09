@@ -1,7 +1,7 @@
 package ticTacToe.v280.controllers;
 
 import ticTacToe.v280.models.Game;
-import ticTacToe.v280.models.TicTacToeCoordinate;
+import ticTacToe.v280.models.Coordinate;
 
 public class ManualPutController extends PutController{
 
@@ -10,8 +10,8 @@ public class ManualPutController extends PutController{
 	}
 
 	@Override
-	protected TicTacToeCoordinate selectTarget(String targetTitle) {
-		TicTacToeCoordinate target = new TicTacToeCoordinate();
+	protected Coordinate selectTarget(String targetTitle) {
+		Coordinate target = new Coordinate();
 		target.read(targetTitle);
 		return target;
 	}

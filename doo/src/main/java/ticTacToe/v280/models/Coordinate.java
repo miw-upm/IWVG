@@ -1,32 +1,31 @@
-package ticTacToe.v290.controllers;
+package ticTacToe.v280.models;
 
 import java.util.Random;
 
-import ticTacToe.v290.utils.ClosedInterval;
-import ticTacToe.v290.utils.Coordinate;
-import ticTacToe.v290.utils.Direction;
-import ticTacToe.v290.utils.IO;
-import ticTacToe.v290.utils.LimitedIntDialog;
+import ticTacToe.v280.utils.ClosedInterval;
+import ticTacToe.v280.utils.Direction;
+import ticTacToe.v280.utils.IO;
+import ticTacToe.v280.utils.LimitedIntDialog;
 
-public class TicTacToeCoordinate {
+public class Coordinate {
 	
-	private Coordinate coordinate;
+	private ticTacToe.v280.utils.Coordinate coordinate;
 
 	public static final int DIMENSION = 3;
 	
-	private static final ClosedInterval LIMITS = new ClosedInterval(0, TicTacToeCoordinate.DIMENSION-1);
+	private static final ClosedInterval LIMITS = new ClosedInterval(0, Coordinate.DIMENSION-1);
 
-	public TicTacToeCoordinate(){
-		coordinate = new Coordinate();
+	public Coordinate(){
+		coordinate = new ticTacToe.v280.utils.Coordinate();
 	}
 	
-	public TicTacToeCoordinate(int row, int column){
+	public Coordinate(int row, int column){
 		this();
 		this.setRow(row);
 		this.setColumn(column);
 	}
 	
-	public TicTacToeCoordinate(TicTacToeCoordinate ticTacToeCoordinate) {
+	public Coordinate(Coordinate ticTacToeCoordinate) {
 		this(ticTacToeCoordinate.coordinate.getRow(),
 				ticTacToeCoordinate.coordinate.getColumn());
 	}
@@ -45,17 +44,17 @@ public class TicTacToeCoordinate {
 		assert title != null;
 		IO io = new IO();
 		io.writeln(title + " qué casilla?");
-		this.setRow(new LimitedIntDialog("Fila?", TicTacToeCoordinate.DIMENSION).read()-1);
-		this.setColumn(new LimitedIntDialog("Columna?", TicTacToeCoordinate.DIMENSION).read()-1);
+		this.setRow(new LimitedIntDialog("Fila?", Coordinate.DIMENSION).read()-1);
+		this.setColumn(new LimitedIntDialog("Columna?", Coordinate.DIMENSION).read()-1);
 	}
 	
 	public void random() {
 		Random random = new Random(System.currentTimeMillis());
-		coordinate.setRow(random.nextInt(TicTacToeCoordinate.DIMENSION));
-		coordinate.setColumn(random.nextInt(TicTacToeCoordinate.DIMENSION));
+		coordinate.setRow(random.nextInt(Coordinate.DIMENSION));
+		coordinate.setColumn(random.nextInt(Coordinate.DIMENSION));
 	}
 	
-	public Direction direction(TicTacToeCoordinate ticTacToeCoordinate){
+	public Direction direction(Coordinate ticTacToeCoordinate){
 		Direction direction = coordinate.direction(ticTacToeCoordinate.coordinate);
 		if (direction == Direction.NON_EXISTENT) {
 			if(this.inInverse() && ticTacToeCoordinate.inInverse())
@@ -65,7 +64,7 @@ public class TicTacToeCoordinate {
 	}
 	
 	private boolean inInverse(){
-		return coordinate.getRow() + coordinate.getColumn() == TicTacToeCoordinate.DIMENSION-1;
+		return coordinate.getRow() + coordinate.getColumn() == Coordinate.DIMENSION-1;
 	}
 
 	@Override
@@ -85,7 +84,7 @@ public class TicTacToeCoordinate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TicTacToeCoordinate other = (TicTacToeCoordinate) obj;
+		Coordinate other = (Coordinate) obj;
 		if (coordinate == null) {
 			if (other.coordinate != null)
 				return false;
@@ -94,8 +93,8 @@ public class TicTacToeCoordinate {
 		return true;
 	}
 	
-	public TicTacToeCoordinate clone() {
-		return new TicTacToeCoordinate(this);
+	public Coordinate clone() {
+		return new Coordinate(this);
 	}
 	
 	@Override

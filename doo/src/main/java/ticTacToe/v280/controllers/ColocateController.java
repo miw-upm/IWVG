@@ -2,14 +2,14 @@ package ticTacToe.v280.controllers;
 
 import ticTacToe.v280.models.Game;
 import ticTacToe.v280.models.State;
-import ticTacToe.v280.models.TicTacToeCoordinate;
+import ticTacToe.v280.models.Coordinate;
 import ticTacToe.v280.utils.IO;
 
 public abstract class ColocateController extends Controller {
 
 	private String actionTitle;
 	
-	private TicTacToeCoordinate target;
+	private Coordinate target;
 
 	protected ColocateController(Game game, String actionTitle) {
 		super(game);
@@ -46,7 +46,7 @@ public abstract class ColocateController extends Controller {
 		this.getBoard().put(target, this.getTurn().take());
 	}
 	
-	protected abstract TicTacToeCoordinate selectTarget(String targetTitle);
+	protected abstract Coordinate selectTarget(String targetTitle);
 
 	protected Error validateTarget(){
 		if (!this.getBoard().empty(target)) {
@@ -55,7 +55,7 @@ public abstract class ColocateController extends Controller {
 		return null;
 	}
 	
-	protected TicTacToeCoordinate getTarget(){
+	protected Coordinate getTarget(){
 		return target;
 	}
 

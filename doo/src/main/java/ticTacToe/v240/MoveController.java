@@ -4,7 +4,7 @@ import ticTacToe.v240.utils.IO;
 
 public class MoveController extends ColocateController {
 
-	private TicTacToeCoordinate origin;
+	private Coordinate origin;
 	
 	public MoveController(Turn turn, Board board) {
 		super(turn, board);
@@ -22,7 +22,7 @@ public class MoveController extends ColocateController {
 	}
 	
 	private void remove(){
-		origin = new TicTacToeCoordinate();
+		origin = new Coordinate();
 		boolean ok;
 		do {
 			origin.read("De");

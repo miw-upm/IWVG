@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import ticTacToe.v210.utils.Direction;
 import ticTacToe.v210.utils.IO;
 
 public class Board {

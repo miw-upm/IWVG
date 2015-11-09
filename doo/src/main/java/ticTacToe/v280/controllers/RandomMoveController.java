@@ -1,7 +1,7 @@
 package ticTacToe.v280.controllers;
 
 import ticTacToe.v280.models.Game;
-import ticTacToe.v280.models.TicTacToeCoordinate;
+import ticTacToe.v280.models.Coordinate;
 import ticTacToe.v280.utils.IO;
 
 public class RandomMoveController extends MoveController {
@@ -11,8 +11,8 @@ public class RandomMoveController extends MoveController {
 	}
 
 	@Override
-	protected TicTacToeCoordinate selectOrigin() {
-		TicTacToeCoordinate origin = new TicTacToeCoordinate();
+	protected Coordinate selectOrigin() {
+		Coordinate origin = new Coordinate();
 		boolean ok;
 		do {
 			origin.random();
@@ -20,14 +20,14 @@ public class RandomMoveController extends MoveController {
 		} while (!ok);
 		new IO().writeln("La máquina quita de " + origin);
 		new IO().readString("Enter para continuar!");
-		TicTacToeCoordinate result = origin;
+		Coordinate result = origin;
 		origin = null;
 		return result;
 	}
 
 	@Override
-	protected TicTacToeCoordinate selectTarget(String targetTitle) {
-		TicTacToeCoordinate target = new TicTacToeCoordinate();
+	protected Coordinate selectTarget(String targetTitle) {
+		Coordinate target = new Coordinate();
 		boolean ok;
 		do {
 			target.random();
@@ -40,7 +40,7 @@ public class RandomMoveController extends MoveController {
 		} while (!ok);
 		new IO().writeln("La máquina pone en " + target);
 		new IO().readString("Enter para continuar!");
-		TicTacToeCoordinate result = target;
+		Coordinate result = target;
 		target = null;
 		return result;
 	}

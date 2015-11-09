@@ -1,6 +1,5 @@
 package ticTacToe.v210.utils;
 
-import ticTacToe.v210.Direction;
 
 public class Coordinate {
 

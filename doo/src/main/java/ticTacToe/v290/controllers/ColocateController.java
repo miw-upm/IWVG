@@ -2,6 +2,7 @@ package ticTacToe.v290.controllers;
 
 import ticTacToe.v290.models.Game;
 import ticTacToe.v290.models.State;
+import ticTacToe.v290.models.Coordinate;
 import ticTacToe.v290.utils.IO;
 
 public abstract class ColocateController extends OperationController {
@@ -10,7 +11,7 @@ public abstract class ColocateController extends OperationController {
 	
 	private CoordinateController coordinateController;
 	
-	private TicTacToeCoordinate target;
+	private Coordinate target;
 
 	protected ColocateController(Game game, String actionTitle,
 			CoordinateController coordinateController) {
@@ -61,7 +62,7 @@ public abstract class ColocateController extends OperationController {
 		return coordinateController;
 	}
 	
-	protected TicTacToeCoordinate getTarget(){
+	protected Coordinate getTarget(){
 		return target;
 	}
 

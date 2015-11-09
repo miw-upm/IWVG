@@ -8,14 +8,14 @@ public abstract class ColocateController {
 
 	private Board board;
 	
-	private TicTacToeCoordinate target;
+	private Coordinate target;
 
 	protected ColocateController(Turn turn, Board board) {
 		assert turn != null;
 		assert board != null;
 		this.turn = turn;
 		this.board = board;
-		target = new TicTacToeCoordinate();
+		target = new Coordinate();
 	}
 	
 	public abstract void control();
@@ -36,7 +36,7 @@ public abstract class ColocateController {
 	protected abstract void colocate(String targetTitle);
 	
 	protected void put(String targetTitle) {
-		target = new TicTacToeCoordinate();
+		target = new Coordinate();
 		boolean ok;
 		do {
 			target.read(targetTitle);
@@ -61,7 +61,7 @@ public abstract class ColocateController {
 		return board;
 	}	
 	
-	protected TicTacToeCoordinate getTarget(){
+	protected Coordinate getTarget(){
 		return target;
 	}
 	

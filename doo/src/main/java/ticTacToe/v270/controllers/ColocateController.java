@@ -2,21 +2,21 @@ package ticTacToe.v270.controllers;
 
 import ticTacToe.v270.models.Game;
 import ticTacToe.v270.models.State;
-import ticTacToe.v270.models.TicTacToeCoordinate;
+import ticTacToe.v270.models.Coordinate;
 import ticTacToe.v270.utils.IO;
 
 public abstract class ColocateController extends Controller {
 
 	private String actionTitle;
 	
-	private TicTacToeCoordinate target;
+	private Coordinate target;
 
 	protected ColocateController(Game game, String actionTitle) {
 		super(game);
 		assert game != null;
 		assert actionTitle != null;
 		this.actionTitle = actionTitle;
-		target = new TicTacToeCoordinate();
+		target = new Coordinate();
 	}
 
 	public void control() {
@@ -37,7 +37,7 @@ public abstract class ColocateController extends Controller {
 	protected abstract void colocate();
 
 	protected void put(String targetTitle) {
-		target = new TicTacToeCoordinate();
+		target = new Coordinate();
 		Error error;
 		do {
 			target.read(targetTitle);
@@ -56,7 +56,7 @@ public abstract class ColocateController extends Controller {
 		return null;
 	}
 	
-	protected TicTacToeCoordinate getTarget() {
+	protected Coordinate getTarget() {
 		return target;
 	}
 }

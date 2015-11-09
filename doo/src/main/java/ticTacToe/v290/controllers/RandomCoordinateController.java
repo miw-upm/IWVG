@@ -1,21 +1,22 @@
 package ticTacToe.v290.controllers;
 
 import ticTacToe.v290.models.Game;
+import ticTacToe.v290.models.Coordinate;
 import ticTacToe.v290.utils.IO;
 
 public class RandomCoordinateController extends CoordinateController {
 
-	private TicTacToeCoordinate origin;
+	private Coordinate origin;
 
-	private TicTacToeCoordinate target;
+	private Coordinate target;
 
 	protected RandomCoordinateController(Game game) {
 		super(game);
 	}
 
 	@Override
-	public TicTacToeCoordinate getOrigin() {
-		origin = new TicTacToeCoordinate();
+	public Coordinate getOrigin() {
+		origin = new Coordinate();
 		boolean ok;
 		do {
 			origin.random();
@@ -23,14 +24,14 @@ public class RandomCoordinateController extends CoordinateController {
 		} while (!ok);
 		new IO().writeln("La máquina quita de " + origin);
 		new IO().readString("Enter para continuar!");
-		TicTacToeCoordinate result = origin;
+		Coordinate result = origin;
 		origin = null;
 		return result;
 	}
 
 	@Override
-	public TicTacToeCoordinate getTarget(String targetTitle) {
-		target = new TicTacToeCoordinate();
+	public Coordinate getTarget(String targetTitle) {
+		target = new Coordinate();
 		boolean ok;
 		do {
 			target.random();
@@ -43,7 +44,7 @@ public class RandomCoordinateController extends CoordinateController {
 		} while (!ok);
 		new IO().writeln("La máquina pone en " + target);
 		new IO().readString("Enter para continuar!");
-		TicTacToeCoordinate result = target;
+		Coordinate result = target;
 		target = null;
 		return result;
 	}

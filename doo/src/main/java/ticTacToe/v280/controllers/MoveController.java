@@ -1,12 +1,12 @@
 package ticTacToe.v280.controllers;
 
 import ticTacToe.v280.models.Game;
-import ticTacToe.v280.models.TicTacToeCoordinate;
+import ticTacToe.v280.models.Coordinate;
 import ticTacToe.v280.utils.IO;
 
 public abstract class MoveController extends ColocateController {
 
-	private TicTacToeCoordinate origin;
+	private Coordinate origin;
 
 	public MoveController(Game game) {
 		super(game, "Mueve");
@@ -30,7 +30,7 @@ public abstract class MoveController extends ColocateController {
 		this.getBoard().remove(origin, this.getTurn().take());
 	}
 	
-	protected abstract TicTacToeCoordinate selectOrigin();
+	protected abstract Coordinate selectOrigin();
 
 	private Error validateOrigin() {
 		if (!this.getBoard().full(origin, this.getTurn().take())) {
@@ -51,7 +51,7 @@ public abstract class MoveController extends ColocateController {
 		return null;
 	}	
 	
-	public TicTacToeCoordinate getOrigin() {
+	public Coordinate getOrigin() {
 		return origin;
 	}
 	
