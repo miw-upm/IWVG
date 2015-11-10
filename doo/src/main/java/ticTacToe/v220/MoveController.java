@@ -2,52 +2,58 @@ package ticTacToe.v220;
 
 import ticTacToe.v230.utils.IO;
 
-public class MoveController extends ColocateController {
+public class MoveController {
+
+	private Turn turn;
+
+	private Board board;
 
 	private Coordinate origin;
-	
+
+	private Coordinate target;
+
 	public MoveController(Turn turn, Board board) {
-		super(turn, board);
-	}
-	
-	@Override
-	public void control() {
-		this.put("Mueve", "A");
+		assert turn != null;
+		assert board != null;
+		this.turn = turn;
+		this.board = board;
+		origin = new Coordinate();
+		target = new Coordinate();
 	}
 
-	@Override
-	protected void prePut() {
-		this.remove();
-	}
-	
-	private void remove(){
+	public void move() {
+		IO io = new IO();
+		io.writeln("Mueve el jugador " + turn.take());
 		origin = new Coordinate();
 		boolean ok;
 		do {
 			origin.read("De");
-			ok = this.errorToMove();
-		} while (!ok);
-		this.getBoard().remove(origin, this.getTurn().take());
-	}
-	
-	private boolean errorToMove(){
-		boolean ok = this.getBoard().full(origin, this.getTurn().take());
-		if (!ok) {
-			new IO().writeln("Esa casilla no está ocupada por ninguna de tus fichas");
-		}
-		return ok;
-	}
-
-	@Override
-	protected boolean errorToPut() {
-		boolean ok = super.errorToPut();
-		if (ok){
-			ok = !origin.equals(this.getTarget());
+			ok = board.full(origin, turn.take());
 			if (!ok) {
-				new IO().writeln("No se puede poner de donde se quitó");
+				new IO().writeln("Esa casilla no está ocupada por ninguna de tus fichas");
 			}
+		} while (!ok);
+		board.remove(origin, turn.take());
+		do {
+			target.read("A");
+			ok = board.empty(target);
+			if (!ok) {
+				new IO().writeln("Esa casilla no está vacía");
+			} else {
+				ok = !origin.equals(target);
+				if (!ok) {
+					new IO().writeln("No se puede poner de donde se quitó");
+				}
+			}
+		} while (!ok);
+		board.put(target, turn.take());
+		board.write();
+		if (board.existTicTacToe(turn.take())) {
+			io.writeln("Victoria!!!! " + turn.take() + "! " + turn.take()
+					+ "! " + turn.take() + "! Victoria!!!!");
+		} else {
+			turn.change();
 		}
-		return ok;
 	}
 
 }
