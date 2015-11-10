@@ -22,7 +22,7 @@ public class GameView implements ColocateControllerVisitor {
 		Coordinate target;
 		Error error = null;
 		do {
-			target = new PutCoordinateView(
+			target = new PutTargetCoordinateView(
 					putController.getCoordinateController()).getTarget();
 			error = putController.validateTarget(target);
 			if (error != null) {

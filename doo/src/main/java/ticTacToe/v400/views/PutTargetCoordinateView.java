@@ -5,20 +5,17 @@ import ticTacToe.v400.controllers.RandomCoordinateController;
 import ticTacToe.v400.controllers.UserCoordinateController;
 import ticTacToe.v400.models.Coordinate;
 
-public class PutCoordinateView extends ColocateCoordinateView {
-
-	private CoordinateController coordinateController;
+public class PutTargetCoordinateView extends ColocateCoordinateView {
 
 	private Coordinate target;
 
-	PutCoordinateView(CoordinateController coordinateController) {
-		assert coordinateController != null;
-		this.coordinateController = coordinateController;
+	PutTargetCoordinateView(CoordinateController coordinateController) {
+		super(coordinateController);
 	}		
 		
 	Coordinate getCoordinate(){
-		target = coordinateController.getTarget();
-		coordinateController.accept(this);
+		target = this.getCoordinateController().getTarget();
+		this.getCoordinateController().accept(this);
 		return target;
 	}
 

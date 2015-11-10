@@ -7,13 +7,13 @@ import ticTacToe.v390.controllers.UserCoordinateController;
 import ticTacToe.v390.models.Coordinate;
 import ticTacToe.v390.utils.IO;
 
-public class PutCoordinateView implements CoordinateControllerVisitor {
+public class PutTargetCoordinateView implements CoordinateControllerVisitor {
 
 	private CoordinateController coordinateController;
 
 	private Coordinate target;
 
-	PutCoordinateView(CoordinateController coordinateController) {
+	PutTargetCoordinateView(CoordinateController coordinateController) {
 		assert coordinateController != null;
 		this.coordinateController = coordinateController;
 	}		

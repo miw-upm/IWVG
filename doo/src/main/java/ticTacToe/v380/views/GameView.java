@@ -16,6 +16,10 @@ public class GameView implements ColocateControllerVisitor,
 		CoordinateControllerVisitor {
 
 	private IO io = new IO();
+	
+	private String title;
+
+	private Coordinate target;
 
 	public void interact(ColocateController colocateController) {
 		colocateController.accept(this);
@@ -74,10 +78,6 @@ public class GameView implements ColocateControllerVisitor,
 					+ "! Victoria!!!!");
 		}
 	}
-
-	private String title;
-
-	private Coordinate target;
 
 	private Coordinate getTarget(String title,
 			CoordinateController coordinateController) {

@@ -22,7 +22,7 @@ public class GameView implements ColocateControllerVisitor {
 	@Override
 	public void visit(PutController putController) {
 		this.showTitle("Pone", putController.take());
-		PutCoordinateView putCoordinateView = new PutCoordinateView(
+		PutTargetCoordinateView putCoordinateView = new PutTargetCoordinateView(
 				putController.getCoordinateController());
 		this.put(putController, putCoordinateView);
 		this.showGame(putController);

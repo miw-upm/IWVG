@@ -7,18 +7,15 @@ import ticTacToe.v400.models.Coordinate;
 
 public class MoveOriginCoordinateView extends ColocateCoordinateView {
 
-	private CoordinateController coordinateController;
-	
 	private Coordinate origin;
 	
 	MoveOriginCoordinateView(CoordinateController coordinateController) {
-		assert coordinateController != null;
-		this.coordinateController = coordinateController;
+		super(coordinateController);
 	}
 	
 	Coordinate getCoordinate() {
-		origin = coordinateController.getOrigin();
-		coordinateController.accept(this);
+		origin = this.getCoordinateController().getOrigin();
+		this.getCoordinateController().accept(this);
 		return origin;
 	}
 
