@@ -8,7 +8,7 @@ import ticTacToe.v390.controllers.Error;
 import ticTacToe.v390.models.Coordinate;
 import ticTacToe.v390.utils.IO;
 
-public class GameView implements ColocateControllerVisitor {
+class GameView implements ColocateControllerVisitor {
 
 	private IO io = new IO();
 

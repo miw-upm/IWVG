@@ -3,7 +3,7 @@ package ticTacToe.v400.views.console;
 import ticTacToe.v400.controllers.StartController;
 import ticTacToe.v400.utils.LimitedIntDialog;
 
-public class StartView {
+class StartView {
 
 	void interact(StartController startController){
 		int users = new LimitedIntDialog("Cuántos usuarios?", 0, 2).read();

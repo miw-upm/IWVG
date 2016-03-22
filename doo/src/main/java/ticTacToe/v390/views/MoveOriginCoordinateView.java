@@ -7,7 +7,7 @@ import ticTacToe.v390.controllers.UserCoordinateController;
 import ticTacToe.v390.models.Coordinate;
 import ticTacToe.v390.utils.IO;
 
-public class MoveOriginCoordinateView implements CoordinateControllerVisitor {
+class MoveOriginCoordinateView implements CoordinateControllerVisitor {
 
 	private CoordinateController coordinateController;
 	

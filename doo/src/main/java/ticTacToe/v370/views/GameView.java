@@ -11,7 +11,7 @@ import ticTacToe.v370.controllers.UserCoordinateController;
 import ticTacToe.v370.models.Coordinate;
 import ticTacToe.v370.utils.IO;
 
-public class GameView implements ColocateControllerVisitor {
+class GameView implements ColocateControllerVisitor {
 
 	private IO io = new IO();
 

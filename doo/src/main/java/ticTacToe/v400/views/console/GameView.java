@@ -9,7 +9,7 @@ import ticTacToe.v400.models.Color;
 import ticTacToe.v400.models.Coordinate;
 import ticTacToe.v400.utils.IO;
 
-public class GameView implements ColocateControllerVisitor {
+class GameView implements ColocateControllerVisitor {
 
 	private IO io = new IO();
 

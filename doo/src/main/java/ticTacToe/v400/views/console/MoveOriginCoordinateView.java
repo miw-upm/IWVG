@@ -5,7 +5,7 @@ import ticTacToe.v400.controllers.RandomCoordinateController;
 import ticTacToe.v400.controllers.UserCoordinateController;
 import ticTacToe.v400.models.Coordinate;
 
-public class MoveOriginCoordinateView extends ColocateCoordinateView {
+class MoveOriginCoordinateView extends ColocateCoordinateView {
 
 	private Coordinate origin;
 	
