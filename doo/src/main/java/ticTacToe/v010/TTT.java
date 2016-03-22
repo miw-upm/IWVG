@@ -22,7 +22,7 @@ package ticTacToe.v010;
  */
 
 // Modificada por Luis en noviembre de 2015
-public class TTT {
+class TTT {
 	// atributos /////////////////////////////////////////////
 	private char[][] box; // 3x3 casillas
 	public static char[] color = { 'x', 'o' }; // colores de los jugadores

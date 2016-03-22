@@ -1,6 +1,6 @@
 package ticTacToe.v240;
 
-public class Turn {
+class Turn {
 
 	private int value = 0;
 	
@@ -12,16 +12,8 @@ public class Turn {
         return Color.values()[value];
     }
     
-    public Color notTake() {
-    	return Color.values()[this.other()];
-    }
-    
-    private int other() {
-    	return (value +1)% (Color.values().length-1);
-    }
-    
     public void change() {
-    	value = this.other();
+    	value = (value +1)% (Color.values().length-1);
     }
 	
 }

@@ -1,8 +1,9 @@
 package ticTacToe.v400.controllers.local;
 
 import ticTacToe.v400.models.Game;
+import ticTacToe.v400.aplication.Logic;
 
-public class Logic {
+public class LocalLogic implements Logic {
 
 	private Game game;
 
@@ -12,14 +13,14 @@ public class Logic {
 
 	private LocalContinueController continueController;
 
-	public Logic() {
+	public LocalLogic() {
 		game = new Game();
 		colocateControllerBuilder = new LocalColocateControllerBuilder(game);
 		startController = new LocalStartController(game, colocateControllerBuilder);
 		continueController = new LocalContinueController(game);
 	}
 
-	public LocalOperationController getController() {
+	public LocalOperationController getOperationController() {
 		switch (game.getState()){
 		case INITIAL:
 			return startController;

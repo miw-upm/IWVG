@@ -1,4 +1,4 @@
-package ticTacToe.v400.views;
+package ticTacToe.v400.views.console;
 
 import ticTacToe.v400.controllers.CoordinateController;
 import ticTacToe.v400.controllers.CoordinateControllerVisitor;

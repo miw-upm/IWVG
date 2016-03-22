@@ -25,7 +25,7 @@ public class TicTacToe {
            if (!board.complete()){
                players[turn.take()].put(board);
            } else {
-        	   players[turn.take()].put(board);
+        	   players[turn.take()].move(board);
            }
            turn.change();
        } while(!board.existTicTacToe());

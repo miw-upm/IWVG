@@ -1,7 +1,8 @@
-package ticTacToe.v330.views;
+package ticTacToe.v400.views.console;
 
-import ticTacToe.v330.models.Coordinate;
-import ticTacToe.v330.utils.IO;
+import ticTacToe.v400.models.Coordinate;
+import ticTacToe.v400.utils.IO;
+import ticTacToe.v400.utils.LimitedIntDialog;
 
 class CoordinateView {
 	

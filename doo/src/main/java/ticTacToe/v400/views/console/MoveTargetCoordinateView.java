@@ -1,32 +1,37 @@
-package ticTacToe.v400.views;
+package ticTacToe.v400.views.console;
 
 import ticTacToe.v400.controllers.CoordinateController;
 import ticTacToe.v400.controllers.RandomCoordinateController;
 import ticTacToe.v400.controllers.UserCoordinateController;
 import ticTacToe.v400.models.Coordinate;
 
-public class MoveOriginCoordinateView extends ColocateCoordinateView {
+public class MoveTargetCoordinateView extends ColocateCoordinateView {
 
 	private Coordinate origin;
 	
-	MoveOriginCoordinateView(CoordinateController coordinateController) {
+	private Coordinate target;
+
+	MoveTargetCoordinateView(CoordinateController coordinateController, Coordinate origin) {
 		super(coordinateController);
+		assert origin != null;
+		this.origin = origin;
 	}
 	
 	Coordinate getCoordinate() {
-		origin = this.getCoordinateController().getOrigin();
 		this.getCoordinateController().accept(this);
-		return origin;
+		return target;
 	}
-
+	
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView("De", origin).interact();
+		target = userCoordinateController.getTarget();
+		new CoordinateView("A", target).interact();
 	}
 
 	@Override
 	public void visit(RandomCoordinateController randomCoordinateController) {
-		this.show("quita de", origin);
+		target = randomCoordinateController.getTarget(origin);
+		this.show("pone en", target);
 	}
 	
 }

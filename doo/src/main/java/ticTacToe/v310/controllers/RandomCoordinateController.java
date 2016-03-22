@@ -20,7 +20,7 @@ public class RandomCoordinateController extends CoordinateController {
 		boolean ok;
 		do {
 			origin.random();
-			ok = this.getGame().full(origin);
+			ok = this.full(origin);
 		} while (!ok);
 		new IO().writeln("La máquina quita de " + origin);
 		new IO().readString("Enter para continuar!");
@@ -35,7 +35,7 @@ public class RandomCoordinateController extends CoordinateController {
 		boolean ok;
 		do {
 			target.random();
-			ok = this.getGame().empty(target);
+			ok = this.empty(target);
 			if (ok) {
 				if (origin != null) {
 					ok = !origin.equals(target);

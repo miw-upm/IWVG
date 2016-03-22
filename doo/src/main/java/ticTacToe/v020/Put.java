@@ -3,7 +3,7 @@ package ticTacToe.v020;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Put {
+class Put {
 
 	private char[][] tokens;
 	

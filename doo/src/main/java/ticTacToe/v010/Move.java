@@ -3,7 +3,7 @@ package ticTacToe.v010;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Move {
+class Move {
 
 	private char[][] tokens;
 	

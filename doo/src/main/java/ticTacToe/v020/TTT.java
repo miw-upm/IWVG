@@ -20,7 +20,7 @@ package ticTacToe.v020;
  */
 
 // Modificada por Luis en noviembre de 2015
-public class TTT {
+class TTT {
 	
 	// atributos /////////////////////////////////////////////
 	

@@ -1,6 +1,6 @@
 package ticTacToe.v010;
 
-public class Start {
+class Start {
 
 	private char[][] tokens;
 	
