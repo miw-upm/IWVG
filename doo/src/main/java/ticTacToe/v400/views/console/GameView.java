@@ -44,18 +44,18 @@ class GameView implements ColocateControllerVisitor {
 		io.writeln(title + " el jugador " + color);
 	}
 
-	private void put(ColocateController colocateController,
+	private void put(PutController putController,
 			ColocateCoordinateView colocateCoordinateView) {
 		Coordinate target;
 		Error error = null;
 		do {
 			target = colocateCoordinateView.getCoordinate();
-			error = colocateController.validateTarget(target);
+			error = putController.validateTarget(target);
 			if (error != null) {
 				io.writeln("" + error);
 			}
 		} while (error != null);
-		colocateController.put(target);
+		putController.put(target);
 	}
 
 	private void remove(MoveController moveController,
@@ -69,6 +69,20 @@ class GameView implements ColocateControllerVisitor {
 			}
 		} while (error != null);
 		moveController.remove(origin);
+	}
+	
+	private void put(MoveController moveController,
+			ColocateCoordinateView colocateCoordinateView) {
+		Coordinate target;
+		Error error = null;
+		do {
+			target = colocateCoordinateView.getCoordinate();
+			error = moveController.validateTarget(origin, target);
+			if (error != null) {
+				io.writeln("" + error);
+			}
+		} while (error != null);
+		moveController.put(target);
 	}
 
 	private void showGame(ColocateController colocateController) {
