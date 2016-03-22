@@ -12,10 +12,13 @@ import ticTacToe.v400.utils.IO;
 class GameView implements ColocateControllerVisitor {
 
 	private IO io = new IO();
+	
+	private ColorView colorView;
 
 	private Coordinate origin;
 
 	public void interact(ColocateController colocateController) {
+		colorView = new ColorView(colocateController.take());
 		colocateController.accept(this);
 	}
 
@@ -41,7 +44,7 @@ class GameView implements ColocateControllerVisitor {
 	}
 
 	private void showTitle(String title, Color color) {
-		io.writeln(title + " el jugador " + color);
+		colorView.writeln("Pone el jugador ");
 	}
 
 	private void put(PutController putController,
@@ -88,9 +91,7 @@ class GameView implements ColocateControllerVisitor {
 	private void showGame(ColocateController colocateController) {
 		new BoardView(colocateController).write();
 		if (colocateController.existTicTacToe()) {
-			io.writeln("Victoria!!!! " + colocateController.take() + "! "
-					+ colocateController.take() + "! "
-					+ colocateController.take() + "! Victoria!!!!");
+			colorView.writeWinner();
 		}
 	}
 

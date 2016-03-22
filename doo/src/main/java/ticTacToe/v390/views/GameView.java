@@ -18,7 +18,8 @@ class GameView implements ColocateControllerVisitor {
 
 	@Override
 	public void visit(PutController putController) {
-		io.writeln("Pone el jugador " + putController.take());
+		ColorView colorView = new ColorView(putController.take());
+		colorView.writeln("Pone el jugador ");
 		Coordinate target;
 		Error error = null;
 		do {
@@ -32,15 +33,14 @@ class GameView implements ColocateControllerVisitor {
 		putController.put(target);
 		new BoardView(putController).write();
 		if (putController.existTicTacToe()) {
-			io.writeln("Victoria!!!! " + putController.take() + "! "
-					+ putController.take() + "! " + putController.take()
-					+ "! Victoria!!!!");
+			colorView.writeWinner();
 		}
 	}
 
 	@Override
 	public void visit(MoveController moveController) {
-		io.writeln("Mueve el jugador " + moveController.take());
+		ColorView colorView = new ColorView(moveController.take());
+		colorView.writeln("Mueve el jugador ");
 		Coordinate origin;
 		Error error = null;
 		do {
@@ -65,9 +65,7 @@ class GameView implements ColocateControllerVisitor {
 		moveController.put(target);
 		new BoardView(moveController).write();
 		if (moveController.existTicTacToe()) {
-			io.writeln("Victoria!!!! " + moveController.take() + "! "
-					+ moveController.take() + "! " + moveController.take()
-					+ "! Victoria!!!!");
+			colorView.writeWinner();
 		}
 	}
 
