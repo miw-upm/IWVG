@@ -1,4 +1,4 @@
-package ticTacToe.v400.aplication;
+package ticTacToe.v400;
 
 import ticTacToe.v400.controllers.OperationController;
 

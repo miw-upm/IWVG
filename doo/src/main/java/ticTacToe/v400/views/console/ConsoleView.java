@@ -1,6 +1,6 @@
 package ticTacToe.v400.views.console;
 
-import ticTacToe.v400.aplication.View;
+import ticTacToe.v400.View;
 import ticTacToe.v400.controllers.ColocateController;
 import ticTacToe.v400.controllers.ContinueController;
 import ticTacToe.v400.controllers.OperationController;

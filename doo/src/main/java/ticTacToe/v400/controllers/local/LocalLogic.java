@@ -1,7 +1,7 @@
 package ticTacToe.v400.controllers.local;
 
+import ticTacToe.v400.Logic;
 import ticTacToe.v400.models.Game;
-import ticTacToe.v400.aplication.Logic;
 
 public class LocalLogic implements Logic {
 
