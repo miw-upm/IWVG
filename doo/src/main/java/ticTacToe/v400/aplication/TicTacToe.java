@@ -1,6 +1,8 @@
 package ticTacToe.v400.aplication;
 
 import ticTacToe.v400.controllers.OperationController;
+import ticTacToe.v400.controllers.local.LocalLogic;
+import ticTacToe.v400.views.console.ConsoleView;
 
 public class TicTacToe {
 
@@ -20,7 +22,10 @@ public class TicTacToe {
 			if (controller != null){
 				view.interact(controller);
 			}
-		} while (controller != null);
-		
+		} while (controller != null);	
+	}
+	
+	public static void main(String[] args) {
+		new TicTacToe(new ConsoleView(), new LocalLogic()).play();
 	}
 }
