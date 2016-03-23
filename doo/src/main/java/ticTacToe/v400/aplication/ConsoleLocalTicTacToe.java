@@ -1,6 +1,5 @@
-package ticTacToe.v400;
+package ticTacToe.v400.aplication;
 
-import ticTacToe.v400.aplication.TicTacToe;
 import ticTacToe.v400.controllers.local.LocalLogic;
 import ticTacToe.v400.views.console.ConsoleView;
 
