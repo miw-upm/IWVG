@@ -89,19 +89,19 @@ class GameView implements ColocateControllerVisitor,
 
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView(title, target).interact();
+		new CoordinateView(title, target).read();
 	}
 
 	@Override
 	public void visit(RandomCoordinateController randomCoordinateController) {
-		io.writeln("La máquina pone en " + target);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", target).write();
+		io.readString(". Pulse enter para continuar");
 	}
 
 	private Coordinate getTarget(String title,
 			UserCoordinateController coordinateController) {
 		Coordinate coordinate = coordinateController.getTarget();
-		new CoordinateView(title, coordinate).interact();
+		new CoordinateView(title, coordinate).read();
 		return coordinate;
 	}
 
@@ -118,14 +118,14 @@ class GameView implements ColocateControllerVisitor,
 
 	private Coordinate getOrigin(UserCoordinateController coordinateController) {
 		Coordinate coordinate = coordinateController.getOrigin();
-		new CoordinateView("De", coordinate).interact();
+		new CoordinateView("De", coordinate).read();
 		return coordinate;
 	}
 
 	private Coordinate getOrigin(RandomCoordinateController coordinateController) {
 		Coordinate coordinate = coordinateController.getOrigin();
-		io.writeln("La máquina quita de " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina quita de ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 
@@ -144,8 +144,8 @@ class GameView implements ColocateControllerVisitor,
 	private Coordinate getTarget(String title,
 			RandomCoordinateController coordinateController, Coordinate origin) {
 		Coordinate coordinate = coordinateController.getTarget(origin);
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 

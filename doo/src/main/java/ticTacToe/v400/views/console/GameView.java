@@ -44,7 +44,7 @@ class GameView implements ColocateControllerVisitor {
 	}
 
 	private void showTitle(String title, Color color) {
-		colorView.writeln("Pone el jugador ");
+		colorView.writeln(title + " el jugador ");
 	}
 
 	private void put(PutController putController,

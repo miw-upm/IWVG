@@ -16,9 +16,12 @@ public class ClosedInterval {
 		return min <= value && value <= max;
 	}
 
-	@Override
-	public String toString() {
-		return "[" + min + ", " + max + "]";
+	int getMin() {
+		return min;
+	}
+
+	int getMax() {
+		return max;
 	}
 
 }

@@ -108,7 +108,7 @@ public class TicTacToeView implements OperationControllerVisitor {
 		assert title != null;
 		assert coordinateController != null;
 		Coordinate coordinate = coordinateController.getTarget();
-		new CoordinateView(title, coordinate).interact();
+		new CoordinateView(title, coordinate).read();
 		return coordinate;
 	}
 
@@ -117,8 +117,8 @@ public class TicTacToeView implements OperationControllerVisitor {
 		assert title != null;
 		assert coordinateController != null;
 		Coordinate coordinate = coordinateController.getTarget();
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 	
@@ -137,15 +137,15 @@ public class TicTacToeView implements OperationControllerVisitor {
 	private Coordinate getOrigin(UserCoordinateController coordinateController) {
 		assert coordinateController != null;
 		Coordinate coordinate = coordinateController.getOrigin();
-		new CoordinateView("De", coordinate).interact();
+		new CoordinateView("De", coordinate).read();
 		return coordinate;
 	}
 
 	private Coordinate getOrigin(RandomCoordinateController coordinateController) {
 		assert coordinateController != null;
 		Coordinate coordinate = coordinateController.getOrigin();
-		io.writeln("La máquina quita de " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina quita de ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 
@@ -170,8 +170,8 @@ public class TicTacToeView implements OperationControllerVisitor {
 		assert origin != null;
 		assert coordinateController != null;
 		Coordinate coordinate = coordinateController.getTarget(origin);
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 

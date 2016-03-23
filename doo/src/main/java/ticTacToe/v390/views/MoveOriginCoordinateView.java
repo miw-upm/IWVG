@@ -26,14 +26,13 @@ class MoveOriginCoordinateView implements CoordinateControllerVisitor {
 
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView("De", origin).interact();
+		new CoordinateView("De", origin).read();
 	}
 
 	@Override
 	public void visit(RandomCoordinateController randomCoordinateController) {
-		IO io = new IO();
-		io.writeln("La máquina quita de " + origin);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", origin).write();
+		new IO().readString(". Pulse enter para continuar");
 	}
 	
 }

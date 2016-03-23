@@ -21,7 +21,7 @@ class PutTargetCoordinateView extends ColocateCoordinateView {
 
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView("En", target).interact();
+		new CoordinateView("En", target).read();
 	}
 
 	@Override

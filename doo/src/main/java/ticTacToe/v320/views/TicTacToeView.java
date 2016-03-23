@@ -69,20 +69,18 @@ public class TicTacToeView {
 		return null;
 	}
 
-	private Coordinate getTarget(String title, 
+	private Coordinate getTarget(String title,
 			UserCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController
-				.getTarget();
-		new CoordinateView(title, coordinate).interact();
+		Coordinate coordinate = coordinateController.getTarget();
+		new CoordinateView(title, coordinate).read();
 		return coordinate;
 	}
 
 	private Coordinate getTarget(String title,
 			RandomCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController
-				.getTarget();
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
+		Coordinate coordinate = coordinateController.getTarget();
+		new CoordinateView("La máquina pone en ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 
@@ -116,8 +114,7 @@ public class TicTacToeView {
 		}
 	}
 
-	private Coordinate getOrigin(
-			CoordinateController coordinateController) {
+	private Coordinate getOrigin(CoordinateController coordinateController) {
 		if (coordinateController instanceof UserCoordinateController) {
 			return this
 					.getOrigin((UserCoordinateController) coordinateController);
@@ -128,26 +125,21 @@ public class TicTacToeView {
 		return null;
 	}
 
-	private Coordinate getOrigin(
-			UserCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController
-				.getOrigin();
-		new CoordinateView("De", coordinate).interact();
+	private Coordinate getOrigin(UserCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController.getOrigin();
+		new CoordinateView("De", coordinate).read();
 		return coordinate;
 	}
 
-	private Coordinate getOrigin(
-			RandomCoordinateController coordinateController) {
-		Coordinate coordinate = coordinateController
-				.getOrigin();
-		io.writeln("La máquina quita de " + coordinate);
-		io.readString("Pulse enter para continuar");
+	private Coordinate getOrigin(RandomCoordinateController coordinateController) {
+		Coordinate coordinate = coordinateController.getOrigin();
+		new CoordinateView("La máquina quita de ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
-	
+
 	private Coordinate getTarget(String title,
-			CoordinateController coordinateController,
-			Coordinate origin) {
+			CoordinateController coordinateController, Coordinate origin) {
 		if (coordinateController instanceof UserCoordinateController) {
 			return this.getTarget(title,
 					(UserCoordinateController) coordinateController);
@@ -157,14 +149,12 @@ public class TicTacToeView {
 		}
 		return null;
 	}
-	
+
 	private Coordinate getTarget(String title,
-			RandomCoordinateController coordinateController,
-			Coordinate origin) {
-		Coordinate coordinate = coordinateController
-				.getTarget(origin);
-		io.writeln("La máquina pone en " + coordinate);
-		io.readString("Pulse enter para continuar");
+			RandomCoordinateController coordinateController, Coordinate origin) {
+		Coordinate coordinate = coordinateController.getTarget(origin);
+		new CoordinateView("La máquina pone en ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 		return coordinate;
 	}
 

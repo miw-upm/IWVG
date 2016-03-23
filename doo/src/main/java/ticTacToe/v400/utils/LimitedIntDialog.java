@@ -6,10 +6,13 @@ public class LimitedIntDialog {
 	
 	private ClosedInterval limits;
 	
+	private ClosedIntervalView limitsView;
+	
 	public LimitedIntDialog(String title, int min, int max){
 		assert title != null;
 		this.limits = new ClosedInterval(min, max);
-		this.title = title + " " + limits + ": ";
+		limitsView = new ClosedIntervalView("El valor debe estar entre ", limits);
+		this.title = title + " " + limitsView + ": ";
 	}
 	
 	public LimitedIntDialog(String title, int max){
@@ -24,7 +27,7 @@ public class LimitedIntDialog {
 			value = io.readInt(title);
 			ok = limits.includes(value);
 			if (!ok) {
-				io.writeln("El valor debe estar entre " + limits);
+				limitsView.writeln();
 			}
 		} while (!ok);
 		return value;

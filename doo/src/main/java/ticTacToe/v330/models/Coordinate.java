@@ -87,9 +87,12 @@ public class Coordinate {
 		return new Coordinate(this);
 	}
 	
-	@Override
-	public String toString(){
-		return "[" + (coordinate.getRow()+1) + ", " + (coordinate.getColumn()+1) + "]";
+	public int getRow(){
+		return coordinate.getRow();
+	}
+	
+	public int getColumn(){
+		return coordinate.getColumn();
 	}
 	
 }

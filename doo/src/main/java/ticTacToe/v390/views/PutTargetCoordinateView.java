@@ -26,14 +26,13 @@ class PutTargetCoordinateView implements CoordinateControllerVisitor {
 
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView("En", target).interact();
+		new CoordinateView("En", target).read();
 	}
 
 	@Override
 	public void visit(RandomCoordinateController randomCoordinateController) {
-		IO io = new IO();
-		io.writeln("La máquina pone en " + target);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", target).write();
+		new IO().readString(". Pulse enter para continuar");
 	}
 
 }

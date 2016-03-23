@@ -25,7 +25,7 @@ class MoveTargetCoordinateView extends ColocateCoordinateView {
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
 		target = userCoordinateController.getTarget();
-		new CoordinateView("A", target).interact();
+		new CoordinateView("A", target).read();
 	}
 
 	@Override

@@ -21,4 +21,12 @@ public class ClosedInterval {
 		return "[" + min + ", " + max + "]";
 	}
 
+	int getMin() {
+		return min;
+	}
+
+	int getMax() {
+		return max;
+	}
+
 }

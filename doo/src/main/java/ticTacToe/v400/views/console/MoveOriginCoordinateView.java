@@ -21,7 +21,7 @@ class MoveOriginCoordinateView extends ColocateCoordinateView {
 
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
-		new CoordinateView("De", origin).interact();
+		new CoordinateView("De", origin).read();
 	}
 
 	@Override

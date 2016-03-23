@@ -30,15 +30,14 @@ class MoveTargetCoordinateView implements CoordinateControllerVisitor {
 	@Override
 	public void visit(UserCoordinateController userCoordinateController) {
 		target = userCoordinateController.getTarget();
-		new CoordinateView("A", target).interact();
+		new CoordinateView("A", target).read();
 	}
 
 	@Override
 	public void visit(RandomCoordinateController randomCoordinateController) {
 		target = randomCoordinateController.getTarget(origin);
-		IO io = new IO();
-		io.writeln("La máquina pone en " + target);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina pone en ", target).write();
+		new IO().readString(". Pulse enter para continuar");
 	}
 	
 }

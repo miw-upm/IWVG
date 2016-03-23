@@ -20,8 +20,8 @@ abstract class ColocateCoordinateView implements CoordinateControllerVisitor {
 	abstract Coordinate getCoordinate();
 	
 	protected void show(String infix, Coordinate coordinate){
-		io.writeln("La máquina " + infix + " " + coordinate);
-		io.readString("Pulse enter para continuar");
+		new CoordinateView("La máquina " + infix + " ", coordinate).write();
+		io.readString(". Pulse enter para continuar");
 	}
 	
 	protected CoordinateController getCoordinateController(){
