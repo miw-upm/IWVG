@@ -1,6 +1,5 @@
 package ticTacToe.v310.models;
 
-
 public class Game {
 
 	private State state;

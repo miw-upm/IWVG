@@ -16,10 +16,6 @@ public class Game {
 		board = new Board(Game.NUM_PLAYERS);
 	}
 	
-	public int numPlayers() {
-		return Game.NUM_PLAYERS;
-	}
-	
 	public State getState() {
 		return state;
 	}

@@ -15,7 +15,7 @@ class LocalColocateControllerBuilder {
 	}
 
 	void build(int users) {
-		assert new ClosedInterval(0, game.numPlayers()).includes(users);
+		assert new ClosedInterval(0, game.getNumPlayers()).includes(users);
 		LocalCoordinateController[][] coordinateController = new LocalCoordinateController[2][2];
 		for (int i = 0; i < game.getNumPlayers(); i++) {
 			for (int j = 0; j < 2; j++) {

@@ -15,7 +15,7 @@ public abstract class LocalController {
 	}
 	
 	protected int numPlayers() {
-		return game.numPlayers();
+		return game.getNumPlayers();
 	}
 	
 	protected State getState(){
