@@ -1,6 +1,6 @@
-package ticTacToe.v460.controllers.local;
+package ticTacToe.v490.controllers.local;
 
-import ticTacToe.v460.models.Game;
+import ticTacToe.v490.models.Game;
 
 abstract class LocalColocateControllerBuilder {
 
@@ -16,7 +16,7 @@ abstract class LocalColocateControllerBuilder {
 
 	abstract void build();
 
-	protected void build(LocalCoordinateController[] localCoordinateControllerArray) {
+	void build(LocalCoordinateController[] localCoordinateControllerArray) {
 		assert localCoordinateControllerArray != null;
 		for (int i = 0; i < 2; i++) {
 			assert localCoordinateControllerArray[i] != null;
@@ -27,7 +27,7 @@ abstract class LocalColocateControllerBuilder {
 				localCoordinateControllerArray[1]);
 	}
 
-	LocalColocateController getLocalColocateController() {
+	LocalColocateController getColocateController() {
 		assert colocateControllerArray != null;
 		for (int i = 0; i < 2; i++) {
 			assert colocateControllerArray[i] != null;

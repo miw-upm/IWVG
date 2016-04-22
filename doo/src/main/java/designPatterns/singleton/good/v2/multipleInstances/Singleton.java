@@ -7,9 +7,10 @@ public class Singleton {
 
 	private static List<Singleton> singletonList = new ArrayList<Singleton>();
 
-	private static final int MAX = 3;
-
 	private static final String[] NAMES = {"A", "B", "C"};
+	
+	private static final int MAX = NAMES.length;
+	
 	private static int turn = 0;
 
 	public static Singleton instance() {
@@ -28,6 +29,6 @@ public class Singleton {
 	}
 
 	public void m() {
-		System.out.println("Ejecución de m de Singleton del objeto: " + name);
+		System.out.println("Ejecuciï¿½n de m de Singleton del objeto: " + name);
 	}
 }
