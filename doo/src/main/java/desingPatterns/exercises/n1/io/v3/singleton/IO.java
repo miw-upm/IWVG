@@ -1,4 +1,4 @@
-package desingPatterns.exercises.n1.io.v1.singleton;
+package desingPatterns.exercises.n1.io.v3.singleton;
 
 import java.io.BufferedReader;
 import java.io.IOException;

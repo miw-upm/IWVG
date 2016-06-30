@@ -1,4 +1,4 @@
-package desingPatterns.exercises.n1.io.v1.facade;
+package desingPatterns.exercises.n1.io.v2.facade;
 
 public class Application {
 
