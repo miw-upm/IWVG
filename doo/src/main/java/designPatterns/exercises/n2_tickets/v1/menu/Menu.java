@@ -30,8 +30,8 @@ public abstract class Menu {
 
 	public void execute(Ticket ticket) {
 		this.set(ticket);
+		exitCommand.reset();
 		do {
-			exitCommand.reset();
 			this.write();
 			int option = this.getOption();
 			commandList.get(option).execute();
@@ -50,10 +50,10 @@ public abstract class Menu {
 
 	private int getOption() {
 		return LimitedIntDialog.instance()
-				.read("Opción", 1, commandList.size()) - 1;
+				.read("Opción", 1, commandList.size());
 	}
 
-	public boolean closed() {
+	public boolean isClosed() {
 		return exitCommand.closed();
 	}
 

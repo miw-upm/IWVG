@@ -21,7 +21,6 @@ public class Supermarket {
 			Ticket ticket = CountryFactory.instance().getTicket();
 			menu.execute(ticket);
 			ticket.close();
-			System.out.println(ticket.toString());
 		} while (!clock.isNowOrLater(CLOSING_TIME));
 	}
 

@@ -9,7 +9,7 @@ import designPatterns.exercises.n2_tickets.v1.ticket.SaleLine;
 import designPatterns.exercises.n2_tickets.v1.ticket.Ticket;
 import designPatterns.exercises.n2_tickets.v1.ticket.TicketVisitor;
 
-public class TicketOperation implements TicketVisitor {
+public abstract class TicketOperation implements TicketVisitor {
 
 	protected Ticket ticket;
 	

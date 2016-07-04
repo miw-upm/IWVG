@@ -1,4 +1,4 @@
-package designPatterns.patterns.composite.v2.basic;
+package designPatterns.patterns.composite;
 
 public class Client {
 

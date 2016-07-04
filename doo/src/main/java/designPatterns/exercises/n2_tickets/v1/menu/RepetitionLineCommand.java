@@ -12,7 +12,7 @@ public class RepetitionLineCommand extends Command {
 	@Override
 	public void execute() {
 		int max = ticket.lines();
-		int line = LimitedIntDialog.instance().read("Línea", max);
+		int line = LimitedIntDialog.instance().read("Línea? ", max);
 		ticket.add(new RepetitionLine(line));
 	}
 }
