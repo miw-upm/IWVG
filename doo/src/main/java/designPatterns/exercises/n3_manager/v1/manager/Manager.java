@@ -3,9 +3,15 @@ package designPatterns.exercises.n3_manager.v1.manager;
 import designPatterns.exercises.n3_manager.v1.utils.IO;
 import designPatterns.exercises.n3_manager.v1.utils.LimitedIntDialog;
 
-public class Manager {
+public abstract class Manager {
 
 	protected Store store;
+
+	protected Manager() {
+		store = this.createStore();
+	}
+	
+	protected abstract Store createStore();
 
 	protected void manage() {
 		int option;
@@ -13,7 +19,8 @@ public class Manager {
 			this.showStore();
 			option = this.executeMenu();
 			if (option != 3) {
-				int code = LimitedIntDialog.instance().read("Código? ", 100);
+				int code = LimitedIntDialog.instance()
+						.read("Código? ", 100);
 				int amount = LimitedIntDialog.instance()
 						.read("Cantidad? ", 100);
 				switch (option) {

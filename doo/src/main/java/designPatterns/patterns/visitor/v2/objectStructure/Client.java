@@ -10,11 +10,9 @@ public class Client {
 		objectStructure.add(new ConcreteElementB());
 		objectStructure.add(new ConcreteElementA());
 		//...
-		ConcreteVisitorA concreteVisitorA = new ConcreteVisitorA();
-		objectStructure.accept(concreteVisitorA);
+		objectStructure.accept(new ConcreteVisitorA());
 		//...
-		ConcreteVisitorB concreteVisitorB = new ConcreteVisitorB();
-		objectStructure.accept(concreteVisitorB);
+		objectStructure.accept(new ConcreteVisitorB());
 		//...
 		
 		

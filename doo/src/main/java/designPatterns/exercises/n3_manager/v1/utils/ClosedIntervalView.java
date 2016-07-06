@@ -1,6 +1,5 @@
 package designPatterns.exercises.n3_manager.v1.utils;
 
-
 class ClosedIntervalView {
 
 	private String title;

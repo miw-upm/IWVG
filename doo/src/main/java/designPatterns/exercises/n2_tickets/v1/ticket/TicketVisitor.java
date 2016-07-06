@@ -1,6 +1,5 @@
 package designPatterns.exercises.n2_tickets.v1.ticket;
 
-
 public interface TicketVisitor {
 
 	void visit(Header head);

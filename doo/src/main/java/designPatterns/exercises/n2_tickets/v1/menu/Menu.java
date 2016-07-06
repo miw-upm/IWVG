@@ -50,7 +50,7 @@ public abstract class Menu {
 
 	private int getOption() {
 		return LimitedIntDialog.instance()
-				.read("Opción", 1, commandList.size());
+				.read("Opción", 1, commandList.size())-1;
 	}
 
 	public boolean isClosed() {

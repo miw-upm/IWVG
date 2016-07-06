@@ -25,6 +25,8 @@ class SpanishTicketBuilder extends TicketBuilder {
 	@Override
 	public Ticket build() {
 		Ticket ticket = new Ticket(new SpanishHead(), new SpanishFooter());
+		ticket.setLineTicketOperation(lineTicketOperation);
+		ticket.setGlobalTicketOperation(lineTicketOperation);
 		lineTicketOperation.set(ticket);
 		globalTicketOperation.set(ticket);
 		return ticket;

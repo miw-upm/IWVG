@@ -4,7 +4,8 @@ public enum FrameType {
 	ADD,
 	REMOVE,
 	EXIST,
-	LIST;
+	LIST,
+	CLOSE;
 
 	public static FrameType parser(String string) {
 		for(FrameType frameType : FrameType.values()) {

@@ -10,7 +10,7 @@ public abstract class TicketBuilder {
 
 	public static TicketBuilder instance() {
 		if (ticketBuilder == null) {
-			// ficher configuración
+			// TODO ficher configuración
 			String nameTicketBuilder = "desingPatterns.exercises.n2.tickets.v5.spanishConfiguration.SpanishTicketBuilder";
 			try {
 				ticketBuilder = (TicketBuilder) Class

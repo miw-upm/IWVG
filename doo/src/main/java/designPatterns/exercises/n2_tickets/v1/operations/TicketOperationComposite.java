@@ -25,6 +25,7 @@ public class TicketOperationComposite extends TicketOperation {
 	
 	@Override
 	public void set(Ticket ticket) {
+		super.set(ticket);
 		for(TicketOperation ticketOperation: ticketOperationList) {
 			ticketOperation.set(ticket);
 		}
