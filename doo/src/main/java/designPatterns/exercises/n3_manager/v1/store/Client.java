@@ -36,8 +36,7 @@ public class Client {
 	}
 	
 	public void println(int value){
-		out.println(""+value);
-		out.flush();
+		this.println(""+value);
 	}
 	
 	public boolean readBoolean(){
@@ -62,8 +61,7 @@ public class Client {
 	
 	public void close() {
 		try {
-			out.println(FrameType.CLOSE.name());
-			out.flush();
+			this.println(FrameType.CLOSE.name());
 			in.close();
 			out.close();
 			socket.close();

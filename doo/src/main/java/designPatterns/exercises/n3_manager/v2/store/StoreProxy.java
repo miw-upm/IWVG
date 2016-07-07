@@ -5,7 +5,7 @@ import designPatterns.exercises.n3_manager.v2.manager.Store;
 public class StoreProxy implements Store {
 
 	private LineState lineState;
-	
+		
 	public StoreProxy() {
 		try {
 			lineState = new OnLineState();

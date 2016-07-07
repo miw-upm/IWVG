@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import designPatterns.exercises.n1_io.v4_subclassification.IO;
 import designPatterns.exercises.n2_tickets.v1.menu.Menu;
-import designPatterns.exercises.n2_tickets.v1.spanishConfiguration.SpanishFactory;
 import designPatterns.exercises.n2_tickets.v1.ticket.Ticket;
 
 public abstract class CountryFactory {
