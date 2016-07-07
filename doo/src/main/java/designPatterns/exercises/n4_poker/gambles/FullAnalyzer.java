@@ -8,8 +8,10 @@ class FullAnalyzer extends Analyzer {
 	
 	@Override
 	public Gamble getGamble(PlayerStatistics playerStatistics) {
-		if (playerStatistics.hasSameValue(3) && playerStatistics.hasSameValue(2)) {
-			return new Gamble(GambleType.FULL, playerStatistics.getOrderedValues(3));
+		if (playerStatistics.hasSameValue(3) && 
+				playerStatistics.hasSameValue(2)) {
+			return new Gamble(GambleType.FULL, 
+					playerStatistics.getOrderedValues(3));
 		} else {
 			return nextAnalyzer.getGamble(playerStatistics);
 		}

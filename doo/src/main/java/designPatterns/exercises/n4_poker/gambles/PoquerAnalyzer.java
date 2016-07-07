@@ -9,7 +9,8 @@ class PoquerAnalyzer extends Analyzer {
 	@Override
 	public Gamble getGamble(PlayerStatistics playerStatistics) {
 		if (playerStatistics.hasSameValue(4)) {
-			return new Gamble(GambleType.POQUER, playerStatistics.getOrderedValues(4));
+			return new Gamble(GambleType.POQUER, 
+					playerStatistics.getOrderedValues(4));
 		} else {
 			return nextAnalyzer.getGamble(playerStatistics);
 		}

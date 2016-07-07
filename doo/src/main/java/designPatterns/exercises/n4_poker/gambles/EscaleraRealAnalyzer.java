@@ -13,7 +13,8 @@ class EscaleraRealAnalyzer extends Analyzer {
 	
 	@Override
 	public Gamble getGamble(PlayerStatistics playerStatistics) {
-		if (playerStatistics.hasSameColor(5) && playerStatistics.hasStairStart(Value.DIEZ)) {
+		if (playerStatistics.hasSameColor(5)
+				&& playerStatistics.hasStairStart(Value.DIEZ)) {
 			List<Value> orderedValues = new ArrayList<Value>();
 			orderedValues.add(playerStatistics.getMaxValue());
 			return new Gamble(GambleType.ESCALERA_REAL, orderedValues);

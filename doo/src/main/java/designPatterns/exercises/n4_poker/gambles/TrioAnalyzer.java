@@ -14,7 +14,7 @@ class TrioAnalyzer extends Analyzer {
 	public Gamble getGamble(PlayerStatistics playerStatistics) {
 		if (playerStatistics.hasSameValue(3)) {
 			List<Value> orderedValues = playerStatistics.getOrderedValues(3);
-			orderedValues.addAll(playerStatistics.getOrderedValues(1));
+//			orderedValues.addAll(playerStatistics.getOrderedValues(1));
 			return new Gamble(GambleType.TRIO, orderedValues);
 		} else {
 			return nextAnalyzer.getGamble(playerStatistics);

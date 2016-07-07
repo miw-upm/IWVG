@@ -9,4 +9,6 @@ abstract class Analyzer {
 	}
 
 	public abstract Gamble getGamble(PlayerStatistics playerStatistics);
+
+
 }

@@ -2,17 +2,17 @@ package designPatterns.exercises.n4_poker.cards;
 
 public class CardFlyweight {
 
-private static CardFlyweight cardFlyweight;
-	
+	private static CardFlyweight cardFlyweight;
+
 	public static CardFlyweight instance() {
 		if (cardFlyweight == null) {
 			cardFlyweight = new CardFlyweight();
 		}
 		return cardFlyweight;
 	}
-	
+
 	private Card[][] cards;
-	
+
 	private CardFlyweight() {
 		cards = new Card[Suite.values().length][Value.values().length];
 		for (int i = 0; i < Suite.values().length; i++) {
@@ -21,9 +21,9 @@ private static CardFlyweight cardFlyweight;
 			}
 		}
 	}
-	
-	public Card getCard(Value value, Suite suite){
+
+	public Card getCard(Value value, Suite suite) {
 		return cards[suite.ordinal()][value.ordinal()];
 	}
-	
+
 }

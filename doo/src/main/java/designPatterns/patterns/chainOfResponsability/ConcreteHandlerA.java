@@ -11,7 +11,7 @@ public class ConcreteHandlerA extends Handler {
 	@Override
 	public void handlerRequest() {
 		Random random = new Random(System.currentTimeMillis());
-		if (random.nextInt(10)<=3){
+		if (random.nextInt(10)<=7){
 			System.out.println("Decide ConcreteHandlerA");
 		} else {
 			nextHandler.handlerRequest();
