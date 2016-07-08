@@ -1,4 +1,4 @@
-package designPatterns.exercises.n5.vending;
+package designPatterns.exercises.n5_vending.bad;
 
 public class CartridgeCharger {
 

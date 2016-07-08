@@ -1,33 +1,33 @@
-package designPatterns.exercises.n5.vending;
+package designPatterns.exercises.n5_vending.bad;
 
-public class WaterTank {
+public class SugarDeposit {
 
 	private int amount;
 	
-	private static final int MINIMUM = 100;
+	private static final int MINIMUM = 12;
 
 	private CartridgeCharger cartridgeCharger;
 
-	private SugarDeposit sugarDeposit;
+	private WaterTank waterTank;
 
 	private Panel panel;
 
-	public WaterTank() {
+	public SugarDeposit() {
 		amount = 0;
 	}
 
 	public void set(CartridgeCharger cartridgeCharger,
-			SugarDeposit sugarDeposit, Panel panel) {
+			WaterTank waterTank, Panel panel) {
 		this.cartridgeCharger = cartridgeCharger;
-		this.sugarDeposit = sugarDeposit;
+		this.waterTank = waterTank;
 		this.panel = panel;
 	}
 
 	public void add(int amount) {
 		this.amount += amount;
-		if (this.hasEnoughMilliliters()) {
+		if (this.hasEnoughMilligrams()) {
 			if (cartridgeCharger.hasCartridgeCharger()
-					&& sugarDeposit.hasEnoughMilligrams()) {
+					&& waterTank.hasEnoughMilliliters()) {
 				panel.activeVending();
 			}
 		}
@@ -35,17 +35,17 @@ public class WaterTank {
 
 	public void remove(int amount) {
 		this.amount -= amount;
-		if (!this.hasEnoughMilliliters()) {
+		if (!this.hasEnoughMilligrams()) {
 			panel.deactiveVending();
 		}
 	}
 
-	public boolean hasEnoughMilliliters() {
-		return amount > WaterTank.MINIMUM;
+	public boolean hasEnoughMilligrams() {
+		return amount >= SugarDeposit.MINIMUM;
 	}
 	
 	@Override
 	public String toString() {
-		return "WaterTank [amount=" + amount + "]";
-	}
+		return "SugarDeposit [amount=" + amount + "]";
+	}	
 }
